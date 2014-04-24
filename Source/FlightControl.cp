@@ -173,7 +173,7 @@ void DisArm(){
 boolean TakeOff()
 {
  uint16 sonarReadValue;
- current_DC_3 =  5.4 ;
+ current_DC_3 =  5.8 ;
  UARTSendString("Taking off7.");
  while(current_DC_3 <  6.9 ){
  current_DC_3 +=  0.05 ;
@@ -181,7 +181,7 @@ boolean TakeOff()
  DC_time = (current_DC_3*pwm_period2)/100;
  PWM_TIM2_Set_Duty(DC_time, _PWM_NON_INVERTED, _PWM_CHANNEL1);
 
- if(current_DC_3 >=  6.4 )
+ if(current_DC_3 >=  6.6 )
  {
  sonarReadValue = alitudeSonarRead();
  UARTSendString("Sonar average.");

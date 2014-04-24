@@ -6,7 +6,7 @@ Value=0
 [BUILD_TYPE]
 Value=0
 [ACTIVE_TAB]
-Value=main.c
+Value=header\FlightControl.h
 [USE_EEPROM]
 Value=0
 [USE_HEAP]
@@ -27,8 +27,9 @@ Count=0
 Count=0
 ActiveImageIndex=-1
 [OPENED_FILES]
-Count=1
+Count=2
 File0=main.c
+File1=header\FlightControl.h
 [EEPROM]
 Count=0
 [ACTIVE_COMMENTS_FILES]

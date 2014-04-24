@@ -423,8 +423,8 @@ _TakeOff:
 SUB	SP, SP, #12
 STR	LR, [SP, #0]
 ;FlightControl.c,102 :: 		current_DC_3 = STARTING_THROTTLE_VALUE;  //Start motors at this value to predict timing-iterations in launch sequence
-MOVW	R1, #52429
-MOVT	R1, #16556
+MOVW	R1, #39322
+MOVT	R1, #16569
 MOVW	R0, #lo_addr(_current_DC_3+0)
 MOVT	R0, #hi_addr(_current_DC_3+0)
 STR	R1, [R0, #0]
@@ -479,8 +479,8 @@ BL	_PWM_TIM2_Set_Duty+0
 MOVW	R0, #lo_addr(_current_DC_3+0)
 MOVT	R0, #hi_addr(_current_DC_3+0)
 LDR	R2, [R0, #0]
-MOVW	R0, #52429
-MOVT	R0, #16588
+MOVW	R0, #13107
+MOVT	R0, #16595
 BL	__Compare_FP+0
 MOVW	R0, #0
 BGT	L__TakeOff61

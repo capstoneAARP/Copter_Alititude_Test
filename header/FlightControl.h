@@ -6,8 +6,8 @@
 #define GREEN_COPTER                  1
 
 #ifdef GREEN_COPTER
-#define STARTING_THROTTLE_VALUE         5.4
-#define LIMIT_THROTTLE_VALUE            6.4
+#define STARTING_THROTTLE_VALUE         5.8
+#define LIMIT_THROTTLE_VALUE            6.6
 #define MAX_THROTTLE_VALUE              6.9
 #define HOVER_THROTTLE_VALUE            6.3
 #define THROTLE_STEP_SIZE               0.05
