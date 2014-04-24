@@ -65,11 +65,10 @@ main
 					ADC1_Get_Sample
 						ADCx_Get_Sample
 							Delay_1us
-					UARTSendUint16
-						UART_Set_Active
-						UART1_Write
 					__CC2DW
 				UARTSendUint16
+					UART_Set_Active
+					UART1_Write
 				UARTSendNewLine
 					UART_Set_Active
 					UART1_Write

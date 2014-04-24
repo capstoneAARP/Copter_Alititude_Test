@@ -213,7 +213,7 @@ uint16 alitudeSonarRead()
    {
       sonarArray[i] = ADC1_Get_Sample(13);                          // Get ADC value from corresponding channel
       sonarArray[i] >>= 4;
-      UARTSendUint16(sonarArray[i]);
+      //UARTSendUint16(sonarArray[i]);
       if(sonarArray[i] >= SONAR_MAX_VALUE)
       {
           //bad value
