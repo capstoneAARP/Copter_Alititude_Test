@@ -604,7 +604,7 @@ BAL	L_end_TakeOff
 L_TakeOff21:
 ;FlightControl.c,139 :: 		if (sonarReadValue >= TAKEOFF_ALITITUDE)
 LDRH	R0, [SP, #4]
-CMP	R0, #48
+CMP	R0, #30
 IT	CC
 BCC	L_TakeOff22
 ;FlightControl.c,141 :: 		UARTSendString("Reached Alitutude.");
