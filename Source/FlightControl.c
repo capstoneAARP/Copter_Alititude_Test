@@ -274,6 +274,8 @@ void Stabilize_Alt()
              UARTSendString("Increase Throttle.");
        }
        GPIOC_ODR.B8 = ~GPIOC_ODR.B8;
+       UARTSendString("Throttle:");
+       UARTSendUint16(sonarAlititude);
        
        DC_time = (current_DC_3*pwm_period2)/100;
        PWM_TIM2_Set_Duty(DC_time, _PWM_NON_INVERTED, _PWM_CHANNEL1);

@@ -55,7 +55,7 @@ void mainTestingThread()
      //updateMapGoal(0,7);
      UARTSendString("Delay for GPS Signal.");
      Delay_ms(10000);
-     UARTSendString("Starting test11.");
+     UARTSendString("Starting test12.");
 
      StabilizeMode();  //Set to Stabilize mode for takeoff (Only needed for loop mode - the StabilizeMode() above will place the quad in correct mode for arming
      Delay_ms(500);

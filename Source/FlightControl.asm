@@ -1264,7 +1264,14 @@ EOR	R1, R0, #1
 MOVW	R0, #lo_addr(GPIOC_ODR+0)
 MOVT	R0, #hi_addr(GPIOC_ODR+0)
 STR	R1, [R0, #0]
-;FlightControl.c,278 :: 		DC_time = (current_DC_3*pwm_period2)/100;
+;FlightControl.c,277 :: 		UARTSendString("Throttle:");
+MOVW	R0, #lo_addr(?lstr13_FlightControl+0)
+MOVT	R0, #hi_addr(?lstr13_FlightControl+0)
+BL	_UARTSendString+0
+;FlightControl.c,278 :: 		UARTSendUint16(sonarAlititude);
+LDRH	R0, [SP, #4]
+BL	_UARTSendUint16+0
+;FlightControl.c,280 :: 		DC_time = (current_DC_3*pwm_period2)/100;
 MOVW	R0, #lo_addr(_pwm_period2+0)
 MOVT	R0, #hi_addr(_pwm_period2+0)
 LDR	R2, [R0, #0]
@@ -1280,28 +1287,53 @@ UXTH	R0, R0
 MOVW	R1, #lo_addr(_DC_time+0)
 MOVT	R1, #hi_addr(_DC_time+0)
 STRH	R0, [R1, #0]
-;FlightControl.c,279 :: 		PWM_TIM2_Set_Duty(DC_time, _PWM_NON_INVERTED, _PWM_CHANNEL1);
+;FlightControl.c,281 :: 		PWM_TIM2_Set_Duty(DC_time, _PWM_NON_INVERTED, _PWM_CHANNEL1);
 MOVS	R2, #0
 MOVS	R1, #0
 BL	_PWM_TIM2_Set_Duty+0
-;FlightControl.c,281 :: 		sonarAlititude = alitudeSonarRead();
+;FlightControl.c,283 :: 		sonarAlititude = alitudeSonarRead();
 BL	_alitudeSonarRead+0
 STRH	R0, [SP, #4]
-;FlightControl.c,282 :: 		UARTSendUint16(sonarAlititude);
+;FlightControl.c,284 :: 		UARTSendUint16(sonarAlititude);
 BL	_UARTSendUint16+0
-;FlightControl.c,283 :: 		failSafeCounter++;
+;FlightControl.c,285 :: 		failSafeCounter++;
 LDRB	R0, [SP, #6]
 ADDS	R0, R0, #1
 STRB	R0, [SP, #6]
-;FlightControl.c,284 :: 		}
+;FlightControl.c,286 :: 		}
 IT	AL
 BAL	L_Stabilize_Alt37
 L_Stabilize_Alt38:
-;FlightControl.c,285 :: 		UARTSendString("Reached Altitude.");
-MOVW	R0, #lo_addr(?lstr13_FlightControl+0)
-MOVT	R0, #hi_addr(?lstr13_FlightControl+0)
+;FlightControl.c,287 :: 		UARTSendString("Reached Altitude.");
+MOVW	R0, #lo_addr(?lstr14_FlightControl+0)
+MOVT	R0, #hi_addr(?lstr14_FlightControl+0)
 BL	_UARTSendString+0
-;FlightControl.c,286 :: 		}
+;FlightControl.c,289 :: 		current_DC_3 = HOVER_THROTTLE_VALUE;
+MOVW	R1, #39322
+MOVT	R1, #16585
+MOVW	R0, #lo_addr(_current_DC_3+0)
+MOVT	R0, #hi_addr(_current_DC_3+0)
+STR	R1, [R0, #0]
+;FlightControl.c,291 :: 		DC_time = (current_DC_3*pwm_period2)/100;
+MOVW	R0, #lo_addr(_pwm_period2+0)
+MOVT	R0, #hi_addr(_pwm_period2+0)
+LDR	R2, [R0, #0]
+MOVW	R0, #39322
+MOVT	R0, #16585
+BL	__Mul_FP+0
+MOVW	R2, #0
+MOVT	R2, #17096
+BL	__Div_FP+0
+BL	__FloatToUnsignedIntegral+0
+UXTH	R0, R0
+MOVW	R1, #lo_addr(_DC_time+0)
+MOVT	R1, #hi_addr(_DC_time+0)
+STRH	R0, [R1, #0]
+;FlightControl.c,292 :: 		PWM_TIM2_Set_Duty(DC_time, _PWM_NON_INVERTED, _PWM_CHANNEL1);
+MOVS	R2, #0
+MOVS	R1, #0
+BL	_PWM_TIM2_Set_Duty+0
+;FlightControl.c,293 :: 		}
 L_end_Stabilize_Alt:
 LDR	LR, [SP, #0]
 ADD	SP, SP, #16
