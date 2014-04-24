@@ -283,4 +283,9 @@ void Stabilize_Alt()
        failSafeCounter++;
    }
    UARTSendString("Reached Altitude.");
+   
+   current_DC_3 = HOVER_THROTTLE_VALUE;
+   
+   DC_time = (current_DC_3*pwm_period2)/100;
+   PWM_TIM2_Set_Duty(DC_time, _PWM_NON_INVERTED, _PWM_CHANNEL1);
 }
