@@ -2,6 +2,10 @@ _mainTestingThread:
 ;main.c,49 :: 		void mainTestingThread()
 SUB	SP, SP, #4
 STR	LR, [SP, #0]
+;main.c,56 :: 		UARTSendString("Delay for GPS Signal.");
+MOVW	R0, #lo_addr(?lstr1_main+0)
+MOVT	R0, #hi_addr(?lstr1_main+0)
+BL	_UARTSendString+0
 ;main.c,57 :: 		Delay_ms(10000);
 MOVW	R7, #57599
 MOVT	R7, #1525
@@ -13,9 +17,9 @@ BNE	L_mainTestingThread0
 NOP
 NOP
 NOP
-;main.c,58 :: 		UARTSendString("Starting test8.");
-MOVW	R0, #lo_addr(?lstr1_main+0)
-MOVT	R0, #hi_addr(?lstr1_main+0)
+;main.c,58 :: 		UARTSendString("Starting test9.");
+MOVW	R0, #lo_addr(?lstr2_main+0)
+MOVT	R0, #hi_addr(?lstr2_main+0)
 BL	_UARTSendString+0
 ;main.c,60 :: 		StabilizeMode();  //Set to Stabilize mode for takeoff (Only needed for loop mode - the StabilizeMode() above will place the quad in correct mode for arming
 BL	_StabilizeMode+0
@@ -58,8 +62,8 @@ NOP
 ;main.c,108 :: 		}
 L_mainTestingThread4:
 ;main.c,109 :: 		UARTSendString("Returning to base.");
-MOVW	R0, #lo_addr(?lstr2_main+0)
-MOVT	R0, #hi_addr(?lstr2_main+0)
+MOVW	R0, #lo_addr(?lstr3_main+0)
+MOVT	R0, #hi_addr(?lstr3_main+0)
 BL	_UARTSendString+0
 ;main.c,110 :: 		LandingMode();
 BL	_LandingMode+0
