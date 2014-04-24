@@ -22,11 +22,11 @@ diagnostics: 294	123	Compiled Successfully	FlightControl.c
 diagnostics: 0	122	Compilation Started	stdtypes.h
 diagnostics: 127	123	Compiled Successfully	UART.c
 hint: 44	1164	Variable 'test' has been eliminated by optimizer	UART.c
-diagnostics: 0	127	All files Compiled in 514 ms	 
+diagnostics: 0	127	All files Compiled in 499 ms	 
 hint: 0	1144	Used RX: 16 (100%)   Free RX: 0 (0%)	Used RX: 16 (100%)   Free RX: 0 (0%)
 hint: 0	1144	Static RAM (bytes): 412   Dynamic RAM (bytes): 97885	Static RAM (bytes): 412   Dynamic RAM (bytes): 97885
 hint: 0	1144	Used ROM (bytes): 10816 (1%)  Free ROM (bytes): 1037760 (99%)	Used ROM (bytes): 10816 (1%)  Free ROM (bytes): 1037760 (99%)
 diagnostics: 0	125	Project Linked Successfully	Copter_Alititude_Test.mcpar
 diagnostics: 0	128	Linked in 562 ms	 
-diagnostics: 0	129	Project 'Copter_Alititude_Test.mcpar' completed: 2574 ms	 
-diagnostics: 0	103	Finished successfully: 24 Apr 2014, 01:18:30	Copter_Alititude_Test.mcpar
+diagnostics: 0	129	Project 'Copter_Alititude_Test.mcpar' completed: 2606 ms	 
+diagnostics: 0	103	Finished successfully: 24 Apr 2014, 01:24:56	Copter_Alititude_Test.mcpar
