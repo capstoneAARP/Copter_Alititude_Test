@@ -19,7 +19,7 @@
 #define THROTLE_STEP_SIZE               0.05
 #endif
 
-#define TAKEOFF_ALITITUDE               48
+#define TAKEOFF_ALITITUDE               30
 #define MINIMUM_ALITITUDE               12
 #define TAKEOFF_LOOP_DELAY_MS           500
 
