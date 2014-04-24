@@ -437,8 +437,8 @@ L_TakeOff14:
 MOVW	R0, #lo_addr(_current_DC_3+0)
 MOVT	R0, #hi_addr(_current_DC_3+0)
 LDR	R2, [R0, #0]
-MOVW	R0, #52429
-MOVT	R0, #16604
+MOVW	R0, #26214
+MOVT	R0, #16598
 BL	__Compare_FP+0
 MOVW	R0, #0
 BLE	L__TakeOff61
@@ -519,8 +519,8 @@ BHI	L__TakeOff49
 MOVW	R0, #lo_addr(_current_DC_3+0)
 MOVT	R0, #hi_addr(_current_DC_3+0)
 LDR	R2, [R0, #0]
-MOVW	R0, #52429
-MOVT	R0, #16604
+MOVW	R0, #26214
+MOVT	R0, #16598
 BL	__Compare_FP+0
 MOVW	R0, #0
 BGT	L__TakeOff63
@@ -554,8 +554,8 @@ L__TakeOff48:
 MOVW	R0, #lo_addr(_current_DC_3+0)
 MOVT	R0, #hi_addr(_current_DC_3+0)
 LDR	R2, [R0, #0]
-MOVW	R0, #52429
-MOVT	R0, #16604
+MOVW	R0, #26214
+MOVT	R0, #16598
 BL	__Compare_FP+0
 MOVW	R0, #0
 BGT	L__TakeOff64
@@ -1009,8 +1009,8 @@ SXTH	R1, R1
 ADDS	R0, R6, #1
 UXTB	R0, R0
 UXTB	R6, R0
-;FlightControl.c,220 :: 		if(anomolyCount > 20)
-CMP	R0, #20
+;FlightControl.c,220 :: 		if(anomolyCount > MAX_ANOMOLY_TOSS)
+CMP	R0, #10
 IT	LS
 BLS	L_alitudeSonarRead29
 ; sonarAvg end address is: 32 (R8)

@@ -8,7 +8,7 @@
 #ifdef GREEN_COPTER
 #define STARTING_THROTTLE_VALUE         5.8
 #define LIMIT_THROTTLE_VALUE            6.5
-#define MAX_THROTTLE_VALUE              6.9
+#define MAX_THROTTLE_VALUE              6.7
 #define HOVER_THROTTLE_VALUE            6.3
 #define THROTLE_STEP_SIZE               0.05
 #define ALT_THROTLE_STEP_SIZE           0.05
@@ -31,6 +31,7 @@
 #define SONAR_OUTLIER_OFFSET            40
 #define SONAR_ALITUDE_RANGE             5
 #define SONAR_MAX_VALUE                 240
+#define MAX_ANOMOLY_TOSS                10
 #define ALITITUDE_SONAR_READ_ITER       2
 #define ALTITUDE_FAIL_SAFE_MAX          5
 

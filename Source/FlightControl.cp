@@ -1,6 +1,6 @@
-#line 1 "C:/Users/dell/Documents/GitHub/Copter_Alititude_Test/Source/FlightControl.c"
-#line 1 "c:/users/dell/documents/github/copter_alititude_test/header/flightcontrol.h"
-#line 1 "c:/users/dell/documents/github/copter_alititude_test/header/stdtypes.h"
+#line 1 "C:/Users/Brian Campuzano/Documents/GitHub/Copter_Alititude_Test/Source/FlightControl.c"
+#line 1 "c:/users/brian campuzano/documents/github/copter_alititude_test/header/flightcontrol.h"
+#line 1 "c:/users/brian campuzano/documents/github/copter_alititude_test/header/stdtypes.h"
 
 
 
@@ -42,7 +42,7 @@ typedef enum
  FOUND_THAT_SHIT_MODE,
  MAX_MODE
 } mode;
-#line 39 "c:/users/dell/documents/github/copter_alititude_test/header/flightcontrol.h"
+#line 40 "c:/users/brian campuzano/documents/github/copter_alititude_test/header/flightcontrol.h"
 void Flight_Control_Init();
 void Init_LED();
 void Init_ADC();
@@ -61,10 +61,10 @@ void Forward_Flight();
 void Stop_Forward();
 uint16 alitudeSonarRead();
 void Stabilize_Alt();
-#line 1 "c:/users/dell/documents/github/copter_alititude_test/header/stdtypes.h"
-#line 1 "c:/users/dell/documents/github/copter_alititude_test/header/uart.h"
-#line 1 "c:/users/dell/documents/github/copter_alititude_test/header/stdtypes.h"
-#line 6 "c:/users/dell/documents/github/copter_alititude_test/header/uart.h"
+#line 1 "c:/users/brian campuzano/documents/github/copter_alititude_test/header/stdtypes.h"
+#line 1 "c:/users/brian campuzano/documents/github/copter_alititude_test/header/uart.h"
+#line 1 "c:/users/brian campuzano/documents/github/copter_alititude_test/header/stdtypes.h"
+#line 6 "c:/users/brian campuzano/documents/github/copter_alititude_test/header/uart.h"
 void UARTDebugInit();
 
 void UARTSendString(uint8 * stringToSend);
@@ -76,7 +76,7 @@ void UARTSendNewLine(void);
 void UARTSendUint16(uint16 dataToSend);
 
 void UARTSendDouble(double dataToSend);
-#line 6 "C:/Users/dell/Documents/GitHub/Copter_Alititude_Test/Source/FlightControl.c"
+#line 6 "C:/Users/Brian Campuzano/Documents/GitHub/Copter_Alititude_Test/Source/FlightControl.c"
 float pwm_period1, pwm_period2;
 float current_DC = 7.4;
 float current_DC_2 = 5.0;
@@ -175,7 +175,7 @@ boolean TakeOff()
  uint16 sonarReadValue;
  current_DC_3 =  5.8 ;
  UARTSendString("Taking off7.");
- while(current_DC_3 <  6.9 ){
+ while(current_DC_3 <  6.7 ){
  current_DC_3 +=  0.05 ;
 
  DC_time = (current_DC_3*pwm_period2)/100;
@@ -191,14 +191,14 @@ boolean TakeOff()
  UARTSendDouble(current_DC_3);
 
 
- if (sonarReadValue <=  12  && current_DC_3 >=  6.9 )
+ if (sonarReadValue <=  12  && current_DC_3 >=  6.7 )
  {
  UARTSendString("Failed to reach altitude.");
  Throttle_Off();
  GPIOC_ODR.B9 = 0;
  return  1 ;
  }
- if (current_DC_3 >=  6.9 )
+ if (current_DC_3 >=  6.7 )
  {
  UARTSendString("Max Throttle.");
  GPIOC_ODR.B9 = 1;
@@ -291,7 +291,7 @@ uint16 alitudeSonarRead()
 
  i--;
  anomolyCount++;
- if(anomolyCount > 20)
+ if(anomolyCount >  10 )
  {
  return 255;
  }

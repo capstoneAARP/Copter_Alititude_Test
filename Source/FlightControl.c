@@ -217,7 +217,7 @@ uint16 alitudeSonarRead()
           //bad value
           i--;
           anomolyCount++;
-          if(anomolyCount > 20)
+          if(anomolyCount > MAX_ANOMOLY_TOSS)
           {
               return 255;
           }
