@@ -65,6 +65,8 @@ void mainTestingThread()
      if(success == true)
      {
        LoiterMode();
+       Delay_ms(5000);
+       StabilizeMode();
        Stabilize_Alt();
        LoiterMode();
        Delay_ms(10000);

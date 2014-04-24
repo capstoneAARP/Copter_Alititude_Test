@@ -1143,8 +1143,8 @@ STR	LR, [SP, #0]
 MOVS	R0, #0
 STRB	R0, [SP, #6]
 ;FlightControl.c,249 :: 		current_DC_3 = HOVER_THROTTLE_VALUE;
-MOVW	R1, #39322
-MOVT	R1, #16585
+MOVW	R1, #52429
+MOVT	R1, #16588
 MOVW	R0, #lo_addr(_current_DC_3+0)
 MOVT	R0, #hi_addr(_current_DC_3+0)
 STR	R1, [R0, #0]
@@ -1152,8 +1152,8 @@ STR	R1, [R0, #0]
 MOVW	R0, #lo_addr(_pwm_period2+0)
 MOVT	R0, #hi_addr(_pwm_period2+0)
 LDR	R2, [R0, #0]
-MOVW	R0, #39322
-MOVT	R0, #16585
+MOVW	R0, #52429
+MOVT	R0, #16588
 BL	__Mul_FP+0
 MOVW	R2, #0
 MOVT	R2, #17096
@@ -1222,7 +1222,7 @@ MOVT	R0, #hi_addr(_current_DC_3+0)
 STR	R0, [SP, #12]
 LDR	R0, [R0, #0]
 MOVW	R2, #52429
-MOVT	R2, #15820
+MOVT	R2, #15692
 BL	__Sub_FP+0
 LDR	R1, [SP, #12]
 STR	R0, [R1, #0]
@@ -1245,7 +1245,7 @@ MOVT	R0, #hi_addr(_current_DC_3+0)
 STR	R0, [SP, #12]
 LDR	R2, [R0, #0]
 MOVW	R0, #52429
-MOVT	R0, #15820
+MOVT	R0, #15692
 BL	__Add_FP+0
 LDR	R1, [SP, #12]
 STR	R0, [R1, #0]
@@ -1309,8 +1309,8 @@ MOVW	R0, #lo_addr(?lstr14_FlightControl+0)
 MOVT	R0, #hi_addr(?lstr14_FlightControl+0)
 BL	_UARTSendString+0
 ;FlightControl.c,289 :: 		current_DC_3 = HOVER_THROTTLE_VALUE;
-MOVW	R1, #39322
-MOVT	R1, #16585
+MOVW	R1, #52429
+MOVT	R1, #16588
 MOVW	R0, #lo_addr(_current_DC_3+0)
 MOVT	R0, #hi_addr(_current_DC_3+0)
 STR	R1, [R0, #0]
@@ -1318,8 +1318,8 @@ STR	R1, [R0, #0]
 MOVW	R0, #lo_addr(_pwm_period2+0)
 MOVT	R0, #hi_addr(_pwm_period2+0)
 LDR	R2, [R0, #0]
-MOVW	R0, #39322
-MOVT	R0, #16585
+MOVW	R0, #52429
+MOVT	R0, #16588
 BL	__Mul_FP+0
 MOVW	R2, #0
 MOVT	R2, #17096
