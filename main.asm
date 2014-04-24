@@ -44,8 +44,8 @@ IT	NE
 BNE	L_mainTestingThread4
 ;main.c,67 :: 		LoiterMode();
 BL	_LoiterMode+0
-;main.c,68 :: 		Alitutde_Hover();
-BL	_Alitutde_Hover+0
+;main.c,68 :: 		Stabilize_Alt();
+BL	_Stabilize_Alt+0
 ;main.c,69 :: 		LoiterMode();
 BL	_LoiterMode+0
 ;main.c,70 :: 		Delay_ms(10000);

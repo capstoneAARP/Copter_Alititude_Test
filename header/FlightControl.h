@@ -50,6 +50,6 @@ void Land();
 void Forward_Flight();
 void Stop_Forward();
 uint16 alitudeSonarRead();
-void Alitutde_Hover();
+void Stabilize_Alt();
 
 #endif // _FLIGHT_CONTROL_H_

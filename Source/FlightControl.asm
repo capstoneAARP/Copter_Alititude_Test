@@ -1142,8 +1142,8 @@ LDR	LR, [SP, #0]
 ADD	SP, SP, #52
 BX	LR
 ; end of _alitudeSonarRead
-_Alitutde_Hover:
-;FlightControl.c,246 :: 		void Alitutde_Hover()
+_Stabilize_Alt:
+;FlightControl.c,246 :: 		void Stabilize_Alt()
 SUB	SP, SP, #16
 STR	LR, [SP, #0]
 ;FlightControl.c,248 :: 		uint16 sonarAlititude = 0;
@@ -1195,38 +1195,38 @@ BL	_UARTSendUint16+0
 ;FlightControl.c,260 :: 		UARTSendNewLine();
 BL	_UARTSendNewLine+0
 ;FlightControl.c,262 :: 		while((sonarAlititude < (ALTITUDE_HOLD - SONAR_ALITUDE_RANGE)) || (sonarAlititude > (ALTITUDE_HOLD + SONAR_ALITUDE_RANGE)))
-L_Alitutde_Hover37:
+L_Stabilize_Alt37:
 LDRH	R0, [SP, #4]
 CMP	R0, #91
 IT	CC
-BCC	L__Alitutde_Hover52
+BCC	L__Stabilize_Alt52
 LDRH	R0, [SP, #4]
 CMP	R0, #101
 IT	HI
-BHI	L__Alitutde_Hover51
+BHI	L__Stabilize_Alt51
 IT	AL
-BAL	L_Alitutde_Hover38
-L__Alitutde_Hover52:
-L__Alitutde_Hover51:
+BAL	L_Stabilize_Alt38
+L__Stabilize_Alt52:
+L__Stabilize_Alt51:
 ;FlightControl.c,264 :: 		if(failSafeCounter >= 50)
 LDRB	R0, [SP, #7]
 CMP	R0, #50
 IT	CC
-BCC	L_Alitutde_Hover41
+BCC	L_Stabilize_Alt41
 ;FlightControl.c,266 :: 		UARTSendString("Breaking out at 50 iterations.");
 MOVW	R0, #lo_addr(?lstr11_FlightControl+0)
 MOVT	R0, #hi_addr(?lstr11_FlightControl+0)
 BL	_UARTSendString+0
 ;FlightControl.c,267 :: 		return;
 IT	AL
-BAL	L_end_Alitutde_Hover
+BAL	L_end_Stabilize_Alt
 ;FlightControl.c,268 :: 		}
-L_Alitutde_Hover41:
+L_Stabilize_Alt41:
 ;FlightControl.c,269 :: 		else if(loopIteration >= ALITITUDE_SONAR_READ_ITER)
 LDRB	R0, [SP, #6]
 CMP	R0, #3
 IT	CC
-BCC	L_Alitutde_Hover43
+BCC	L_Stabilize_Alt43
 ;FlightControl.c,271 :: 		loopIteration = 0;
 MOVS	R0, #0
 STRB	R0, [SP, #6]
@@ -1234,7 +1234,7 @@ STRB	R0, [SP, #6]
 LDRH	R0, [SP, #4]
 CMP	R0, #96
 IT	LS
-BLS	L_Alitutde_Hover44
+BLS	L_Stabilize_Alt44
 ;FlightControl.c,274 :: 		current_DC_3 -= THROTLE_STEP_SIZE;
 MOVW	R0, #lo_addr(_current_DC_3+0)
 MOVT	R0, #hi_addr(_current_DC_3+0)
@@ -1251,13 +1251,13 @@ MOVT	R0, #hi_addr(?lstr12_FlightControl+0)
 BL	_UARTSendString+0
 ;FlightControl.c,276 :: 		}
 IT	AL
-BAL	L_Alitutde_Hover45
-L_Alitutde_Hover44:
+BAL	L_Stabilize_Alt45
+L_Stabilize_Alt44:
 ;FlightControl.c,277 :: 		else if(sonarAlititude < ALTITUDE_HOLD)
 LDRH	R0, [SP, #4]
 CMP	R0, #96
 IT	CS
-BCS	L_Alitutde_Hover46
+BCS	L_Stabilize_Alt46
 ;FlightControl.c,279 :: 		current_DC_3 += THROTLE_STEP_SIZE;
 MOVW	R0, #lo_addr(_current_DC_3+0)
 MOVT	R0, #hi_addr(_current_DC_3+0)
@@ -1273,8 +1273,8 @@ MOVW	R0, #lo_addr(?lstr13_FlightControl+0)
 MOVT	R0, #hi_addr(?lstr13_FlightControl+0)
 BL	_UARTSendString+0
 ;FlightControl.c,281 :: 		}
-L_Alitutde_Hover46:
-L_Alitutde_Hover45:
+L_Stabilize_Alt46:
+L_Stabilize_Alt45:
 ;FlightControl.c,282 :: 		GPIOC_ODR.B8 = ~GPIOC_ODR.B8;
 MOVW	R1, #lo_addr(GPIOC_ODR+0)
 MOVT	R1, #hi_addr(GPIOC_ODR+0)
@@ -1304,7 +1304,7 @@ MOVS	R2, #0
 MOVS	R1, #0
 BL	_PWM_TIM2_Set_Duty+0
 ;FlightControl.c,285 :: 		}
-L_Alitutde_Hover43:
+L_Stabilize_Alt43:
 ;FlightControl.c,286 :: 		sonarAlititude = alitudeSonarRead();
 BL	_alitudeSonarRead+0
 STRH	R0, [SP, #4]
@@ -1327,15 +1327,15 @@ ADDS	R0, R0, #1
 STRB	R0, [SP, #6]
 ;FlightControl.c,292 :: 		}
 IT	AL
-BAL	L_Alitutde_Hover37
-L_Alitutde_Hover38:
+BAL	L_Stabilize_Alt37
+L_Stabilize_Alt38:
 ;FlightControl.c,293 :: 		UARTSendString("Reached Altitude.");
 MOVW	R0, #lo_addr(?lstr15_FlightControl+0)
 MOVT	R0, #hi_addr(?lstr15_FlightControl+0)
 BL	_UARTSendString+0
 ;FlightControl.c,294 :: 		}
-L_end_Alitutde_Hover:
+L_end_Stabilize_Alt:
 LDR	LR, [SP, #0]
 ADD	SP, SP, #16
 BX	LR
-; end of _Alitutde_Hover
+; end of _Stabilize_Alt

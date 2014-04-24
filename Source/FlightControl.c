@@ -243,7 +243,7 @@ uint16 alitudeSonarRead()
    return((uint16)secondAvg/SONAR_ITERATIONS);
 }
 
-void Alitutde_Hover()
+void Stabilize_Alt()
 {
    uint16 sonarAlititude = 0;
    uint8 loopIteration = 0;

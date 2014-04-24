@@ -3745,7 +3745,6 @@ align_adc2_cr2_bit
 align_adc3_cr2_bit
 align_bit
 alitudesonarread
-alitutde_hover
 alrf
 alrf
 alrf_bit
@@ -28793,6 +28792,7 @@ ssoe_spi3_cr2_bit
 st
 st
 st_bit
+stabilize_alt
 stabilizemode
 stall
 stall

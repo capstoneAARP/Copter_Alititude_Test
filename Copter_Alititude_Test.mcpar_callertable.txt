@@ -101,7 +101,7 @@ main
 				_Mul_FP
 				_Div_FP
 				_FloatToUnsignedIntegral
-			Alitutde_Hover
+			Stabilize_Alt
 				PWM_TIM2_Set_Duty
 				UARTSendString
 				alitudeSonarRead

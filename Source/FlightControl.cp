@@ -1,6 +1,6 @@
-#line 1 "C:/Users/Prometheus/Documents/GitHub/Copter_Alititude_Test/Source/FlightControl.c"
-#line 1 "c:/users/prometheus/documents/github/copter_alititude_test/header/flightcontrol.h"
-#line 1 "c:/users/prometheus/documents/github/copter_alititude_test/header/stdtypes.h"
+#line 1 "C:/Users/dell/Documents/GitHub/Copter_Alititude_Test/Source/FlightControl.c"
+#line 1 "c:/users/dell/documents/github/copter_alititude_test/header/flightcontrol.h"
+#line 1 "c:/users/dell/documents/github/copter_alititude_test/header/stdtypes.h"
 
 
 
@@ -42,7 +42,7 @@ typedef enum
  FOUND_THAT_SHIT_MODE,
  MAX_MODE
 } mode;
-#line 36 "c:/users/prometheus/documents/github/copter_alititude_test/header/flightcontrol.h"
+#line 36 "c:/users/dell/documents/github/copter_alititude_test/header/flightcontrol.h"
 void Flight_Control_Init();
 void Init_LED();
 void Init_ADC();
@@ -60,11 +60,11 @@ void Land();
 void Forward_Flight();
 void Stop_Forward();
 uint16 alitudeSonarRead();
-void Alitutde_Hover();
-#line 1 "c:/users/prometheus/documents/github/copter_alititude_test/header/stdtypes.h"
-#line 1 "c:/users/prometheus/documents/github/copter_alititude_test/header/uart.h"
-#line 1 "c:/users/prometheus/documents/github/copter_alititude_test/header/stdtypes.h"
-#line 6 "c:/users/prometheus/documents/github/copter_alititude_test/header/uart.h"
+void Stabilize_Alt();
+#line 1 "c:/users/dell/documents/github/copter_alititude_test/header/stdtypes.h"
+#line 1 "c:/users/dell/documents/github/copter_alititude_test/header/uart.h"
+#line 1 "c:/users/dell/documents/github/copter_alititude_test/header/stdtypes.h"
+#line 6 "c:/users/dell/documents/github/copter_alititude_test/header/uart.h"
 void UARTDebugInit();
 
 void UARTSendString(uint8 * stringToSend);
@@ -76,7 +76,7 @@ void UARTSendNewLine(void);
 void UARTSendUint16(uint16 dataToSend);
 
 void UARTSendDouble(double dataToSend);
-#line 6 "C:/Users/Prometheus/Documents/GitHub/Copter_Alititude_Test/Source/FlightControl.c"
+#line 6 "C:/Users/dell/Documents/GitHub/Copter_Alititude_Test/Source/FlightControl.c"
 float pwm_period1, pwm_period2;
 float current_DC = 7.4;
 float current_DC_2 = 5.0;
@@ -317,7 +317,7 @@ uint16 alitudeSonarRead()
  return((uint16)secondAvg/ 10 );
 }
 
-void Alitutde_Hover()
+void Stabilize_Alt()
 {
  uint16 sonarAlititude = 0;
  uint8 loopIteration = 0;
