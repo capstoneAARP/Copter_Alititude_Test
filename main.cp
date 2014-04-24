@@ -1,6 +1,6 @@
-#line 1 "C:/Users/dell/Documents/GitHub/Copter_Alititude_Test/main.c"
-#line 1 "c:/users/dell/documents/github/copter_alititude_test/header/uart.h"
-#line 1 "c:/users/dell/documents/github/copter_alititude_test/header/stdtypes.h"
+#line 1 "C:/Users/Prometheus/Documents/GitHub/Copter_Alititude_Test/main.c"
+#line 1 "c:/users/prometheus/documents/github/copter_alititude_test/header/uart.h"
+#line 1 "c:/users/prometheus/documents/github/copter_alititude_test/header/stdtypes.h"
 
 
 
@@ -42,7 +42,7 @@ typedef enum
  FOUND_THAT_SHIT_MODE,
  MAX_MODE
 } mode;
-#line 6 "c:/users/dell/documents/github/copter_alititude_test/header/uart.h"
+#line 6 "c:/users/prometheus/documents/github/copter_alititude_test/header/uart.h"
 void UARTDebugInit();
 
 void UARTSendString(uint8 * stringToSend);
@@ -54,17 +54,17 @@ void UARTSendNewLine(void);
 void UARTSendUint16(uint16 dataToSend);
 
 void UARTSendDouble(double dataToSend);
-#line 1 "c:/users/dell/documents/github/copter_alititude_test/header/stdtypes.h"
-#line 1 "c:/users/dell/documents/github/copter_alititude_test/header/blink.h"
+#line 1 "c:/users/prometheus/documents/github/copter_alititude_test/header/stdtypes.h"
+#line 1 "c:/users/prometheus/documents/github/copter_alititude_test/header/blink.h"
 
 
 
 
 void blink_init();
 void blink_led();
-#line 1 "c:/users/dell/documents/github/copter_alititude_test/header/flightcontrol.h"
-#line 1 "c:/users/dell/documents/github/copter_alititude_test/header/stdtypes.h"
-#line 37 "c:/users/dell/documents/github/copter_alititude_test/header/flightcontrol.h"
+#line 1 "c:/users/prometheus/documents/github/copter_alititude_test/header/flightcontrol.h"
+#line 1 "c:/users/prometheus/documents/github/copter_alititude_test/header/stdtypes.h"
+#line 37 "c:/users/prometheus/documents/github/copter_alititude_test/header/flightcontrol.h"
 void Flight_Control_Init();
 void Init_LED();
 void Init_ADC();
@@ -83,9 +83,9 @@ void Forward_Flight();
 void Stop_Forward();
 uint16 alitudeSonarRead();
 void Stabilize_Alt();
-#line 1 "c:/users/dell/documents/github/copter_alititude_test/header/nottriangulation.h"
-#line 1 "c:/users/dell/documents/github/copter_alititude_test/header/stdtypes.h"
-#line 19 "c:/users/dell/documents/github/copter_alititude_test/header/nottriangulation.h"
+#line 1 "c:/users/prometheus/documents/github/copter_alititude_test/header/nottriangulation.h"
+#line 1 "c:/users/prometheus/documents/github/copter_alititude_test/header/stdtypes.h"
+#line 19 "c:/users/prometheus/documents/github/copter_alititude_test/header/nottriangulation.h"
 static uint16 goalHeading;
 static int16 adcValue;
 
@@ -96,12 +96,12 @@ void InitTimer4();
 boolean headingInit(void);
 
 boolean testSequence(void);
-#line 36 "c:/users/dell/documents/github/copter_alititude_test/header/nottriangulation.h"
+#line 36 "c:/users/prometheus/documents/github/copter_alititude_test/header/nottriangulation.h"
 boolean calcDirection(void);
 
 
 boolean updateGoal(uint16 newHeading);
-#line 36 "C:/Users/dell/Documents/GitHub/Copter_Alititude_Test/main.c"
+#line 36 "C:/Users/Prometheus/Documents/GitHub/Copter_Alititude_Test/main.c"
 typedef void (*SliceFunctions) ();
 
 
@@ -137,7 +137,7 @@ void mainTestingThread()
  Stabilize_Alt();
  LoiterMode();
  Delay_ms(10000);
-#line 108 "C:/Users/dell/Documents/GitHub/Copter_Alititude_Test/main.c"
+#line 108 "C:/Users/Prometheus/Documents/GitHub/Copter_Alititude_Test/main.c"
  }
  UARTSendString("Returning to base.");
  LandingMode();
@@ -203,7 +203,7 @@ void InitSysTick()
  NVIC_SYSTICKCSR.B1 = 1;
  NVIC_SYSTICKCSR.B2 = 1;
 }
-#line 178 "C:/Users/dell/Documents/GitHub/Copter_Alititude_Test/main.c"
+#line 178 "C:/Users/Prometheus/Documents/GitHub/Copter_Alititude_Test/main.c"
 void SysTick_ISR() iv IVT_INT_SysTick ics ICS_AUTO
 {
 GPIOC_ODR ^= _GPIO_PINMASK_9;
@@ -253,7 +253,7 @@ void main()
 
 
  init_prog();
-#line 240 "C:/Users/dell/Documents/GitHub/Copter_Alititude_Test/main.c"
+#line 240 "C:/Users/Prometheus/Documents/GitHub/Copter_Alititude_Test/main.c"
 }
 
 

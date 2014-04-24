@@ -1,6 +1,6 @@
-#line 1 "C:/Users/dell/Documents/GitHub/Copter_Alititude_Test/Source/FlightControl.c"
-#line 1 "c:/users/dell/documents/github/copter_alititude_test/header/flightcontrol.h"
-#line 1 "c:/users/dell/documents/github/copter_alititude_test/header/stdtypes.h"
+#line 1 "C:/Users/Prometheus/Documents/GitHub/Copter_Alititude_Test/Source/FlightControl.c"
+#line 1 "c:/users/prometheus/documents/github/copter_alititude_test/header/flightcontrol.h"
+#line 1 "c:/users/prometheus/documents/github/copter_alititude_test/header/stdtypes.h"
 
 
 
@@ -42,7 +42,7 @@ typedef enum
  FOUND_THAT_SHIT_MODE,
  MAX_MODE
 } mode;
-#line 37 "c:/users/dell/documents/github/copter_alititude_test/header/flightcontrol.h"
+#line 37 "c:/users/prometheus/documents/github/copter_alititude_test/header/flightcontrol.h"
 void Flight_Control_Init();
 void Init_LED();
 void Init_ADC();
@@ -61,10 +61,10 @@ void Forward_Flight();
 void Stop_Forward();
 uint16 alitudeSonarRead();
 void Stabilize_Alt();
-#line 1 "c:/users/dell/documents/github/copter_alititude_test/header/stdtypes.h"
-#line 1 "c:/users/dell/documents/github/copter_alititude_test/header/uart.h"
-#line 1 "c:/users/dell/documents/github/copter_alititude_test/header/stdtypes.h"
-#line 6 "c:/users/dell/documents/github/copter_alititude_test/header/uart.h"
+#line 1 "c:/users/prometheus/documents/github/copter_alititude_test/header/stdtypes.h"
+#line 1 "c:/users/prometheus/documents/github/copter_alititude_test/header/uart.h"
+#line 1 "c:/users/prometheus/documents/github/copter_alititude_test/header/stdtypes.h"
+#line 6 "c:/users/prometheus/documents/github/copter_alititude_test/header/uart.h"
 void UARTDebugInit();
 
 void UARTSendString(uint8 * stringToSend);
@@ -76,7 +76,7 @@ void UARTSendNewLine(void);
 void UARTSendUint16(uint16 dataToSend);
 
 void UARTSendDouble(double dataToSend);
-#line 6 "C:/Users/dell/Documents/GitHub/Copter_Alititude_Test/Source/FlightControl.c"
+#line 6 "C:/Users/Prometheus/Documents/GitHub/Copter_Alititude_Test/Source/FlightControl.c"
 float pwm_period1, pwm_period2;
 float current_DC = 7.4;
 float current_DC_2 = 5.0;
@@ -280,8 +280,6 @@ uint16 alitudeSonarRead()
  uint32 secondAvg = 0;
  uint8 anomolyCount = 0;
 
- UARTSendString("reading sonar");
-
 
  for(i=0; i <  10 ; i++)
  {
@@ -334,13 +332,11 @@ void Stabilize_Alt()
 
  while((sonarAlititude < ( 96  -  5 )) || (sonarAlititude > ( 96  +  5 )))
  {
- if(failSafeCounter >=  25 )
+ if(failSafeCounter >=  30 )
  {
  UARTSendString("Breaking out, too many iterations.");
  return;
  }
- else
- {
  if(sonarAlititude >  96 )
  {
  current_DC_3 -=  0.05 ;
@@ -352,13 +348,12 @@ void Stabilize_Alt()
  UARTSendString("Increase Throttle.");
  }
  GPIOC_ODR.B8 = ~GPIOC_ODR.B8;
+
  DC_time = (current_DC_3*pwm_period2)/100;
  PWM_TIM2_Set_Duty(DC_time, _PWM_NON_INVERTED, _PWM_CHANNEL1);
- }
+
  sonarAlititude = alitudeSonarRead();
- UARTSendString("Sonar average.");
  UARTSendUint16(sonarAlititude);
- UARTSendNewLine();
  failSafeCounter++;
  }
  UARTSendString("Reached Altitude.");

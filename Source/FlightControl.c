@@ -206,8 +206,6 @@ uint16 alitudeSonarRead()
    uint32 secondAvg = 0;
    uint8 anomolyCount = 0;
    
-   UARTSendString("reading sonar");
-   
    //Start averaging of Ultrasonic readings
    for(i=0; i < SONAR_ITERATIONS; i++)
    {
@@ -265,26 +263,23 @@ void Stabilize_Alt()
            UARTSendString("Breaking out, too many iterations.");
            return;
        }
-       else
+       if(sonarAlititude > ALTITUDE_HOLD)
        {
-         if(sonarAlititude > ALTITUDE_HOLD)
-         {
-             current_DC_3 -= THROTLE_STEP_SIZE;
-             UARTSendString("Decrease Throttle.");
-         }
-         else if(sonarAlititude < ALTITUDE_HOLD)
-         {
-               current_DC_3 += THROTLE_STEP_SIZE;
-               UARTSendString("Increase Throttle.");
-         }
-         GPIOC_ODR.B8 = ~GPIOC_ODR.B8;
-         DC_time = (current_DC_3*pwm_period2)/100;
-         PWM_TIM2_Set_Duty(DC_time, _PWM_NON_INVERTED, _PWM_CHANNEL1);
+           current_DC_3 -= THROTLE_STEP_SIZE;
+           UARTSendString("Decrease Throttle.");
        }
+       else if(sonarAlititude < ALTITUDE_HOLD)
+       {
+             current_DC_3 += THROTLE_STEP_SIZE;
+             UARTSendString("Increase Throttle.");
+       }
+       GPIOC_ODR.B8 = ~GPIOC_ODR.B8;
+       
+       DC_time = (current_DC_3*pwm_period2)/100;
+       PWM_TIM2_Set_Duty(DC_time, _PWM_NON_INVERTED, _PWM_CHANNEL1);
+       
        sonarAlititude = alitudeSonarRead();
-       UARTSendString("Sonar average.");
        UARTSendUint16(sonarAlititude);
-       UARTSendNewLine();
        failSafeCounter++;
    }
    UARTSendString("Reached Altitude.");
