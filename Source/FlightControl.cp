@@ -181,7 +181,7 @@ boolean TakeOff()
  DC_time = (current_DC_3*pwm_period2)/100;
  PWM_TIM2_Set_Duty(DC_time, _PWM_NON_INVERTED, _PWM_CHANNEL1);
 
- if(current_DC_3 >=  6.6 )
+ if(current_DC_3 >=  6.5 )
  {
  sonarReadValue = alitudeSonarRead();
  UARTSendString("Sonar average.");
@@ -321,7 +321,7 @@ void Stabilize_Alt()
  uint8 failSafeCounter = 0;
  uint8 sonarReadIteration = 0;
 
- current_DC_3 =  6.4 ;
+ current_DC_3 =  6.3 ;
  DC_time = (current_DC_3*pwm_period2)/100;
  PWM_TIM2_Set_Duty(DC_time, _PWM_NON_INVERTED, _PWM_CHANNEL1);
 

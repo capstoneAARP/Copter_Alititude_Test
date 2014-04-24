@@ -134,10 +134,10 @@ void mainTestingThread()
  if(success ==  0 )
  {
  LoiterMode();
- Delay_ms(5000);
- StabilizeMode();
- Stabilize_Alt();
- LoiterMode();
+
+
+
+
  Delay_ms(10000);
 #line 110 "C:/Users/dell/Documents/GitHub/Copter_Alititude_Test/main.c"
  }

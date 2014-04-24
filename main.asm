@@ -44,31 +44,14 @@ IT	NE
 BNE	L_mainTestingThread4
 ;main.c,67 :: 		LoiterMode();
 BL	_LoiterMode+0
-;main.c,68 :: 		Delay_ms(5000);
-MOVW	R7, #61567
-MOVT	R7, #762
-NOP
-NOP
-L_mainTestingThread5:
-SUBS	R7, R7, #1
-BNE	L_mainTestingThread5
-NOP
-NOP
-NOP
-;main.c,69 :: 		StabilizeMode();
-BL	_StabilizeMode+0
-;main.c,70 :: 		Stabilize_Alt();
-BL	_Stabilize_Alt+0
-;main.c,71 :: 		LoiterMode();
-BL	_LoiterMode+0
 ;main.c,72 :: 		Delay_ms(10000);
 MOVW	R7, #57599
 MOVT	R7, #1525
 NOP
 NOP
-L_mainTestingThread7:
+L_mainTestingThread5:
 SUBS	R7, R7, #1
-BNE	L_mainTestingThread7
+BNE	L_mainTestingThread5
 NOP
 NOP
 NOP
@@ -85,30 +68,30 @@ MOVW	R7, #49663
 MOVT	R7, #3051
 NOP
 NOP
-L_mainTestingThread9:
+L_mainTestingThread7:
 SUBS	R7, R7, #1
-BNE	L_mainTestingThread9
+BNE	L_mainTestingThread7
 NOP
 NOP
 NOP
 ;main.c,114 :: 		DisArm();
 BL	_DisArm+0
 ;main.c,116 :: 		while(1)
-L_mainTestingThread11:
+L_mainTestingThread9:
 ;main.c,118 :: 		Delay_ms(500);
 MOVW	R7, #19263
 MOVT	R7, #76
 NOP
 NOP
-L_mainTestingThread13:
+L_mainTestingThread11:
 SUBS	R7, R7, #1
-BNE	L_mainTestingThread13
+BNE	L_mainTestingThread11
 NOP
 NOP
 NOP
 ;main.c,119 :: 		}
 IT	AL
-BAL	L_mainTestingThread11
+BAL	L_mainTestingThread9
 ;main.c,120 :: 		}
 L_end_mainTestingThread:
 LDR	LR, [SP, #0]
@@ -195,14 +178,14 @@ STRH	R0, [R1, #0]
 ;main.c,186 :: 		if (current_func == NUM_FUNC)                              //test for end of function
 CMP	R0, #1
 IT	NE
-BNE	L_SysTick_ISR15
+BNE	L_SysTick_ISR13
 ;main.c,187 :: 		current_func = 0;                                        //if so, restart at first function
 MOVS	R1, #0
 SXTH	R1, R1
 MOVW	R0, #lo_addr(_current_func+0)
 MOVT	R0, #hi_addr(_current_func+0)
 STRH	R1, [R0, #0]
-L_SysTick_ISR15:
+L_SysTick_ISR13:
 ;main.c,188 :: 		func_flag = 1;                                    //tell main() that there is a function ready
 MOVS	R1, #1
 SXTH	R1, R1
@@ -224,9 +207,9 @@ MOVW	R7, #9631
 MOVT	R7, #38
 NOP
 NOP
-L_init_prog16:
+L_init_prog14:
 SUBS	R7, R7, #1
-BNE	L_init_prog16
+BNE	L_init_prog14
 NOP
 NOP
 NOP

@@ -479,8 +479,8 @@ BL	_PWM_TIM2_Set_Duty+0
 MOVW	R0, #lo_addr(_current_DC_3+0)
 MOVT	R0, #hi_addr(_current_DC_3+0)
 LDR	R2, [R0, #0]
-MOVW	R0, #13107
-MOVT	R0, #16595
+MOVW	R0, #0
+MOVT	R0, #16592
 BL	__Compare_FP+0
 MOVW	R0, #0
 BGT	L__TakeOff62
@@ -1146,8 +1146,8 @@ MOVS	R0, #0
 STRB	R0, [SP, #7]
 ;FlightControl.c,248 :: 		uint8 sonarReadIteration = 0;
 ;FlightControl.c,250 :: 		current_DC_3 = HOVER_THROTTLE_VALUE;
-MOVW	R1, #52429
-MOVT	R1, #16588
+MOVW	R1, #39322
+MOVT	R1, #16585
 MOVW	R0, #lo_addr(_current_DC_3+0)
 MOVT	R0, #hi_addr(_current_DC_3+0)
 STR	R1, [R0, #0]
@@ -1155,8 +1155,8 @@ STR	R1, [R0, #0]
 MOVW	R0, #lo_addr(_pwm_period2+0)
 MOVT	R0, #hi_addr(_pwm_period2+0)
 LDR	R2, [R0, #0]
-MOVW	R0, #52429
-MOVT	R0, #16588
+MOVW	R0, #39322
+MOVT	R0, #16585
 BL	__Mul_FP+0
 MOVW	R2, #0
 MOVT	R2, #17096
