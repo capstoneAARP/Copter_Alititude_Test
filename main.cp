@@ -124,7 +124,7 @@ void mainTestingThread()
 
  UARTSendString("Delay for GPS Signal.");
  Delay_ms(10000);
- UARTSendString("Starting test10.");
+ UARTSendString("Starting test11.");
 
  StabilizeMode();
  Delay_ms(500);
