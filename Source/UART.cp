@@ -1,6 +1,6 @@
-#line 1 "C:/Users/Brian Campuzano/Documents/GitHub/Copter_Alititude_Test/Source/UART.c"
-#line 1 "c:/users/brian campuzano/documents/github/copter_alititude_test/header/uart.h"
-#line 1 "c:/users/brian campuzano/documents/github/copter_alititude_test/header/stdtypes.h"
+#line 1 "C:/Users/dell/Documents/GitHub/Copter_Alititude_Test/Source/UART.c"
+#line 1 "c:/users/dell/documents/github/copter_alititude_test/header/uart.h"
+#line 1 "c:/users/dell/documents/github/copter_alititude_test/header/stdtypes.h"
 
 
 
@@ -42,7 +42,7 @@ typedef enum
  FOUND_THAT_SHIT_MODE,
  MAX_MODE
 } mode;
-#line 6 "c:/users/brian campuzano/documents/github/copter_alititude_test/header/uart.h"
+#line 6 "c:/users/dell/documents/github/copter_alititude_test/header/uart.h"
 void UARTDebugInit();
 
 void UARTSendString(uint8 * stringToSend);
@@ -54,8 +54,8 @@ void UARTSendNewLine(void);
 void UARTSendUint16(uint16 dataToSend);
 
 void UARTSendDouble(double dataToSend);
-#line 1 "c:/users/brian campuzano/documents/github/copter_alititude_test/header/stdtypes.h"
-#line 4 "C:/Users/Brian Campuzano/Documents/GitHub/Copter_Alititude_Test/Source/UART.c"
+#line 1 "c:/users/dell/documents/github/copter_alititude_test/header/stdtypes.h"
+#line 4 "C:/Users/dell/Documents/GitHub/Copter_Alititude_Test/Source/UART.c"
 void UARTDebugInit()
 {
  UART1_Init_Advanced(9600, _UART_8_BIT_DATA, _UART_NOPARITY, _UART_ONE_STOPBIT, &_GPIO_MODULE_USART1_PA9_10);

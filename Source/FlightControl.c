@@ -245,6 +245,7 @@ void Stabilize_Alt()
 {
    uint16 sonarAlititude = 0;
    uint8 failSafeCounter = 0;
+   uint8 sonarReadIteration = 0;
    
    current_DC_3 = HOVER_THROTTLE_VALUE;
    DC_time = (current_DC_3*pwm_period2)/100;
@@ -263,31 +264,31 @@ void Stabilize_Alt()
            UARTSendString("Breaking out, too many iterations.");
            return;
        }
-       if(sonarAlititude > ALTITUDE_HOLD)
+       else if(sonarReadIteration >= ALITITUDE_SONAR_READ_ITER)
        {
-           current_DC_3 -= ALT_THROTLE_STEP_SIZE;
-           UARTSendString("Decrease Throttle.");
+         sonarReadIteration = 0;
+         if(sonarAlititude > ALTITUDE_HOLD)
+         {
+             current_DC_3 -= ALT_THROTLE_STEP_SIZE;
+             UARTSendString("Decrease Throttle.");
+         }
+         else if(sonarAlititude < ALTITUDE_HOLD)
+         {
+               current_DC_3 += ALT_THROTLE_STEP_SIZE;
+               UARTSendString("Increase Throttle.");
+         }
+         GPIOC_ODR.B8 = ~GPIOC_ODR.B8;
+         UARTSendString("Throttle:");
+         UARTSendUint16(current_DC_3);
+
+         DC_time = (current_DC_3*pwm_period2)/100;
+         PWM_TIM2_Set_Duty(DC_time, _PWM_NON_INVERTED, _PWM_CHANNEL1);
+         failSafeCounter++;
        }
-       else if(sonarAlititude < ALTITUDE_HOLD)
-       {
-             current_DC_3 += ALT_THROTLE_STEP_SIZE;
-             UARTSendString("Increase Throttle.");
-       }
-       GPIOC_ODR.B8 = ~GPIOC_ODR.B8;
-       UARTSendString("Throttle:");
-       UARTSendUint16(sonarAlititude);
-       
-       DC_time = (current_DC_3*pwm_period2)/100;
-       PWM_TIM2_Set_Duty(DC_time, _PWM_NON_INVERTED, _PWM_CHANNEL1);
        
        sonarAlititude = alitudeSonarRead();
        UARTSendUint16(sonarAlititude);
-       failSafeCounter++;
+       sonarReadIteration++;
    }
    UARTSendString("Reached Altitude.");
-   
-   current_DC_3 = HOVER_THROTTLE_VALUE;
-   
-   DC_time = (current_DC_3*pwm_period2)/100;
-   PWM_TIM2_Set_Duty(DC_time, _PWM_NON_INVERTED, _PWM_CHANNEL1);
 }
