@@ -120,7 +120,6 @@ boolean TakeOff()
            if (sonarReadValue <= MINIMUM_ALITITUDE && current_DC_3 >= MAX_THROTTLE_VALUE)
            {
                 UARTSendString("Failed to reach altitude.");
-                Throttle_Off();
                 GPIOC_ODR.B9 = 0; //Green LED Off - Indicates that the max throttle was reached but height off ground not acheived
                 return false;
            }

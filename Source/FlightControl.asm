@@ -535,22 +535,20 @@ L__TakeOff47:
 MOVW	R0, #lo_addr(?lstr4_FlightControl+0)
 MOVT	R0, #hi_addr(?lstr4_FlightControl+0)
 BL	_UARTSendString+0
-;FlightControl.c,123 :: 		Throttle_Off();
-BL	_Throttle_Off+0
-;FlightControl.c,124 :: 		GPIOC_ODR.B9 = 0; //Green LED Off - Indicates that the max throttle was reached but height off ground not acheived
+;FlightControl.c,123 :: 		GPIOC_ODR.B9 = 0; //Green LED Off - Indicates that the max throttle was reached but height off ground not acheived
 MOVS	R1, #0
 SXTB	R1, R1
 MOVW	R0, #lo_addr(GPIOC_ODR+0)
 MOVT	R0, #hi_addr(GPIOC_ODR+0)
 STR	R1, [R0, #0]
-;FlightControl.c,125 :: 		return false;
+;FlightControl.c,124 :: 		return false;
 MOVS	R0, #1
 IT	AL
 BAL	L_end_TakeOff
 ;FlightControl.c,120 :: 		if (sonarReadValue <= MINIMUM_ALITITUDE && current_DC_3 >= MAX_THROTTLE_VALUE)
 L__TakeOff49:
 L__TakeOff48:
-;FlightControl.c,127 :: 		if (current_DC_3 >= MAX_THROTTLE_VALUE)
+;FlightControl.c,126 :: 		if (current_DC_3 >= MAX_THROTTLE_VALUE)
 MOVW	R0, #lo_addr(_current_DC_3+0)
 MOVT	R0, #hi_addr(_current_DC_3+0)
 LDR	R2, [R0, #0]
@@ -565,67 +563,67 @@ UXTB	R0, R0
 CMP	R0, #0
 IT	EQ
 BEQ	L_TakeOff20
-;FlightControl.c,129 :: 		UARTSendString("Max Throttle.");
+;FlightControl.c,128 :: 		UARTSendString("Max Throttle.");
 MOVW	R0, #lo_addr(?lstr5_FlightControl+0)
 MOVT	R0, #hi_addr(?lstr5_FlightControl+0)
 BL	_UARTSendString+0
-;FlightControl.c,130 :: 		GPIOC_ODR.B9 = 1;
+;FlightControl.c,129 :: 		GPIOC_ODR.B9 = 1;
 MOVS	R1, #1
 SXTB	R1, R1
 MOVW	R0, #lo_addr(GPIOC_ODR+0)
 MOVT	R0, #hi_addr(GPIOC_ODR+0)
 STR	R1, [R0, #0]
-;FlightControl.c,131 :: 		return true;
+;FlightControl.c,130 :: 		return true;
 MOVS	R0, #0
 IT	AL
 BAL	L_end_TakeOff
-;FlightControl.c,132 :: 		}
+;FlightControl.c,131 :: 		}
 L_TakeOff20:
-;FlightControl.c,133 :: 		if(sonarReadValue == 255)
+;FlightControl.c,132 :: 		if(sonarReadValue == 255)
 LDRH	R0, [SP, #4]
 CMP	R0, #255
 IT	NE
 BNE	L_TakeOff21
-;FlightControl.c,135 :: 		UARTSendString("Sonar reads 255 return false.");
+;FlightControl.c,134 :: 		UARTSendString("Sonar reads 255 return false.");
 MOVW	R0, #lo_addr(?lstr6_FlightControl+0)
 MOVT	R0, #hi_addr(?lstr6_FlightControl+0)
 BL	_UARTSendString+0
-;FlightControl.c,136 :: 		GPIOC_ODR.B9 = 0; //Green LED Off - Indicates that the max throttle was reached but height off ground not acheived
+;FlightControl.c,135 :: 		GPIOC_ODR.B9 = 0; //Green LED Off - Indicates that the max throttle was reached but height off ground not acheived
 MOVS	R1, #0
 SXTB	R1, R1
 MOVW	R0, #lo_addr(GPIOC_ODR+0)
 MOVT	R0, #hi_addr(GPIOC_ODR+0)
 STR	R1, [R0, #0]
-;FlightControl.c,137 :: 		return false;
+;FlightControl.c,136 :: 		return false;
 MOVS	R0, #1
 IT	AL
 BAL	L_end_TakeOff
-;FlightControl.c,138 :: 		}
+;FlightControl.c,137 :: 		}
 L_TakeOff21:
-;FlightControl.c,139 :: 		if (sonarReadValue >= TAKEOFF_ALITITUDE)
+;FlightControl.c,138 :: 		if (sonarReadValue >= TAKEOFF_ALITITUDE)
 LDRH	R0, [SP, #4]
 CMP	R0, #30
 IT	CC
 BCC	L_TakeOff22
-;FlightControl.c,141 :: 		UARTSendString("Reached Alitutude.");
+;FlightControl.c,140 :: 		UARTSendString("Reached Alitutude.");
 MOVW	R0, #lo_addr(?lstr7_FlightControl+0)
 MOVT	R0, #hi_addr(?lstr7_FlightControl+0)
 BL	_UARTSendString+0
-;FlightControl.c,142 :: 		GPIOC_ODR.B9 = 1;   //Green LED Solid On - Indicates that target height off ground acheived
+;FlightControl.c,141 :: 		GPIOC_ODR.B9 = 1;   //Green LED Solid On - Indicates that target height off ground acheived
 MOVS	R1, #1
 SXTB	R1, R1
 MOVW	R0, #lo_addr(GPIOC_ODR+0)
 MOVT	R0, #hi_addr(GPIOC_ODR+0)
 STR	R1, [R0, #0]
-;FlightControl.c,143 :: 		return true;
+;FlightControl.c,142 :: 		return true;
 MOVS	R0, #0
 IT	AL
 BAL	L_end_TakeOff
-;FlightControl.c,144 :: 		}
+;FlightControl.c,143 :: 		}
 L_TakeOff22:
-;FlightControl.c,145 :: 		}
+;FlightControl.c,144 :: 		}
 L_TakeOff16:
-;FlightControl.c,146 :: 		GPIOC_ODR.B9 = ~GPIOC_ODR.B9; // Toggle PORTC
+;FlightControl.c,145 :: 		GPIOC_ODR.B9 = ~GPIOC_ODR.B9; // Toggle PORTC
 MOVW	R1, #lo_addr(GPIOC_ODR+0)
 MOVT	R1, #hi_addr(GPIOC_ODR+0)
 LDR	R0, [R1, #0]
@@ -633,7 +631,7 @@ EOR	R1, R0, #1
 MOVW	R0, #lo_addr(GPIOC_ODR+0)
 MOVT	R0, #hi_addr(GPIOC_ODR+0)
 STR	R1, [R0, #0]
-;FlightControl.c,147 :: 		Delay_ms(TAKEOFF_LOOP_DELAY_MS);
+;FlightControl.c,146 :: 		Delay_ms(TAKEOFF_LOOP_DELAY_MS);
 MOVW	R7, #19263
 MOVT	R7, #76
 NOP
@@ -644,21 +642,21 @@ BNE	L_TakeOff23
 NOP
 NOP
 NOP
-;FlightControl.c,148 :: 		}
+;FlightControl.c,147 :: 		}
 IT	AL
 BAL	L_TakeOff14
 L_TakeOff15:
-;FlightControl.c,149 :: 		}
+;FlightControl.c,148 :: 		}
 L_end_TakeOff:
 LDR	LR, [SP, #0]
 ADD	SP, SP, #12
 BX	LR
 ; end of _TakeOff
 _LoiterMode:
-;FlightControl.c,151 :: 		void LoiterMode(){
+;FlightControl.c,150 :: 		void LoiterMode(){
 SUB	SP, SP, #4
 STR	LR, [SP, #0]
-;FlightControl.c,152 :: 		DC_time = (current_DC_8*pwm_period2)/100;
+;FlightControl.c,151 :: 		DC_time = (current_DC_8*pwm_period2)/100;
 MOVW	R0, #lo_addr(_pwm_period2+0)
 MOVT	R0, #hi_addr(_pwm_period2+0)
 LDR	R2, [R0, #0]
@@ -674,21 +672,21 @@ UXTH	R0, R0
 MOVW	R1, #lo_addr(_DC_time+0)
 MOVT	R1, #hi_addr(_DC_time+0)
 STRH	R0, [R1, #0]
-;FlightControl.c,153 :: 		PWM_TIM3_Set_Duty(DC_time, _PWM_NON_INVERTED, _PWM_CHANNEL1);
+;FlightControl.c,152 :: 		PWM_TIM3_Set_Duty(DC_time, _PWM_NON_INVERTED, _PWM_CHANNEL1);
 MOVS	R2, #0
 MOVS	R1, #0
 BL	_PWM_TIM3_Set_Duty+0
-;FlightControl.c,154 :: 		}
+;FlightControl.c,153 :: 		}
 L_end_LoiterMode:
 LDR	LR, [SP, #0]
 ADD	SP, SP, #4
 BX	LR
 ; end of _LoiterMode
 _StabilizeMode:
-;FlightControl.c,156 :: 		void StabilizeMode(){
+;FlightControl.c,155 :: 		void StabilizeMode(){
 SUB	SP, SP, #4
 STR	LR, [SP, #0]
-;FlightControl.c,157 :: 		DC_time = (current_DC_3*pwm_period2)/100;
+;FlightControl.c,156 :: 		DC_time = (current_DC_3*pwm_period2)/100;
 MOVW	R0, #lo_addr(_pwm_period2+0)
 MOVT	R0, #hi_addr(_pwm_period2+0)
 LDR	R2, [R0, #0]
@@ -704,21 +702,21 @@ UXTH	R0, R0
 MOVW	R1, #lo_addr(_DC_time+0)
 MOVT	R1, #hi_addr(_DC_time+0)
 STRH	R0, [R1, #0]
-;FlightControl.c,158 :: 		PWM_TIM3_Set_Duty(DC_time, _PWM_NON_INVERTED, _PWM_CHANNEL1);
+;FlightControl.c,157 :: 		PWM_TIM3_Set_Duty(DC_time, _PWM_NON_INVERTED, _PWM_CHANNEL1);
 MOVS	R2, #0
 MOVS	R1, #0
 BL	_PWM_TIM3_Set_Duty+0
-;FlightControl.c,159 :: 		}
+;FlightControl.c,158 :: 		}
 L_end_StabilizeMode:
 LDR	LR, [SP, #0]
 ADD	SP, SP, #4
 BX	LR
 ; end of _StabilizeMode
 _LandingMode:
-;FlightControl.c,162 :: 		void LandingMode(){
+;FlightControl.c,161 :: 		void LandingMode(){
 SUB	SP, SP, #4
 STR	LR, [SP, #0]
-;FlightControl.c,163 :: 		DC_time = (current_DC_9*pwm_period2)/100;
+;FlightControl.c,162 :: 		DC_time = (current_DC_9*pwm_period2)/100;
 MOVW	R0, #lo_addr(_pwm_period2+0)
 MOVT	R0, #hi_addr(_pwm_period2+0)
 LDR	R2, [R0, #0]
@@ -734,21 +732,21 @@ UXTH	R0, R0
 MOVW	R1, #lo_addr(_DC_time+0)
 MOVT	R1, #hi_addr(_DC_time+0)
 STRH	R0, [R1, #0]
-;FlightControl.c,164 :: 		PWM_TIM3_Set_Duty(DC_time, _PWM_NON_INVERTED, _PWM_CHANNEL1);
+;FlightControl.c,163 :: 		PWM_TIM3_Set_Duty(DC_time, _PWM_NON_INVERTED, _PWM_CHANNEL1);
 MOVS	R2, #0
 MOVS	R1, #0
 BL	_PWM_TIM3_Set_Duty+0
-;FlightControl.c,165 :: 		}
+;FlightControl.c,164 :: 		}
 L_end_LandingMode:
 LDR	LR, [SP, #0]
 ADD	SP, SP, #4
 BX	LR
 ; end of _LandingMode
 _Land:
-;FlightControl.c,167 :: 		void Land(){
+;FlightControl.c,166 :: 		void Land(){
 SUB	SP, SP, #4
 STR	LR, [SP, #0]
-;FlightControl.c,168 :: 		DC_time = (current_DC_7*pwm_period2)/100;
+;FlightControl.c,167 :: 		DC_time = (current_DC_7*pwm_period2)/100;
 MOVW	R0, #lo_addr(_pwm_period2+0)
 MOVT	R0, #hi_addr(_pwm_period2+0)
 LDR	R2, [R0, #0]
@@ -764,25 +762,25 @@ UXTH	R0, R0
 MOVW	R1, #lo_addr(_DC_time+0)
 MOVT	R1, #hi_addr(_DC_time+0)
 STRH	R0, [R1, #0]
-;FlightControl.c,169 :: 		PWM_TIM3_Set_Duty(DC_time, _PWM_NON_INVERTED, _PWM_CHANNEL1);
+;FlightControl.c,168 :: 		PWM_TIM3_Set_Duty(DC_time, _PWM_NON_INVERTED, _PWM_CHANNEL1);
 MOVS	R2, #0
 MOVS	R1, #0
 BL	_PWM_TIM3_Set_Duty+0
-;FlightControl.c,170 :: 		}
+;FlightControl.c,169 :: 		}
 L_end_Land:
 LDR	LR, [SP, #0]
 ADD	SP, SP, #4
 BX	LR
 ; end of _Land
 _Yaw_Left:
-;FlightControl.c,172 :: 		void Yaw_Left(uint16 timeToYaw_ms){
+;FlightControl.c,171 :: 		void Yaw_Left(uint16 timeToYaw_ms){
 ; timeToYaw_ms start address is: 0 (R0)
 SUB	SP, SP, #4
 STR	LR, [SP, #0]
 UXTH	R8, R0
 ; timeToYaw_ms end address is: 0 (R0)
 ; timeToYaw_ms start address is: 32 (R8)
-;FlightControl.c,173 :: 		DC_time = (8.0*pwm_period2)/100;
+;FlightControl.c,172 :: 		DC_time = (8.0*pwm_period2)/100;
 MOVW	R1, #lo_addr(_pwm_period2+0)
 MOVT	R1, #hi_addr(_pwm_period2+0)
 LDR	R2, [R1, #0]
@@ -796,33 +794,33 @@ UXTH	R0, R0
 MOVW	R1, #lo_addr(_DC_time+0)
 MOVT	R1, #hi_addr(_DC_time+0)
 STRH	R0, [R1, #0]
-;FlightControl.c,174 :: 		PWM_TIM2_Set_Duty(DC_time, _PWM_NON_INVERTED, _PWM_CHANNEL2);       //for YAW
+;FlightControl.c,173 :: 		PWM_TIM2_Set_Duty(DC_time, _PWM_NON_INVERTED, _PWM_CHANNEL2);       //for YAW
 UXTH	R1, R0
 MOVS	R2, #1
 UXTH	R0, R1
 MOVS	R1, #0
 BL	_PWM_TIM2_Set_Duty+0
-;FlightControl.c,175 :: 		Vdelay_ms(timeToYaw_ms);
+;FlightControl.c,174 :: 		Vdelay_ms(timeToYaw_ms);
 UXTH	R0, R8
 ; timeToYaw_ms end address is: 32 (R8)
 BL	_VDelay_ms+0
-;FlightControl.c,176 :: 		Yaw_Stop();
+;FlightControl.c,175 :: 		Yaw_Stop();
 BL	_Yaw_Stop+0
-;FlightControl.c,177 :: 		}
+;FlightControl.c,176 :: 		}
 L_end_Yaw_Left:
 LDR	LR, [SP, #0]
 ADD	SP, SP, #4
 BX	LR
 ; end of _Yaw_Left
 _Yaw_Right:
-;FlightControl.c,179 :: 		void Yaw_Right(const uint16 timeToYaw_ms){
+;FlightControl.c,178 :: 		void Yaw_Right(const uint16 timeToYaw_ms){
 ; timeToYaw_ms start address is: 0 (R0)
 SUB	SP, SP, #4
 STR	LR, [SP, #0]
 UXTH	R8, R0
 ; timeToYaw_ms end address is: 0 (R0)
 ; timeToYaw_ms start address is: 32 (R8)
-;FlightControl.c,180 :: 		DC_time = (6.8*pwm_period2)/100;
+;FlightControl.c,179 :: 		DC_time = (6.8*pwm_period2)/100;
 MOVW	R1, #lo_addr(_pwm_period2+0)
 MOVT	R1, #hi_addr(_pwm_period2+0)
 LDR	R2, [R1, #0]
@@ -837,29 +835,29 @@ UXTH	R0, R0
 MOVW	R1, #lo_addr(_DC_time+0)
 MOVT	R1, #hi_addr(_DC_time+0)
 STRH	R0, [R1, #0]
-;FlightControl.c,181 :: 		PWM_TIM2_Set_Duty(DC_time, _PWM_NON_INVERTED, _PWM_CHANNEL2);       //for YAW
+;FlightControl.c,180 :: 		PWM_TIM2_Set_Duty(DC_time, _PWM_NON_INVERTED, _PWM_CHANNEL2);       //for YAW
 UXTH	R1, R0
 MOVS	R2, #1
 UXTH	R0, R1
 MOVS	R1, #0
 BL	_PWM_TIM2_Set_Duty+0
-;FlightControl.c,182 :: 		Vdelay_ms(timeToYaw_ms);
+;FlightControl.c,181 :: 		Vdelay_ms(timeToYaw_ms);
 UXTH	R0, R8
 ; timeToYaw_ms end address is: 32 (R8)
 BL	_VDelay_ms+0
-;FlightControl.c,183 :: 		Yaw_Stop();
+;FlightControl.c,182 :: 		Yaw_Stop();
 BL	_Yaw_Stop+0
-;FlightControl.c,184 :: 		}
+;FlightControl.c,183 :: 		}
 L_end_Yaw_Right:
 LDR	LR, [SP, #0]
 ADD	SP, SP, #4
 BX	LR
 ; end of _Yaw_Right
 _Yaw_Stop:
-;FlightControl.c,186 :: 		void Yaw_Stop(){
+;FlightControl.c,185 :: 		void Yaw_Stop(){
 SUB	SP, SP, #4
 STR	LR, [SP, #0]
-;FlightControl.c,187 :: 		DC_time = (current_DC*pwm_period2)/100;
+;FlightControl.c,186 :: 		DC_time = (current_DC*pwm_period2)/100;
 MOVW	R0, #lo_addr(_pwm_period2+0)
 MOVT	R0, #hi_addr(_pwm_period2+0)
 LDR	R2, [R0, #0]
@@ -875,21 +873,21 @@ UXTH	R0, R0
 MOVW	R1, #lo_addr(_DC_time+0)
 MOVT	R1, #hi_addr(_DC_time+0)
 STRH	R0, [R1, #0]
-;FlightControl.c,188 :: 		PWM_TIM2_Set_Duty(DC_time, _PWM_NON_INVERTED, _PWM_CHANNEL2);       //for YAW
+;FlightControl.c,187 :: 		PWM_TIM2_Set_Duty(DC_time, _PWM_NON_INVERTED, _PWM_CHANNEL2);       //for YAW
 MOVS	R2, #1
 MOVS	R1, #0
 BL	_PWM_TIM2_Set_Duty+0
-;FlightControl.c,189 :: 		}
+;FlightControl.c,188 :: 		}
 L_end_Yaw_Stop:
 LDR	LR, [SP, #0]
 ADD	SP, SP, #4
 BX	LR
 ; end of _Yaw_Stop
 _Forward_Flight:
-;FlightControl.c,191 :: 		void Forward_Flight(){
+;FlightControl.c,190 :: 		void Forward_Flight(){
 SUB	SP, SP, #4
 STR	LR, [SP, #0]
-;FlightControl.c,192 :: 		DC_time = (6.5*pwm_period2)/100;
+;FlightControl.c,191 :: 		DC_time = (6.5*pwm_period2)/100;
 MOVW	R0, #lo_addr(_pwm_period2+0)
 MOVT	R0, #hi_addr(_pwm_period2+0)
 LDR	R2, [R0, #0]
@@ -904,21 +902,21 @@ UXTH	R0, R0
 MOVW	R1, #lo_addr(_DC_time+0)
 MOVT	R1, #hi_addr(_DC_time+0)
 STRH	R0, [R1, #0]
-;FlightControl.c,193 :: 		PWM_TIM2_Set_Duty(DC_time, _PWM_NON_INVERTED, _PWM_CHANNEL3);       //for PITCH
+;FlightControl.c,192 :: 		PWM_TIM2_Set_Duty(DC_time, _PWM_NON_INVERTED, _PWM_CHANNEL3);       //for PITCH
 MOVS	R2, #2
 MOVS	R1, #0
 BL	_PWM_TIM2_Set_Duty+0
-;FlightControl.c,194 :: 		}
+;FlightControl.c,193 :: 		}
 L_end_Forward_Flight:
 LDR	LR, [SP, #0]
 ADD	SP, SP, #4
 BX	LR
 ; end of _Forward_Flight
 _Stop_Forward:
-;FlightControl.c,196 :: 		void Stop_Forward(){
+;FlightControl.c,195 :: 		void Stop_Forward(){
 SUB	SP, SP, #4
 STR	LR, [SP, #0]
-;FlightControl.c,197 :: 		DC_time = (current_DC*pwm_period2)/100;
+;FlightControl.c,196 :: 		DC_time = (current_DC*pwm_period2)/100;
 MOVW	R0, #lo_addr(_pwm_period2+0)
 MOVT	R0, #hi_addr(_pwm_period2+0)
 LDR	R2, [R0, #0]
@@ -934,35 +932,35 @@ UXTH	R0, R0
 MOVW	R1, #lo_addr(_DC_time+0)
 MOVT	R1, #hi_addr(_DC_time+0)
 STRH	R0, [R1, #0]
-;FlightControl.c,198 :: 		PWM_TIM2_Set_Duty(DC_time, _PWM_NON_INVERTED, _PWM_CHANNEL3);       //for PITCH
+;FlightControl.c,197 :: 		PWM_TIM2_Set_Duty(DC_time, _PWM_NON_INVERTED, _PWM_CHANNEL3);       //for PITCH
 MOVS	R2, #2
 MOVS	R1, #0
 BL	_PWM_TIM2_Set_Duty+0
-;FlightControl.c,199 :: 		}
+;FlightControl.c,198 :: 		}
 L_end_Stop_Forward:
 LDR	LR, [SP, #0]
 ADD	SP, SP, #4
 BX	LR
 ; end of _Stop_Forward
 _alitudeSonarRead:
-;FlightControl.c,201 :: 		uint16 alitudeSonarRead()
+;FlightControl.c,200 :: 		uint16 alitudeSonarRead()
 SUB	SP, SP, #32
 STR	LR, [SP, #0]
-;FlightControl.c,203 :: 		uint16 sonarArray[SONAR_ITERATIONS] = {0};
+;FlightControl.c,202 :: 		uint16 sonarArray[SONAR_ITERATIONS] = {0};
 ADD	R11, SP, #4
 ADD	R10, R11, #20
 MOVW	R12, #lo_addr(?ICSalitudeSonarRead_sonarArray_L0+0)
 MOVT	R12, #hi_addr(?ICSalitudeSonarRead_sonarArray_L0+0)
 BL	___CC2DW+0
-;FlightControl.c,204 :: 		int16 i = 0;
-;FlightControl.c,205 :: 		uint32 sonarAvg = 0;
+;FlightControl.c,203 :: 		int16 i = 0;
+;FlightControl.c,204 :: 		uint32 sonarAvg = 0;
 ; sonarAvg start address is: 32 (R8)
 MOV	R8, #0
-;FlightControl.c,206 :: 		uint32 secondAvg = 0;
-;FlightControl.c,207 :: 		uint8 anomolyCount = 0;
+;FlightControl.c,205 :: 		uint32 secondAvg = 0;
+;FlightControl.c,206 :: 		uint8 anomolyCount = 0;
 ; anomolyCount start address is: 24 (R6)
 MOVS	R6, #0
-;FlightControl.c,210 :: 		for(i=0; i < SONAR_ITERATIONS; i++)
+;FlightControl.c,209 :: 		for(i=0; i < SONAR_ITERATIONS; i++)
 ; i start address is: 20 (R5)
 MOVS	R5, #0
 SXTH	R5, R5
@@ -976,7 +974,7 @@ L_alitudeSonarRead25:
 CMP	R5, #10
 IT	GE
 BGE	L_alitudeSonarRead26
-;FlightControl.c,212 :: 		sonarArray[i] = ADC1_Get_Sample(13);                          // Get ADC value from corresponding channel
+;FlightControl.c,211 :: 		sonarArray[i] = ADC1_Get_Sample(13);                          // Get ADC value from corresponding channel
 ADD	R1, SP, #4
 STR	R1, [SP, #28]
 LSLS	R0, R5, #1
@@ -986,43 +984,43 @@ MOVS	R0, #13
 BL	_ADC1_Get_Sample+0
 LDR	R1, [SP, #24]
 STRH	R0, [R1, #0]
-;FlightControl.c,213 :: 		sonarArray[i] >>= 4;
+;FlightControl.c,212 :: 		sonarArray[i] >>= 4;
 LSLS	R0, R5, #1
 LDR	R2, [SP, #28]
 ADDS	R1, R2, R0
 LDRH	R0, [R1, #0]
 LSRS	R0, R0, #4
 STRH	R0, [R1, #0]
-;FlightControl.c,215 :: 		if(sonarArray[i] >= SONAR_MAX_VALUE)
+;FlightControl.c,214 :: 		if(sonarArray[i] >= SONAR_MAX_VALUE)
 LSLS	R0, R5, #1
 ADDS	R0, R2, R0
 LDRH	R0, [R0, #0]
 CMP	R0, #240
 IT	CC
 BCC	L_alitudeSonarRead28
-;FlightControl.c,218 :: 		i--;
+;FlightControl.c,217 :: 		i--;
 SUBS	R1, R5, #1
 SXTH	R1, R1
 ; i end address is: 20 (R5)
 ; i start address is: 4 (R1)
-;FlightControl.c,219 :: 		anomolyCount++;
+;FlightControl.c,218 :: 		anomolyCount++;
 ADDS	R0, R6, #1
 UXTB	R0, R0
 UXTB	R6, R0
-;FlightControl.c,220 :: 		if(anomolyCount > MAX_ANOMOLY_TOSS)
+;FlightControl.c,219 :: 		if(anomolyCount > MAX_ANOMOLY_TOSS)
 CMP	R0, #10
 IT	LS
 BLS	L_alitudeSonarRead29
 ; sonarAvg end address is: 32 (R8)
 ; anomolyCount end address is: 24 (R6)
 ; i end address is: 4 (R1)
-;FlightControl.c,222 :: 		return 255;
+;FlightControl.c,221 :: 		return 255;
 MOVS	R0, #255
 IT	AL
 BAL	L_end_alitudeSonarRead
-;FlightControl.c,223 :: 		}
+;FlightControl.c,222 :: 		}
 L_alitudeSonarRead29:
-;FlightControl.c,224 :: 		}
+;FlightControl.c,223 :: 		}
 ; i start address is: 4 (R1)
 ; anomolyCount start address is: 24 (R6)
 ; sonarAvg start address is: 32 (R8)
@@ -1030,7 +1028,7 @@ L_alitudeSonarRead29:
 IT	AL
 BAL	L_alitudeSonarRead30
 L_alitudeSonarRead28:
-;FlightControl.c,227 :: 		sonarAvg += sonarArray[i];
+;FlightControl.c,226 :: 		sonarAvg += sonarArray[i];
 ; i start address is: 20 (R5)
 ADD	R1, SP, #4
 LSLS	R0, R5, #1
@@ -1041,9 +1039,9 @@ ADD	R8, R8, R0, LSL #0
 ; anomolyCount end address is: 24 (R6)
 ; i end address is: 20 (R5)
 SXTH	R1, R5
-;FlightControl.c,228 :: 		}
+;FlightControl.c,227 :: 		}
 L_alitudeSonarRead30:
-;FlightControl.c,229 :: 		Delay_ms(ALITUDE_SONAR_READ_DELAY);
+;FlightControl.c,228 :: 		Delay_ms(ALITUDE_SONAR_READ_DELAY);
 ; sonarAvg start address is: 32 (R8)
 ; anomolyCount start address is: 24 (R6)
 ; i start address is: 4 (R1)
@@ -1057,26 +1055,26 @@ BNE	L_alitudeSonarRead31
 NOP
 NOP
 NOP
-;FlightControl.c,210 :: 		for(i=0; i < SONAR_ITERATIONS; i++)
+;FlightControl.c,209 :: 		for(i=0; i < SONAR_ITERATIONS; i++)
 ADDS	R0, R1, #1
 ; i end address is: 4 (R1)
 ; i start address is: 20 (R5)
 SXTH	R5, R0
-;FlightControl.c,230 :: 		}
+;FlightControl.c,229 :: 		}
 ; anomolyCount end address is: 24 (R6)
 ; i end address is: 20 (R5)
 IT	AL
 BAL	L_alitudeSonarRead25
 L_alitudeSonarRead26:
-;FlightControl.c,231 :: 		sonarAvg = sonarAvg/SONAR_ITERATIONS;
+;FlightControl.c,230 :: 		sonarAvg = sonarAvg/SONAR_ITERATIONS;
 MOVS	R0, #10
 UDIV	R2, R8, R0
 ; sonarAvg end address is: 32 (R8)
 ; sonarAvg start address is: 8 (R2)
-;FlightControl.c,232 :: 		secondAvg = 0;
+;FlightControl.c,231 :: 		secondAvg = 0;
 ; secondAvg start address is: 16 (R4)
 MOVS	R4, #0
-;FlightControl.c,233 :: 		for(i=0; i < SONAR_ITERATIONS; i++)
+;FlightControl.c,232 :: 		for(i=0; i < SONAR_ITERATIONS; i++)
 ; i start address is: 12 (R3)
 MOVS	R3, #0
 SXTH	R3, R3
@@ -1091,7 +1089,7 @@ CMP	R3, #10
 IT	GE
 BGE	L_alitudeSonarRead34
 ; sonarAvg end address is: 8 (R2)
-;FlightControl.c,235 :: 		if(sonarArray[i] >= sonarAvg + SONAR_OUTLIER_OFFSET)
+;FlightControl.c,234 :: 		if(sonarArray[i] >= sonarAvg + SONAR_OUTLIER_OFFSET)
 ; sonarAvg start address is: 8 (R2)
 ADD	R1, SP, #4
 LSLS	R0, R3, #1
@@ -1101,57 +1099,57 @@ ADDW	R0, R2, #40
 CMP	R1, R0
 IT	CC
 BCC	L_alitudeSonarRead36
-;FlightControl.c,237 :: 		sonarArray[i] = sonarAvg;
+;FlightControl.c,236 :: 		sonarArray[i] = sonarAvg;
 ADD	R1, SP, #4
 LSLS	R0, R3, #1
 ADDS	R0, R1, R0
 STRH	R2, [R0, #0]
-;FlightControl.c,238 :: 		}
+;FlightControl.c,237 :: 		}
 L_alitudeSonarRead36:
-;FlightControl.c,239 :: 		secondAvg += sonarArray[i];
+;FlightControl.c,238 :: 		secondAvg += sonarArray[i];
 ADD	R1, SP, #4
 LSLS	R0, R3, #1
 ADDS	R0, R1, R0
 LDRH	R0, [R0, #0]
 ADDS	R4, R4, R0
-;FlightControl.c,233 :: 		for(i=0; i < SONAR_ITERATIONS; i++)
+;FlightControl.c,232 :: 		for(i=0; i < SONAR_ITERATIONS; i++)
 ADDS	R3, R3, #1
 SXTH	R3, R3
-;FlightControl.c,240 :: 		}
+;FlightControl.c,239 :: 		}
 ; sonarAvg end address is: 8 (R2)
 ; i end address is: 12 (R3)
 IT	AL
 BAL	L_alitudeSonarRead33
 L_alitudeSonarRead34:
-;FlightControl.c,241 :: 		return((uint16)secondAvg/SONAR_ITERATIONS);
+;FlightControl.c,240 :: 		return((uint16)secondAvg/SONAR_ITERATIONS);
 UXTH	R1, R4
 ; secondAvg end address is: 16 (R4)
 MOVS	R0, #10
 UDIV	R0, R1, R0
-;FlightControl.c,242 :: 		}
+;FlightControl.c,241 :: 		}
 L_end_alitudeSonarRead:
 LDR	LR, [SP, #0]
 ADD	SP, SP, #32
 BX	LR
 ; end of _alitudeSonarRead
 _Stabilize_Alt:
-;FlightControl.c,244 :: 		void Stabilize_Alt()
+;FlightControl.c,243 :: 		void Stabilize_Alt()
 SUB	SP, SP, #16
 STR	LR, [SP, #0]
-;FlightControl.c,246 :: 		uint16 sonarAlititude = 0;
-;FlightControl.c,247 :: 		uint8 failSafeCounter = 0;
+;FlightControl.c,245 :: 		uint16 sonarAlititude = 0;
+;FlightControl.c,246 :: 		uint8 failSafeCounter = 0;
 MOVS	R0, #0
 STRB	R0, [SP, #6]
 MOVS	R0, #0
 STRB	R0, [SP, #7]
-;FlightControl.c,248 :: 		uint8 sonarReadIteration = 0;
-;FlightControl.c,250 :: 		current_DC_3 = HOVER_THROTTLE_VALUE;
+;FlightControl.c,247 :: 		uint8 sonarReadIteration = 0;
+;FlightControl.c,249 :: 		current_DC_3 = HOVER_THROTTLE_VALUE;
 MOVW	R1, #39322
 MOVT	R1, #16585
 MOVW	R0, #lo_addr(_current_DC_3+0)
 MOVT	R0, #hi_addr(_current_DC_3+0)
 STR	R1, [R0, #0]
-;FlightControl.c,251 :: 		DC_time = (current_DC_3*pwm_period2)/100;
+;FlightControl.c,250 :: 		DC_time = (current_DC_3*pwm_period2)/100;
 MOVW	R0, #lo_addr(_pwm_period2+0)
 MOVT	R0, #hi_addr(_pwm_period2+0)
 LDR	R2, [R0, #0]
@@ -1166,27 +1164,27 @@ UXTH	R0, R0
 MOVW	R1, #lo_addr(_DC_time+0)
 MOVT	R1, #hi_addr(_DC_time+0)
 STRH	R0, [R1, #0]
-;FlightControl.c,252 :: 		PWM_TIM2_Set_Duty(DC_time, _PWM_NON_INVERTED, _PWM_CHANNEL1);
+;FlightControl.c,251 :: 		PWM_TIM2_Set_Duty(DC_time, _PWM_NON_INVERTED, _PWM_CHANNEL1);
 MOVS	R2, #0
 MOVS	R1, #0
 BL	_PWM_TIM2_Set_Duty+0
-;FlightControl.c,254 :: 		UARTSendString("Stablilizing Alititude.");
+;FlightControl.c,253 :: 		UARTSendString("Stablilizing Alititude.");
 MOVW	R0, #lo_addr(?lstr8_FlightControl+0)
 MOVT	R0, #hi_addr(?lstr8_FlightControl+0)
 BL	_UARTSendString+0
-;FlightControl.c,255 :: 		sonarAlititude = alitudeSonarRead();
+;FlightControl.c,254 :: 		sonarAlititude = alitudeSonarRead();
 BL	_alitudeSonarRead+0
 STRH	R0, [SP, #4]
-;FlightControl.c,256 :: 		UARTSendString("1st Sonar average.");
+;FlightControl.c,255 :: 		UARTSendString("1st Sonar average.");
 MOVW	R0, #lo_addr(?lstr9_FlightControl+0)
 MOVT	R0, #hi_addr(?lstr9_FlightControl+0)
 BL	_UARTSendString+0
-;FlightControl.c,257 :: 		UARTSendUint16(sonarAlititude);
+;FlightControl.c,256 :: 		UARTSendUint16(sonarAlititude);
 LDRH	R0, [SP, #4]
 BL	_UARTSendUint16+0
-;FlightControl.c,258 :: 		UARTSendNewLine();
+;FlightControl.c,257 :: 		UARTSendNewLine();
 BL	_UARTSendNewLine+0
-;FlightControl.c,260 :: 		while((sonarAlititude < (ALTITUDE_HOLD - SONAR_ALITUDE_RANGE)) || (sonarAlititude > (ALTITUDE_HOLD + SONAR_ALITUDE_RANGE)))
+;FlightControl.c,259 :: 		while((sonarAlititude < (ALTITUDE_HOLD - SONAR_ALITUDE_RANGE)) || (sonarAlititude > (ALTITUDE_HOLD + SONAR_ALITUDE_RANGE)))
 L_Stabilize_Alt37:
 LDRH	R0, [SP, #4]
 CMP	R0, #91
@@ -1200,34 +1198,34 @@ IT	AL
 BAL	L_Stabilize_Alt38
 L__Stabilize_Alt52:
 L__Stabilize_Alt51:
-;FlightControl.c,262 :: 		if(failSafeCounter >= ALTITUDE_FAIL_SAFE_MAX)
+;FlightControl.c,261 :: 		if(failSafeCounter >= ALTITUDE_FAIL_SAFE_MAX)
 LDRB	R0, [SP, #6]
 CMP	R0, #5
 IT	CC
 BCC	L_Stabilize_Alt41
-;FlightControl.c,264 :: 		UARTSendString("Breaking out, too many iterations.");
+;FlightControl.c,263 :: 		UARTSendString("Breaking out, too many iterations.");
 MOVW	R0, #lo_addr(?lstr10_FlightControl+0)
 MOVT	R0, #hi_addr(?lstr10_FlightControl+0)
 BL	_UARTSendString+0
-;FlightControl.c,265 :: 		return;
+;FlightControl.c,264 :: 		return;
 IT	AL
 BAL	L_end_Stabilize_Alt
-;FlightControl.c,266 :: 		}
+;FlightControl.c,265 :: 		}
 L_Stabilize_Alt41:
-;FlightControl.c,267 :: 		else if(sonarReadIteration >= ALITITUDE_SONAR_READ_ITER)
+;FlightControl.c,266 :: 		else if(sonarReadIteration >= ALITITUDE_SONAR_READ_ITER)
 LDRB	R0, [SP, #7]
 CMP	R0, #2
 IT	CC
 BCC	L_Stabilize_Alt43
-;FlightControl.c,269 :: 		sonarReadIteration = 0;
+;FlightControl.c,268 :: 		sonarReadIteration = 0;
 MOVS	R0, #0
 STRB	R0, [SP, #7]
-;FlightControl.c,270 :: 		if(sonarAlititude > ALTITUDE_HOLD)
+;FlightControl.c,269 :: 		if(sonarAlititude > ALTITUDE_HOLD)
 LDRH	R0, [SP, #4]
 CMP	R0, #96
 IT	LS
 BLS	L_Stabilize_Alt44
-;FlightControl.c,272 :: 		current_DC_3 -= ALT_THROTLE_STEP_SIZE;
+;FlightControl.c,271 :: 		current_DC_3 -= ALT_THROTLE_STEP_SIZE;
 MOVW	R0, #lo_addr(_current_DC_3+0)
 MOVT	R0, #hi_addr(_current_DC_3+0)
 STR	R0, [SP, #12]
@@ -1237,20 +1235,20 @@ MOVT	R2, #15692
 BL	__Sub_FP+0
 LDR	R1, [SP, #12]
 STR	R0, [R1, #0]
-;FlightControl.c,273 :: 		UARTSendString("Decrease Throttle.");
+;FlightControl.c,272 :: 		UARTSendString("Decrease Throttle.");
 MOVW	R0, #lo_addr(?lstr11_FlightControl+0)
 MOVT	R0, #hi_addr(?lstr11_FlightControl+0)
 BL	_UARTSendString+0
-;FlightControl.c,274 :: 		}
+;FlightControl.c,273 :: 		}
 IT	AL
 BAL	L_Stabilize_Alt45
 L_Stabilize_Alt44:
-;FlightControl.c,275 :: 		else if(sonarAlititude < ALTITUDE_HOLD)
+;FlightControl.c,274 :: 		else if(sonarAlititude < ALTITUDE_HOLD)
 LDRH	R0, [SP, #4]
 CMP	R0, #96
 IT	CS
 BCS	L_Stabilize_Alt46
-;FlightControl.c,277 :: 		current_DC_3 += ALT_THROTLE_STEP_SIZE;
+;FlightControl.c,276 :: 		current_DC_3 += ALT_THROTLE_STEP_SIZE;
 MOVW	R0, #lo_addr(_current_DC_3+0)
 MOVT	R0, #hi_addr(_current_DC_3+0)
 STR	R0, [SP, #12]
@@ -1260,14 +1258,14 @@ MOVT	R0, #15692
 BL	__Add_FP+0
 LDR	R1, [SP, #12]
 STR	R0, [R1, #0]
-;FlightControl.c,278 :: 		UARTSendString("Increase Throttle.");
+;FlightControl.c,277 :: 		UARTSendString("Increase Throttle.");
 MOVW	R0, #lo_addr(?lstr12_FlightControl+0)
 MOVT	R0, #hi_addr(?lstr12_FlightControl+0)
 BL	_UARTSendString+0
-;FlightControl.c,279 :: 		}
+;FlightControl.c,278 :: 		}
 L_Stabilize_Alt46:
 L_Stabilize_Alt45:
-;FlightControl.c,280 :: 		GPIOC_ODR.B8 = ~GPIOC_ODR.B8;
+;FlightControl.c,279 :: 		GPIOC_ODR.B8 = ~GPIOC_ODR.B8;
 MOVW	R1, #lo_addr(GPIOC_ODR+0)
 MOVT	R1, #hi_addr(GPIOC_ODR+0)
 LDR	R0, [R1, #0]
@@ -1275,18 +1273,18 @@ EOR	R1, R0, #1
 MOVW	R0, #lo_addr(GPIOC_ODR+0)
 MOVT	R0, #hi_addr(GPIOC_ODR+0)
 STR	R1, [R0, #0]
-;FlightControl.c,281 :: 		UARTSendString("Throttle:");
+;FlightControl.c,280 :: 		UARTSendString("Throttle:");
 MOVW	R0, #lo_addr(?lstr13_FlightControl+0)
 MOVT	R0, #hi_addr(?lstr13_FlightControl+0)
 BL	_UARTSendString+0
-;FlightControl.c,282 :: 		UARTSendUint16(current_DC_3);
+;FlightControl.c,281 :: 		UARTSendUint16(current_DC_3);
 MOVW	R0, #lo_addr(_current_DC_3+0)
 MOVT	R0, #hi_addr(_current_DC_3+0)
 LDR	R0, [R0, #0]
 BL	__FloatToUnsignedIntegral+0
 UXTH	R0, R0
 BL	_UARTSendUint16+0
-;FlightControl.c,284 :: 		DC_time = (current_DC_3*pwm_period2)/100;
+;FlightControl.c,283 :: 		DC_time = (current_DC_3*pwm_period2)/100;
 MOVW	R0, #lo_addr(_pwm_period2+0)
 MOVT	R0, #hi_addr(_pwm_period2+0)
 LDR	R2, [R0, #0]
@@ -1302,34 +1300,34 @@ UXTH	R0, R0
 MOVW	R1, #lo_addr(_DC_time+0)
 MOVT	R1, #hi_addr(_DC_time+0)
 STRH	R0, [R1, #0]
-;FlightControl.c,285 :: 		PWM_TIM2_Set_Duty(DC_time, _PWM_NON_INVERTED, _PWM_CHANNEL1);
+;FlightControl.c,284 :: 		PWM_TIM2_Set_Duty(DC_time, _PWM_NON_INVERTED, _PWM_CHANNEL1);
 MOVS	R2, #0
 MOVS	R1, #0
 BL	_PWM_TIM2_Set_Duty+0
-;FlightControl.c,286 :: 		failSafeCounter++;
+;FlightControl.c,285 :: 		failSafeCounter++;
 LDRB	R0, [SP, #6]
 ADDS	R0, R0, #1
 STRB	R0, [SP, #6]
-;FlightControl.c,287 :: 		}
+;FlightControl.c,286 :: 		}
 L_Stabilize_Alt43:
-;FlightControl.c,289 :: 		sonarAlititude = alitudeSonarRead();
+;FlightControl.c,288 :: 		sonarAlititude = alitudeSonarRead();
 BL	_alitudeSonarRead+0
 STRH	R0, [SP, #4]
-;FlightControl.c,290 :: 		UARTSendUint16(sonarAlititude);
+;FlightControl.c,289 :: 		UARTSendUint16(sonarAlititude);
 BL	_UARTSendUint16+0
-;FlightControl.c,291 :: 		sonarReadIteration++;
+;FlightControl.c,290 :: 		sonarReadIteration++;
 LDRB	R0, [SP, #7]
 ADDS	R0, R0, #1
 STRB	R0, [SP, #7]
-;FlightControl.c,292 :: 		}
+;FlightControl.c,291 :: 		}
 IT	AL
 BAL	L_Stabilize_Alt37
 L_Stabilize_Alt38:
-;FlightControl.c,293 :: 		UARTSendString("Reached Altitude.");
+;FlightControl.c,292 :: 		UARTSendString("Reached Altitude.");
 MOVW	R0, #lo_addr(?lstr14_FlightControl+0)
 MOVT	R0, #hi_addr(?lstr14_FlightControl+0)
 BL	_UARTSendString+0
-;FlightControl.c,294 :: 		}
+;FlightControl.c,293 :: 		}
 L_end_Stabilize_Alt:
 LDR	LR, [SP, #0]
 ADD	SP, SP, #16

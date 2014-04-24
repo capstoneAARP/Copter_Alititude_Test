@@ -84,11 +84,6 @@ main
 					_SignedIntegralToFloat
 					_Mul_FP
 					_Sub_FP
-				Throttle_Off
-					PWM_TIM2_Set_Duty
-					_Mul_FP
-					_Div_FP
-					_FloatToUnsignedIntegral
 				_Compare_FP
 				_Add_FP
 				_Mul_FP
@@ -106,6 +101,10 @@ main
 				_FloatToUnsignedIntegral
 			DisArm
 				Throttle_Off
+					PWM_TIM2_Set_Duty
+					_Mul_FP
+					_Div_FP
+					_FloatToUnsignedIntegral
 				PWM_TIM2_Set_Duty
 				_Mul_FP
 				_Div_FP

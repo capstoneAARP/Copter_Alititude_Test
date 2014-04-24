@@ -194,7 +194,6 @@ boolean TakeOff()
  if (sonarReadValue <=  12  && current_DC_3 >=  6.7 )
  {
  UARTSendString("Failed to reach altitude.");
- Throttle_Off();
  GPIOC_ODR.B9 = 0;
  return  1 ;
  }
