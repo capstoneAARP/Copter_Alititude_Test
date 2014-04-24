@@ -15,7 +15,7 @@
 #define STARTING_THROTTLE_VALUE         6.2
 #define LIMIT_THROTTLE_VALUE            6.8
 #define MAX_THROTTLE_VALUE              6.9
-#define HOVER_THROTTLE_VALUE            6.6
+#define HOVER_THROTTLE_VALUE            6.8
 #define THROTLE_STEP_SIZE               0.05
 #endif
 
@@ -30,6 +30,7 @@
 #define SONAR_ALITUDE_RANGE             5
 #define SONAR_MAX_VALUE                 240
 #define ALITITUDE_SONAR_READ_ITER       3
+#define ALTITUDE_FAIL_SAFE_MAX          25
 
 #define ALITITUDE_VALUE_ARRAY_SIZE      10
 

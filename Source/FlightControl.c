@@ -246,7 +246,6 @@ uint16 alitudeSonarRead()
 void Stabilize_Alt()
 {
    uint16 sonarAlititude = 0;
-   uint8 loopIteration = 0;
    uint8 failSafeCounter = 0;
    
    current_DC_3 = HOVER_THROTTLE_VALUE;
@@ -261,14 +260,13 @@ void Stabilize_Alt()
    
    while((sonarAlititude < (ALTITUDE_HOLD - SONAR_ALITUDE_RANGE)) || (sonarAlititude > (ALTITUDE_HOLD + SONAR_ALITUDE_RANGE)))
    {
-       if(failSafeCounter >= 50)
+       if(failSafeCounter >= ALTITUDE_FAIL_SAFE_MAX)
        {
-           UARTSendString("Breaking out at 50 iterations.");
+           UARTSendString("Breaking out, too many iterations.");
            return;
        }
-       else if(loopIteration >= ALITITUDE_SONAR_READ_ITER)
+       else
        {
-         loopIteration = 0;
          if(sonarAlititude > ALTITUDE_HOLD)
          {
              current_DC_3 -= THROTLE_STEP_SIZE;
@@ -288,7 +286,6 @@ void Stabilize_Alt()
        UARTSendUint16(sonarAlititude);
        UARTSendNewLine();
        failSafeCounter++;
-       loopIteration++;
    }
    UARTSendString("Reached Altitude.");
 }
