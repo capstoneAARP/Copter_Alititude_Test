@@ -115,12 +115,7 @@ boolean TakeOff()
            UARTSendNewLine();
            UARTSendString("Throttle");
            UARTSendDouble(current_DC_3);
-           if (sonarReadValue >= TAKEOFF_ALITITUDE)
-           {  //If altitude is greater than 24 inches off the ground return to main function to enable loiter mode   (1E = 30INCHES)E
-                UARTSendString("Reached Alitutude.");
-                GPIOC_ODR.B9 = 1;   //Green LED Solid On - Indicates that target height off ground acheived
-                return true;
-           }
+
            // Failsafe if no altitude reached and throttle is maxing out exit this routine
            if (sonarReadValue <= MINIMUM_ALITITUDE && current_DC_3 >= MAX_THROTTLE_VALUE)
            {
@@ -132,7 +127,20 @@ boolean TakeOff()
            if (current_DC_3 >= MAX_THROTTLE_VALUE)
            {
               UARTSendString("Max Throttle.");
+              GPIOC_ODR.B9 = 1;
               return true;
+           }
+           if(sonarReadValue == 255)
+           {
+                UARTSendString("Sonar reads 255 return false.");
+                GPIOC_ODR.B9 = 0; //Green LED Off - Indicates that the max throttle was reached but height off ground not acheived
+                return false;
+           }
+           if (sonarReadValue >= TAKEOFF_ALITITUDE)
+           {  //If altitude is greater than 24 inches off the ground return to main function to enable loiter mode   (1E = 30INCHES)E
+                UARTSendString("Reached Alitutude.");
+                GPIOC_ODR.B9 = 1;   //Green LED Solid On - Indicates that target height off ground acheived
+                return true;
            }
        }
        GPIOC_ODR.B9 = ~GPIOC_ODR.B9; // Toggle PORTC
@@ -206,7 +214,20 @@ uint16 alitudeSonarRead()
       sonarArray[i] = ADC1_Get_Sample(13);                          // Get ADC value from corresponding channel
       sonarArray[i] >>= 4;
       UARTSendUint16(sonarArray[i]);
-      sonarAvg += sonarArray[i];
+      if(sonarArray[i] >= SONAR_MAX_VALUE)
+      {
+          //bad value
+          i--;
+          anomolyCount++;
+          if(anomolyCount > 20)
+          {
+              return 255;
+          }
+      }
+      else
+      {
+          sonarAvg += sonarArray[i];
+      }
       Delay_ms(ALITUDE_SONAR_READ_DELAY);
    }
    sonarAvg = sonarAvg/SONAR_ITERATIONS;

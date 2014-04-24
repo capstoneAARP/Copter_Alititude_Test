@@ -189,12 +189,7 @@ boolean TakeOff()
  UARTSendNewLine();
  UARTSendString("Throttle");
  UARTSendDouble(current_DC_3);
- if (sonarReadValue >=  48 )
- {
- UARTSendString("Reached Alitutude.");
- GPIOC_ODR.B9 = 1;
- return  0 ;
- }
+
 
  if (sonarReadValue <=  12  && current_DC_3 >=  6.9 )
  {
@@ -206,6 +201,19 @@ boolean TakeOff()
  if (current_DC_3 >=  6.9 )
  {
  UARTSendString("Max Throttle.");
+ GPIOC_ODR.B9 = 1;
+ return  0 ;
+ }
+ if(sonarReadValue == 255)
+ {
+ UARTSendString("Sonar reads 255 return false.");
+ GPIOC_ODR.B9 = 0;
+ return  1 ;
+ }
+ if (sonarReadValue >=  48 )
+ {
+ UARTSendString("Reached Alitutude.");
+ GPIOC_ODR.B9 = 1;
  return  0 ;
  }
  }
@@ -280,7 +288,20 @@ uint16 alitudeSonarRead()
  sonarArray[i] = ADC1_Get_Sample(13);
  sonarArray[i] >>= 4;
  UARTSendUint16(sonarArray[i]);
+ if(sonarArray[i] >=  240 )
+ {
+
+ i--;
+ anomolyCount++;
+ if(anomolyCount > 20)
+ {
+ return 255;
+ }
+ }
+ else
+ {
  sonarAvg += sonarArray[i];
+ }
  Delay_ms( 50 );
  }
  sonarAvg = sonarAvg/ 10 ;
