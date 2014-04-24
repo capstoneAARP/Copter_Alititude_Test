@@ -28,6 +28,6 @@ hint: 0	1144	Used RX: 16 (100%)   Free RX: 0 (0%)	Used RX: 16 (100%)   Free RX: 
 hint: 0	1144	Static RAM (bytes): 215   Dynamic RAM (bytes): 98085	Static RAM (bytes): 215   Dynamic RAM (bytes): 98085
 hint: 0	1144	Used ROM (bytes): 10147 (1%)  Free ROM (bytes): 1038429 (99%)	Used ROM (bytes): 10147 (1%)  Free ROM (bytes): 1038429 (99%)
 diagnostics: 0	125	Project Linked Successfully	Copter_Alititude_Test.mcpar
-diagnostics: 0	128	Linked in 530 ms	 
-diagnostics: 0	129	Project 'Copter_Alititude_Test.mcpar' completed: 2558 ms	 
-diagnostics: 0	103	Finished successfully: 24 Apr 2014, 00:06:29	Copter_Alititude_Test.mcpar
+diagnostics: 0	128	Linked in 515 ms	 
+diagnostics: 0	129	Project 'Copter_Alititude_Test.mcpar' completed: 2574 ms	 
+diagnostics: 0	103	Finished successfully: 24 Apr 2014, 00:19:20	Copter_Alititude_Test.mcpar
