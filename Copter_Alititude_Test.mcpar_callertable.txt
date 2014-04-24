@@ -61,7 +61,6 @@ main
 				UARTSendString
 				PWM_TIM2_Set_Duty
 				alitudeSonarRead
-					UARTSendString
 					ADC1_Get_Sample
 						ADCx_Get_Sample
 							Delay_1us
