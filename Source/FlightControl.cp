@@ -337,7 +337,7 @@ void Stabilize_Alt()
  UARTSendString("Breaking out, too many iterations.");
  return;
  }
- else if(sonarReadIteration >=  2 )
+ else if(sonarReadIteration >=  1 )
  {
  sonarReadIteration = 0;
  if(sonarAlititude >  96 )

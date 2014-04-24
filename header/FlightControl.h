@@ -32,7 +32,7 @@
 #define SONAR_ALITUDE_RANGE             5
 #define SONAR_MAX_VALUE                 240
 #define MAX_ANOMOLY_TOSS                10
-#define ALITITUDE_SONAR_READ_ITER       2
+#define ALITITUDE_SONAR_READ_ITER       1
 #define ALTITUDE_FAIL_SAFE_MAX          5
 
 #define ALITITUDE_VALUE_ARRAY_SIZE      10

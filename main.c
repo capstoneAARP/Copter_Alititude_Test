@@ -65,11 +65,11 @@ void mainTestingThread()
      if(success == true)
      {
        LoiterMode();
-       //Delay_ms(5000);
-       //StabilizeMode();
-       //Stabilize_Alt();
-       //LoiterMode();
-       Delay_ms(10000);
+       Delay_ms(5000);
+       StabilizeMode();
+       Stabilize_Alt();
+       LoiterMode();
+       Delay_ms(5000);
        /*
        for(j = 0; j < 10; j++)
        {
@@ -110,7 +110,9 @@ void mainTestingThread()
      }
      UARTSendString("Returning to base.");
      LandingMode();
-     Delay_ms(20000);
+     Delay_ms(30000);
+     UARTSendString("Disarm in 10 seconds.");
+     Delay_ms(10000);
      DisArm();
      
      while(1)

@@ -1214,7 +1214,7 @@ BAL	L_end_Stabilize_Alt
 L_Stabilize_Alt41:
 ;FlightControl.c,266 :: 		else if(sonarReadIteration >= ALITITUDE_SONAR_READ_ITER)
 LDRB	R0, [SP, #7]
-CMP	R0, #2
+CMP	R0, #1
 IT	CC
 BCC	L_Stabilize_Alt43
 ;FlightControl.c,268 :: 		sonarReadIteration = 0;
