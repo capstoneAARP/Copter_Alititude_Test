@@ -1216,13 +1216,13 @@ LDRH	R0, [SP, #4]
 CMP	R0, #96
 IT	LS
 BLS	L_Stabilize_Alt42
-;FlightControl.c,268 :: 		current_DC_3 -= THROTLE_STEP_SIZE;
+;FlightControl.c,268 :: 		current_DC_3 -= ALT_THROTLE_STEP_SIZE;
 MOVW	R0, #lo_addr(_current_DC_3+0)
 MOVT	R0, #hi_addr(_current_DC_3+0)
 STR	R0, [SP, #12]
 LDR	R0, [R0, #0]
 MOVW	R2, #52429
-MOVT	R2, #15692
+MOVT	R2, #15820
 BL	__Sub_FP+0
 LDR	R1, [SP, #12]
 STR	R0, [R1, #0]
@@ -1239,13 +1239,13 @@ LDRH	R0, [SP, #4]
 CMP	R0, #96
 IT	CS
 BCS	L_Stabilize_Alt44
-;FlightControl.c,273 :: 		current_DC_3 += THROTLE_STEP_SIZE;
+;FlightControl.c,273 :: 		current_DC_3 += ALT_THROTLE_STEP_SIZE;
 MOVW	R0, #lo_addr(_current_DC_3+0)
 MOVT	R0, #hi_addr(_current_DC_3+0)
 STR	R0, [SP, #12]
 LDR	R2, [R0, #0]
 MOVW	R0, #52429
-MOVT	R0, #15692
+MOVT	R0, #15820
 BL	__Add_FP+0
 LDR	R1, [SP, #12]
 STR	R0, [R1, #0]

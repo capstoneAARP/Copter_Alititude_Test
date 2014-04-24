@@ -64,7 +64,7 @@ void blink_init();
 void blink_led();
 #line 1 "c:/users/dell/documents/github/copter_alititude_test/header/flightcontrol.h"
 #line 1 "c:/users/dell/documents/github/copter_alititude_test/header/stdtypes.h"
-#line 37 "c:/users/dell/documents/github/copter_alititude_test/header/flightcontrol.h"
+#line 38 "c:/users/dell/documents/github/copter_alititude_test/header/flightcontrol.h"
 void Flight_Control_Init();
 void Init_LED();
 void Init_ADC();

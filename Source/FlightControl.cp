@@ -42,7 +42,7 @@ typedef enum
  FOUND_THAT_SHIT_MODE,
  MAX_MODE
 } mode;
-#line 37 "c:/users/dell/documents/github/copter_alititude_test/header/flightcontrol.h"
+#line 38 "c:/users/dell/documents/github/copter_alititude_test/header/flightcontrol.h"
 void Flight_Control_Init();
 void Init_LED();
 void Init_ADC();
@@ -339,12 +339,12 @@ void Stabilize_Alt()
  }
  if(sonarAlititude >  96 )
  {
- current_DC_3 -=  0.05 ;
+ current_DC_3 -=  0.1 ;
  UARTSendString("Decrease Throttle.");
  }
  else if(sonarAlititude <  96 )
  {
- current_DC_3 +=  0.05 ;
+ current_DC_3 +=  0.1 ;
  UARTSendString("Increase Throttle.");
  }
  GPIOC_ODR.B8 = ~GPIOC_ODR.B8;

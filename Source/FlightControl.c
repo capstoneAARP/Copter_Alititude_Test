@@ -265,12 +265,12 @@ void Stabilize_Alt()
        }
        if(sonarAlititude > ALTITUDE_HOLD)
        {
-           current_DC_3 -= THROTLE_STEP_SIZE;
+           current_DC_3 -= ALT_THROTLE_STEP_SIZE;
            UARTSendString("Decrease Throttle.");
        }
        else if(sonarAlititude < ALTITUDE_HOLD)
        {
-             current_DC_3 += THROTLE_STEP_SIZE;
+             current_DC_3 += ALT_THROTLE_STEP_SIZE;
              UARTSendString("Increase Throttle.");
        }
        GPIOC_ODR.B8 = ~GPIOC_ODR.B8;
