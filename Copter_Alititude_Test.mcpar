@@ -6,7 +6,7 @@ Value=0
 [BUILD_TYPE]
 Value=0
 [ACTIVE_TAB]
-Value=Source\FlightControl.c
+Value=main.c
 [USE_EEPROM]
 Value=0
 [USE_HEAP]
@@ -38,19 +38,15 @@ Count=0
 [OTHER_FILES]
 Count=0
 [SEARCH_PATH]
-Count=8
+Count=5
 Path0=C:\Users\Public\Documents\Mikroelektronika\mikroC PRO for ARM\defs\
-Path1=C:\Users\dell\Documents\GitHub\Copter_Alititude_Test\
-Path2=C:\Users\Prometheus\Documents\GitHub\Copter_Alititude_Test\
-Path3=C:\Users\Public\Documents\Mikroelektronika\mikroC PRO for ARM\Uses\ST M3\
-Path4=C:\Users\Prometheus\Documents\GitHub\Copter_Alititude_Test\Source\
-Path5=C:\Users\Prometheus\Documents\GitHub\Copter_Alititude_Test\header\
-Path6=C:\Users\dell\Documents\GitHub\Copter_Alititude_Test\Source\
-Path7=C:\Users\dell\Documents\GitHub\Copter_Alititude_Test\header\
+Path1=C:\Users\Prometheus\Documents\GitHub\Copter_Alititude_Test\
+Path2=C:\Users\Public\Documents\Mikroelektronika\mikroC PRO for ARM\Uses\ST M3\
+Path3=C:\Users\Prometheus\Documents\GitHub\Copter_Alititude_Test\Source\
+Path4=C:\Users\Prometheus\Documents\GitHub\Copter_Alititude_Test\header\
 [HEADER_PATH]
-Count=2
+Count=1
 Path0=C:\Users\Prometheus\Documents\GitHub\Copter_Alititude_Test\header\
-Path1=C:\Users\dell\Documents\GitHub\Copter_Alititude_Test\header\
 [HEADERS]
 Count=4
 File0=header\blink.h
@@ -68,8 +64,7 @@ File3=UART
 [EXPANDED NODES]
 Node1=Sources
 Node2=Header Files
-Node3=Output Files
-Count=3
+Count=2
 [PROGRAMMER_OPTIONS]
 Value=SWD
 [PROGRAMMER_TYPE]

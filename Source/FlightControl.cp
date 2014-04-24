@@ -1,6 +1,6 @@
-#line 1 "C:/Users/dell/Documents/GitHub/Copter_Alititude_Test/Source/FlightControl.c"
-#line 1 "c:/users/dell/documents/github/copter_alititude_test/header/flightcontrol.h"
-#line 1 "c:/users/dell/documents/github/copter_alititude_test/header/stdtypes.h"
+#line 1 "C:/Users/Prometheus/Documents/GitHub/Copter_Alititude_Test/Source/FlightControl.c"
+#line 1 "c:/users/prometheus/documents/github/copter_alititude_test/header/flightcontrol.h"
+#line 1 "c:/users/prometheus/documents/github/copter_alititude_test/header/stdtypes.h"
 
 
 
@@ -42,7 +42,7 @@ typedef enum
  FOUND_THAT_SHIT_MODE,
  MAX_MODE
 } mode;
-#line 36 "c:/users/dell/documents/github/copter_alititude_test/header/flightcontrol.h"
+#line 36 "c:/users/prometheus/documents/github/copter_alititude_test/header/flightcontrol.h"
 void Flight_Control_Init();
 void Init_LED();
 void Init_ADC();
@@ -61,10 +61,10 @@ void Forward_Flight();
 void Stop_Forward();
 uint16 alitudeSonarRead();
 void Alitutde_Hover();
-#line 1 "c:/users/dell/documents/github/copter_alititude_test/header/stdtypes.h"
-#line 1 "c:/users/dell/documents/github/copter_alititude_test/header/uart.h"
-#line 1 "c:/users/dell/documents/github/copter_alititude_test/header/stdtypes.h"
-#line 6 "c:/users/dell/documents/github/copter_alititude_test/header/uart.h"
+#line 1 "c:/users/prometheus/documents/github/copter_alititude_test/header/stdtypes.h"
+#line 1 "c:/users/prometheus/documents/github/copter_alititude_test/header/uart.h"
+#line 1 "c:/users/prometheus/documents/github/copter_alititude_test/header/stdtypes.h"
+#line 6 "c:/users/prometheus/documents/github/copter_alititude_test/header/uart.h"
 void UARTDebugInit();
 
 void UARTSendString(uint8 * stringToSend);
@@ -76,7 +76,7 @@ void UARTSendNewLine(void);
 void UARTSendUint16(uint16 dataToSend);
 
 void UARTSendDouble(double dataToSend);
-#line 6 "C:/Users/dell/Documents/GitHub/Copter_Alititude_Test/Source/FlightControl.c"
+#line 6 "C:/Users/Prometheus/Documents/GitHub/Copter_Alititude_Test/Source/FlightControl.c"
 float pwm_period1, pwm_period2;
 float current_DC = 7.4;
 float current_DC_2 = 5.0;
@@ -319,9 +319,8 @@ uint16 alitudeSonarRead()
 
 void Alitutde_Hover()
 {
- uint16 sonarAlititude[ 10 ] = {0};
+ uint16 sonarAlititude = 0;
  uint8 loopIteration = 0;
- uint8 sonarIndex = 0;
  uint8 failSafeCounter = 0;
 
  current_DC_3 =  6.3 ;
@@ -329,53 +328,39 @@ void Alitutde_Hover()
  PWM_TIM2_Set_Duty(DC_time, _PWM_NON_INVERTED, _PWM_CHANNEL1);
 
  UARTSendString("Stablilizing Alititude.");
- sonarAlititude[sonarIndex] = alitudeSonarRead();
+ sonarAlititude = alitudeSonarRead();
  UARTSendString("1st Sonar average.");
- UARTSendUint16(sonarAlititude[sonarIndex]);
+ UARTSendUint16(sonarAlititude);
  UARTSendNewLine();
- sonarIndex++;
 
- while((sonarAlititude[sonarIndex] < ( 96  -  5 )) || (sonarAlititude[sonarIndex] > ( 96  +  5 )))
+ while((sonarAlititude < ( 96  -  5 )) || (sonarAlititude > ( 96  +  5 )))
  {
- if(failSafeCounter == 100)
+ if(failSafeCounter >= 50)
  {
- UARTSendString("Breaking out at 100 iterations.");
+ UARTSendString("Breaking out at 50 iterations.");
  return;
  }
  else if(loopIteration >=  3 )
  {
  loopIteration = 0;
- if(sonarAlititude[sonarIndex] >  96 )
- {
- if(((sonarAlititude[(sonarIndex-3)% 10 ]+sonarAlititude[(sonarIndex-2)% 10 ])/2)
- < (sonarAlititude[sonarIndex]+1))
+ if(sonarAlititude >  96 )
  {
  current_DC_3 -=  0.05 ;
  UARTSendString("Decrease Throttle.");
  }
- }
- else if(sonarAlititude[sonarIndex] <  96 )
- {
- if(((sonarAlititude[(sonarIndex-3)% 10 ]+sonarAlititude[(sonarIndex-2)% 10 ])/2)
- > (sonarAlititude[sonarIndex]-1))
+ else if(sonarAlititude <  96 )
  {
  current_DC_3 +=  0.05 ;
  UARTSendString("Increase Throttle.");
- }
  }
  GPIOC_ODR.B8 = ~GPIOC_ODR.B8;
  DC_time = (current_DC_3*pwm_period2)/100;
  PWM_TIM2_Set_Duty(DC_time, _PWM_NON_INVERTED, _PWM_CHANNEL1);
  }
- sonarAlititude[sonarIndex] = alitudeSonarRead();
+ sonarAlititude = alitudeSonarRead();
  UARTSendString("Sonar average.");
- UARTSendUint16(sonarAlititude[sonarIndex]);
+ UARTSendUint16(sonarAlititude);
  UARTSendNewLine();
- sonarIndex++;
- if(sonarIndex >=  10 )
- {
- sonarIndex = 0;
- }
  failSafeCounter++;
  loopIteration++;
  }

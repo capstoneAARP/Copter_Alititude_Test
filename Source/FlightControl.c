@@ -245,9 +245,8 @@ uint16 alitudeSonarRead()
 
 void Alitutde_Hover()
 {
-   uint16 sonarAlititude[ALITITUDE_VALUE_ARRAY_SIZE] = {0};
+   uint16 sonarAlititude = 0;
    uint8 loopIteration = 0;
-   uint8 sonarIndex = 0;
    uint8 failSafeCounter = 0;
    
    current_DC_3 = HOVER_THROTTLE_VALUE;
@@ -255,53 +254,39 @@ void Alitutde_Hover()
    PWM_TIM2_Set_Duty(DC_time, _PWM_NON_INVERTED, _PWM_CHANNEL1);
    
    UARTSendString("Stablilizing Alititude.");
-   sonarAlititude[sonarIndex] = alitudeSonarRead();
+   sonarAlititude = alitudeSonarRead();
    UARTSendString("1st Sonar average.");
-   UARTSendUint16(sonarAlititude[sonarIndex]);
+   UARTSendUint16(sonarAlititude);
    UARTSendNewLine();
-   sonarIndex++;
    
-   while((sonarAlititude[sonarIndex] < (ALTITUDE_HOLD - SONAR_ALITUDE_RANGE)) || (sonarAlititude[sonarIndex] > (ALTITUDE_HOLD + SONAR_ALITUDE_RANGE)))
+   while((sonarAlititude < (ALTITUDE_HOLD - SONAR_ALITUDE_RANGE)) || (sonarAlititude > (ALTITUDE_HOLD + SONAR_ALITUDE_RANGE)))
    {
-       if(failSafeCounter == 100)
+       if(failSafeCounter >= 50)
        {
-           UARTSendString("Breaking out at 100 iterations.");
+           UARTSendString("Breaking out at 50 iterations.");
            return;
        }
        else if(loopIteration >= ALITITUDE_SONAR_READ_ITER)
        {
          loopIteration = 0;
-         if(sonarAlititude[sonarIndex] > ALTITUDE_HOLD)
+         if(sonarAlititude > ALTITUDE_HOLD)
          {
-             if(((sonarAlititude[(sonarIndex-3)%ALITITUDE_VALUE_ARRAY_SIZE]+sonarAlititude[(sonarIndex-2)%ALITITUDE_VALUE_ARRAY_SIZE])/2)
-                  <  (sonarAlititude[sonarIndex]+1))
-             {
-               current_DC_3 -= THROTLE_STEP_SIZE;
-               UARTSendString("Decrease Throttle.");
-             }
+             current_DC_3 -= THROTLE_STEP_SIZE;
+             UARTSendString("Decrease Throttle.");
          }
-         else if(sonarAlititude[sonarIndex] < ALTITUDE_HOLD)
+         else if(sonarAlititude < ALTITUDE_HOLD)
          {
-             if(((sonarAlititude[(sonarIndex-3)%ALITITUDE_VALUE_ARRAY_SIZE]+sonarAlititude[(sonarIndex-2)%ALITITUDE_VALUE_ARRAY_SIZE])/2)
-                  >  (sonarAlititude[sonarIndex]-1))
-             {
                current_DC_3 += THROTLE_STEP_SIZE;
                UARTSendString("Increase Throttle.");
-             }
          }
          GPIOC_ODR.B8 = ~GPIOC_ODR.B8;
          DC_time = (current_DC_3*pwm_period2)/100;
          PWM_TIM2_Set_Duty(DC_time, _PWM_NON_INVERTED, _PWM_CHANNEL1);
        }
-       sonarAlititude[sonarIndex] = alitudeSonarRead();
+       sonarAlititude = alitudeSonarRead();
        UARTSendString("Sonar average.");
-       UARTSendUint16(sonarAlititude[sonarIndex]);
+       UARTSendUint16(sonarAlititude);
        UARTSendNewLine();
-       sonarIndex++;
-       if(sonarIndex >= ALITITUDE_VALUE_ARRAY_SIZE)
-       {
-            sonarIndex = 0;
-       }
        failSafeCounter++;
        loopIteration++;
    }

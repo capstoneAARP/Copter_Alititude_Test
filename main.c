@@ -55,7 +55,7 @@ void mainTestingThread()
      //updateMapGoal(0,7);
      
      Delay_ms(10000);
-     UARTSendString("Starting test7.");
+     UARTSendString("Starting test8.");
 
      StabilizeMode();  //Set to Stabilize mode for takeoff (Only needed for loop mode - the StabilizeMode() above will place the quad in correct mode for arming
      Delay_ms(500);
@@ -65,8 +65,8 @@ void mainTestingThread()
      if(success == true)
      {
        LoiterMode();
-       //Alitutde_Hover();
-       //LoiterMode();
+       Alitutde_Hover();
+       LoiterMode();
        Delay_ms(10000);
        /*
        for(j = 0; j < 10; j++)

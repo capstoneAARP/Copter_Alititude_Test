@@ -13,7 +13,7 @@ BNE	L_mainTestingThread0
 NOP
 NOP
 NOP
-;main.c,58 :: 		UARTSendString("Starting test7.");
+;main.c,58 :: 		UARTSendString("Starting test8.");
 MOVW	R0, #lo_addr(?lstr1_main+0)
 MOVT	R0, #hi_addr(?lstr1_main+0)
 BL	_UARTSendString+0
@@ -39,6 +39,10 @@ CMP	R0, #0
 IT	NE
 BNE	L_mainTestingThread4
 ;main.c,67 :: 		LoiterMode();
+BL	_LoiterMode+0
+;main.c,68 :: 		Alitutde_Hover();
+BL	_Alitutde_Hover+0
+;main.c,69 :: 		LoiterMode();
 BL	_LoiterMode+0
 ;main.c,70 :: 		Delay_ms(10000);
 MOVW	R7, #57599
