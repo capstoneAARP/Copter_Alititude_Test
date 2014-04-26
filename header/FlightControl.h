@@ -25,6 +25,9 @@
 #define MINIMUM_ALITITUDE               12
 #define TAKEOFF_LOOP_DELAY_MS           500
 
+#define THROTTLE_ALT_UP                 8.8
+#define THROTTLE_ALT_DOWN               6.0
+
 #define ALTITUDE_HOLD                   40
 #define ALITUDE_SONAR_READ_DELAY        110
 #define SONAR_ITERATIONS                4
