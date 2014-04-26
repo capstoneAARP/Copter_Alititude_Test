@@ -174,7 +174,7 @@ void DisArm(){
 boolean TakeOff()
 {
  uint16 sonarReadValue;
- current_DC_3 =  6.4 ;
+ current_DC_3 =  6.5 ;
  UARTSendString("Taking off_Timed12.");
 
  DC_time = (current_DC_3*pwm_period2)/100;
@@ -184,7 +184,7 @@ boolean TakeOff()
  while(current_DC_3 <  6.8 ){
 
 
- if(current_DC_3 >=  6.5 )
+ if(current_DC_3 >=  6.6 )
  {
  sonarReadValue = alitudeSonarRead();
  UARTSendString("Snr avg.");
@@ -193,13 +193,14 @@ boolean TakeOff()
  UARTSendString("Thrtl");
  UARTSendDouble(current_DC_3);
 
- if (sonarReadValue >=  34  && sonarReadValue <= 200)
+ if (sonarReadValue >=  39  && sonarReadValue <= 200)
  {
  UARTSendString("Reached Alitutude.");
  GPIOC_ODR.B9 = 1;
- current_DC_3 -= 0.15;
+ current_DC_3 -= 0.16;
  DC_time = (current_DC_3*pwm_period2)/100;
  PWM_TIM2_Set_Duty(DC_time, _PWM_NON_INVERTED, _PWM_CHANNEL1);
+ delay_ms(750);
  return  0 ;
  }
 
@@ -225,11 +226,11 @@ boolean TakeOff()
  }
  GPIOC_ODR.B9 = ~GPIOC_ODR.B9;
 
- current_DC_3 +=  0.025 ;
+ current_DC_3 +=  0.03 ;
 
  DC_time = (current_DC_3*pwm_period2)/100;
  PWM_TIM2_Set_Duty(DC_time, _PWM_NON_INVERTED, _PWM_CHANNEL1);
- Delay_ms( 400 );
+ Delay_ms( 500 );
 
  }
 }

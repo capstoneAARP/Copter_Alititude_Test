@@ -6,11 +6,11 @@
 #define GREEN_COPTER                  1
 
 #ifdef GREEN_COPTER
-#define STARTING_THROTTLE_VALUE         6.4         //--  6.3-->6.4
-#define SONAR_LIMIT_THROTTLE_VALUE      6.5
+#define STARTING_THROTTLE_VALUE         6.5         //--  6.3-->6.4-->6.5
+#define SONAR_LIMIT_THROTTLE_VALUE      6.6         //-->6.5-->6.6
 #define MAX_THROTTLE_VALUE              6.8          //-- 6.7-->6.8
 #define HOVER_THROTTLE_VALUE            6.6
-#define TAKEOFF_THROTTLE_STEP_SIZE      0.025      //Takeoff   --   0.023-->0.025
+#define TAKEOFF_THROTTLE_STEP_SIZE      0.03      //Takeoff   --   0.023-->0.025-->0.03
 #define ALT_THROTLE_STEP_SIZE           0.03
 #else
 #define STARTING_THROTTLE_VALUE         6.2
@@ -21,9 +21,9 @@
 #define ALT_THROTLE_STEP_SIZE           0.03
 #endif
 
-#define TAKEOFF_ALITITUDE               34          //--      30
+#define TAKEOFF_ALITITUDE               39          //--      30 --> 34 --> 39
 #define MINIMUM_ALITITUDE               12
-#define TAKEOFF_LOOP_DELAY_MS           400          //--     300
+#define TAKEOFF_LOOP_DELAY_MS           500          //--     300-->400-->500
 
 #define THROTTLE_ALT_UP                 8.8
 #define THROTTLE_ALT_DOWN               6.0

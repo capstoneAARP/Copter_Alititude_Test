@@ -119,12 +119,13 @@ boolean TakeOff()
            UARTSendDouble(current_DC_3);
 
            if (sonarReadValue >= TAKEOFF_ALITITUDE && sonarReadValue <= 200)
-           {  //If altitude is greater than 30 inches off the ground return to main function to enable loiter mode
+           {  //If altitude is greater than xx inches off the ground return to main function to enable loiter mode
                 UARTSendString("Reached Alitutude.");
                 GPIOC_ODR.B9 = 1;   //Green LED Solid On - Indicates that target height off ground acheived
-                current_DC_3 -= 0.15;
+                current_DC_3 -= 0.16;  //-->1.5->1.6
                 DC_time = (current_DC_3*pwm_period2)/100;
                 PWM_TIM2_Set_Duty(DC_time, _PWM_NON_INVERTED, _PWM_CHANNEL1);
+                delay_ms(750);
                 return true;
            }
 
