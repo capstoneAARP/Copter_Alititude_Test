@@ -174,7 +174,7 @@ void DisArm(){
 boolean TakeOff()
 {
  uint16 sonarReadValue;
- current_DC_3 =  6.4 ;
+ current_DC_3 =  6.3 ;
  UARTSendString("Taking off_Timed12.");
 
  DC_time = (current_DC_3*pwm_period2)/100;
@@ -182,7 +182,7 @@ boolean TakeOff()
  delay_ms(500);
 
  while(current_DC_3 <  6.7 ){
- current_DC_3 +=  0.03 ;
+ current_DC_3 +=  0.02 ;
 
  DC_time = (current_DC_3*pwm_period2)/100;
  PWM_TIM2_Set_Duty(DC_time, _PWM_NON_INVERTED, _PWM_CHANNEL1);
@@ -196,7 +196,7 @@ boolean TakeOff()
  UARTSendString("Thrtl");
  UARTSendDouble(current_DC_3);
 
- if (sonarReadValue >=  40  && sonarReadValue <= 200)
+ if (sonarReadValue >=  34  && sonarReadValue <= 200)
  {
  UARTSendString("Reached Alitutude.");
  GPIOC_ODR.B9 = 1;
@@ -227,7 +227,7 @@ boolean TakeOff()
  }
  }
  GPIOC_ODR.B9 = ~GPIOC_ODR.B9;
- Delay_ms( 300 );
+ Delay_ms( 400 );
  }
 }
 

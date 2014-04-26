@@ -423,8 +423,8 @@ _TakeOff:
 SUB	SP, SP, #12
 STR	LR, [SP, #0]
 ;FlightControl.c,102 :: 		current_DC_3 = STARTING_THROTTLE_VALUE;  //Start motors at this value to predict timing-iterations in launch sequence 6.4
-MOVW	R1, #52429
-MOVT	R1, #16588
+MOVW	R1, #39322
+MOVT	R1, #16585
 MOVW	R0, #lo_addr(_current_DC_3+0)
 MOVT	R0, #hi_addr(_current_DC_3+0)
 STR	R1, [R0, #0]
@@ -484,8 +484,8 @@ MOVW	R0, #lo_addr(_current_DC_3+0)
 MOVT	R0, #hi_addr(_current_DC_3+0)
 STR	R0, [SP, #8]
 LDR	R2, [R0, #0]
-MOVW	R0, #49807
-MOVT	R0, #15605
+MOVW	R0, #55050
+MOVT	R0, #15523
 BL	__Add_FP+0
 LDR	R1, [SP, #8]
 STR	R0, [R1, #0]
@@ -544,7 +544,7 @@ LDR	R0, [R0, #0]
 BL	_UARTSendDouble+0
 ;FlightControl.c,124 :: 		if (sonarReadValue >= TAKEOFF_ALITITUDE && sonarReadValue <= 200)
 LDRH	R0, [SP, #4]
-CMP	R0, #40
+CMP	R0, #34
 IT	CC
 BCC	L__TakeOff54
 LDRH	R0, [SP, #4]
@@ -696,8 +696,8 @@ MOVW	R0, #lo_addr(GPIOC_ODR+0)
 MOVT	R0, #hi_addr(GPIOC_ODR+0)
 STR	R1, [R0, #0]
 ;FlightControl.c,155 :: 		Delay_ms(TAKEOFF_LOOP_DELAY_MS);
-MOVW	R7, #50879
-MOVT	R7, #45
+MOVW	R7, #2303
+MOVT	R7, #61
 NOP
 NOP
 L_TakeOff27:
