@@ -17,7 +17,7 @@ BNE	L_mainTestingThread0
 NOP
 NOP
 NOP
-;main.c,59 :: 		UARTSendString("Starting test12.");
+;main.c,59 :: 		UARTSendString("Starting test123.");
 MOVW	R0, #lo_addr(?lstr2_main+0)
 MOVT	R0, #hi_addr(?lstr2_main+0)
 BL	_UARTSendString+0

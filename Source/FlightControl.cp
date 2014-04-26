@@ -174,51 +174,13 @@ boolean TakeOff()
 {
  uint16 sonarReadValue;
  current_DC_3 =  5.8 ;
- UARTSendString("Taking off_Wes1.");
- while(current_DC_3 <  6.7 ){
- current_DC_3 +=  0.05 ;
+ UARTSendString("Taking off_Timed1.");
+ current_DC_3 = 6.55;
 
  DC_time = (current_DC_3*pwm_period2)/100;
  PWM_TIM2_Set_Duty(DC_time, _PWM_NON_INVERTED, _PWM_CHANNEL1);
-
- if(current_DC_3 >=  6.5 )
- {
- sonarReadValue = alitudeSonarRead();
- UARTSendString("Sonar average.");
- UARTSendUint16(sonarReadValue);
- UARTSendNewLine();
- UARTSendString("Throttle");
- UARTSendDouble(current_DC_3);
-
-
- if (sonarReadValue <=  12  && current_DC_3 >=  6.7 )
- {
- UARTSendString("Failed to reach altitude.");
- GPIOC_ODR.B9 = 0;
- return  1 ;
- }
- if (current_DC_3 >=  6.7 )
- {
- UARTSendString("Max Throttle.");
- GPIOC_ODR.B9 = 1;
- return  0 ;
- }
- if(sonarReadValue == 255)
- {
- UARTSendString("Sonar reads 255 return false.");
- GPIOC_ODR.B9 = 0;
- return  1 ;
- }
- if (sonarReadValue >=  30 )
- {
- UARTSendString("Reached Alitutude.");
- GPIOC_ODR.B9 = 1;
- return  0 ;
- }
- }
- GPIOC_ODR.B9 = ~GPIOC_ODR.B9;
- Delay_ms( 500 );
- }
+#line 155 "C:/Users/dell/Documents/GitHub/Copter_Alititude_Test/Source/FlightControl.c"
+ delay_ms(2500);
 }
 
 void LoiterMode(){

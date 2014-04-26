@@ -60,6 +60,17 @@ main
 			TakeOff
 				UARTSendString
 				PWM_TIM2_Set_Duty
+				_Mul_FP
+				_Div_FP
+				_FloatToUnsignedIntegral
+			LoiterMode
+				PWM_TIM3_Set_Duty
+				_Mul_FP
+				_Div_FP
+				_FloatToUnsignedIntegral
+			Stabilize_Alt
+				PWM_TIM2_Set_Duty
+				UARTSendString
 				alitudeSonarRead
 					ADC1_Get_Sample
 						ADCx_Get_Sample
@@ -84,23 +95,6 @@ main
 					_SignedIntegralToFloat
 					_Mul_FP
 					_Sub_FP
-				_Compare_FP
-				_Add_FP
-				_Mul_FP
-				_Div_FP
-				_FloatToUnsignedIntegral
-			LoiterMode
-				PWM_TIM3_Set_Duty
-				_Mul_FP
-				_Div_FP
-				_FloatToUnsignedIntegral
-			Stabilize_Alt
-				PWM_TIM2_Set_Duty
-				UARTSendString
-				alitudeSonarRead
-				UARTSendUint16
-				UARTSendNewLine
-				UARTSendDouble
 				_Mul_FP
 				_Div_FP
 				_FloatToUnsignedIntegral

@@ -100,7 +100,13 @@ boolean TakeOff()
 {
     uint16 sonarReadValue;
     current_DC_3 = STARTING_THROTTLE_VALUE;  //Start motors at this value to predict timing-iterations in launch sequence
-    UARTSendString("Taking off_Wes1.");
+    UARTSendString("Taking off_Timed1.");
+    current_DC_3 = 6.55;
+       //Start increasing Throttle
+       DC_time = (current_DC_3*pwm_period2)/100;
+       PWM_TIM2_Set_Duty(DC_time, _PWM_NON_INVERTED, _PWM_CHANNEL1);
+    
+    /*
     while(current_DC_3 < MAX_THROTTLE_VALUE){
        current_DC_3 += THROTLE_STEP_SIZE;
        //Start increasing Throttle
@@ -145,6 +151,8 @@ boolean TakeOff()
        GPIOC_ODR.B9 = ~GPIOC_ODR.B9; // Toggle PORTC
        Delay_ms(TAKEOFF_LOOP_DELAY_MS);
     }
+    */
+    delay_ms(2500);
 }
 
 void LoiterMode(){
