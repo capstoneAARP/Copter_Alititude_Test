@@ -423,8 +423,8 @@ _TakeOff:
 SUB	SP, SP, #12
 STR	LR, [SP, #0]
 ;FlightControl.c,102 :: 		current_DC_3 = STARTING_THROTTLE_VALUE;  //Start motors at this value to predict timing-iterations in launch sequence 6.4
-MOVW	R1, #39322
-MOVT	R1, #16585
+MOVW	R1, #52429
+MOVT	R1, #16588
 MOVW	R0, #lo_addr(_current_DC_3+0)
 MOVT	R0, #hi_addr(_current_DC_3+0)
 STR	R1, [R0, #0]
@@ -468,8 +468,8 @@ L_TakeOff16:
 MOVW	R0, #lo_addr(_current_DC_3+0)
 MOVT	R0, #hi_addr(_current_DC_3+0)
 LDR	R2, [R0, #0]
-MOVW	R0, #26214
-MOVT	R0, #16598
+MOVW	R0, #39322
+MOVT	R0, #16601
 BL	__Compare_FP+0
 MOVW	R0, #0
 BLE	L__TakeOff68
@@ -577,8 +577,8 @@ BHI	L__TakeOff56
 MOVW	R0, #lo_addr(_current_DC_3+0)
 MOVT	R0, #hi_addr(_current_DC_3+0)
 LDR	R2, [R0, #0]
-MOVW	R0, #26214
-MOVT	R0, #16598
+MOVW	R0, #39322
+MOVT	R0, #16601
 BL	__Compare_FP+0
 MOVW	R0, #0
 BGT	L__TakeOff70
@@ -610,8 +610,8 @@ L__TakeOff55:
 MOVW	R0, #lo_addr(_current_DC_3+0)
 MOVT	R0, #hi_addr(_current_DC_3+0)
 LDR	R2, [R0, #0]
-MOVW	R0, #26214
-MOVT	R0, #16598
+MOVW	R0, #39322
+MOVT	R0, #16601
 BL	__Compare_FP+0
 MOVW	R0, #0
 BGT	L__TakeOff71
@@ -625,14 +625,14 @@ BEQ	L_TakeOff25
 MOVW	R0, #lo_addr(?lstr6_FlightControl+0)
 MOVT	R0, #hi_addr(?lstr6_FlightControl+0)
 BL	_UARTSendString+0
-;FlightControl.c,141 :: 		GPIOC_ODR.B9 = 1;
-MOVS	R1, #1
+;FlightControl.c,141 :: 		GPIOC_ODR.B9 = 0;
+MOVS	R1, #0
 SXTB	R1, R1
 MOVW	R0, #lo_addr(GPIOC_ODR+0)
 MOVT	R0, #hi_addr(GPIOC_ODR+0)
 STR	R1, [R0, #0]
-;FlightControl.c,142 :: 		return true;
-MOVS	R0, #0
+;FlightControl.c,142 :: 		return false;
+MOVS	R0, #1
 IT	AL
 BAL	L_end_TakeOff
 ;FlightControl.c,143 :: 		}
@@ -673,8 +673,8 @@ MOVW	R0, #lo_addr(_current_DC_3+0)
 MOVT	R0, #hi_addr(_current_DC_3+0)
 STR	R0, [SP, #8]
 LDR	R2, [R0, #0]
-MOVW	R0, #27263
-MOVT	R0, #15548
+MOVW	R0, #52429
+MOVT	R0, #15564
 BL	__Add_FP+0
 LDR	R1, [SP, #8]
 STR	R0, [R1, #0]

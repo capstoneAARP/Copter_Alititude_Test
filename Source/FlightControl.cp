@@ -174,14 +174,14 @@ void DisArm(){
 boolean TakeOff()
 {
  uint16 sonarReadValue;
- current_DC_3 =  6.3 ;
+ current_DC_3 =  6.4 ;
  UARTSendString("Taking off_Timed12.");
 
  DC_time = (current_DC_3*pwm_period2)/100;
  PWM_TIM2_Set_Duty(DC_time, _PWM_NON_INVERTED, _PWM_CHANNEL1);
  delay_ms(500);
 
- while(current_DC_3 <  6.7 ){
+ while(current_DC_3 <  6.8 ){
 
 
  if(current_DC_3 >=  6.5 )
@@ -204,17 +204,17 @@ boolean TakeOff()
  }
 
 
- if (sonarReadValue <=  12  && current_DC_3 >=  6.7 )
+ if (sonarReadValue <=  12  && current_DC_3 >=  6.8 )
  {
  UARTSendString("Failed to reach altitude.");
  GPIOC_ODR.B9 = 0;
  return  1 ;
  }
- if (current_DC_3 >=  6.7 )
+ if (current_DC_3 >=  6.8 )
  {
  UARTSendString("Max Throttle.");
- GPIOC_ODR.B9 = 1;
- return  0 ;
+ GPIOC_ODR.B9 = 0;
+ return  1 ;
  }
  if(sonarReadValue == 255)
  {
@@ -225,7 +225,7 @@ boolean TakeOff()
  }
  GPIOC_ODR.B9 = ~GPIOC_ODR.B9;
 
- current_DC_3 +=  0.023 ;
+ current_DC_3 +=  0.025 ;
 
  DC_time = (current_DC_3*pwm_period2)/100;
  PWM_TIM2_Set_Duty(DC_time, _PWM_NON_INVERTED, _PWM_CHANNEL1);

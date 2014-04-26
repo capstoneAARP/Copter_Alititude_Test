@@ -138,8 +138,8 @@ boolean TakeOff()
            if (current_DC_3 >= MAX_THROTTLE_VALUE)
            {
               UARTSendString("Max Throttle.");
-              GPIOC_ODR.B9 = 1;
-              return true;
+              GPIOC_ODR.B9 = 0;
+              return false;
            }
            if(sonarReadValue == 255)
            {
