@@ -104,6 +104,7 @@ boolean TakeOff()
        //Start increasing Throttle
        DC_time = (current_DC_3*pwm_period2)/100;
        PWM_TIM2_Set_Duty(DC_time, _PWM_NON_INVERTED, _PWM_CHANNEL1);
+       delay_ms(500);
     
     while(current_DC_3 < MAX_THROTTLE_VALUE){
        current_DC_3 += TAKEOFF_THROTTLE_STEP_SIZE;
@@ -124,6 +125,9 @@ boolean TakeOff()
            {  //If altitude is greater than 30 inches off the ground return to main function to enable loiter mode
                 UARTSendString("Reached Alitutude.");
                 GPIOC_ODR.B9 = 1;   //Green LED Solid On - Indicates that target height off ground acheived
+                current_DC_3 -= 0.15;
+                DC_time = (current_DC_3*pwm_period2)/100;
+                PWM_TIM2_Set_Duty(DC_time, _PWM_NON_INVERTED, _PWM_CHANNEL1);
                 return true;
            }
 
