@@ -441,9 +441,9 @@ MOVW	R0, #26214
 MOVT	R0, #16598
 BL	__Compare_FP+0
 MOVW	R0, #0
-BLE	L__TakeOff52
+BLE	L__TakeOff54
 MOVS	R0, #1
-L__TakeOff52:
+L__TakeOff54:
 UXTB	R0, R0
 CMP	R0, #0
 IT	EQ
@@ -483,9 +483,9 @@ MOVW	R0, #0
 MOVT	R0, #16592
 BL	__Compare_FP+0
 MOVW	R0, #0
-BGT	L__TakeOff53
+BGT	L__TakeOff55
 MOVS	R0, #1
-L__TakeOff53:
+L__TakeOff55:
 UXTB	R0, R0
 CMP	R0, #0
 IT	EQ
@@ -515,7 +515,7 @@ BL	_UARTSendDouble+0
 LDRH	R0, [SP, #4]
 CMP	R0, #12
 IT	HI
-BHI	L__TakeOff43
+BHI	L__TakeOff45
 MOVW	R0, #lo_addr(_current_DC_3+0)
 MOVT	R0, #hi_addr(_current_DC_3+0)
 LDR	R2, [R0, #0]
@@ -523,14 +523,14 @@ MOVW	R0, #26214
 MOVT	R0, #16598
 BL	__Compare_FP+0
 MOVW	R0, #0
-BGT	L__TakeOff54
+BGT	L__TakeOff56
 MOVS	R0, #1
-L__TakeOff54:
+L__TakeOff56:
 UXTB	R0, R0
 CMP	R0, #0
 IT	EQ
-BEQ	L__TakeOff42
-L__TakeOff41:
+BEQ	L__TakeOff44
+L__TakeOff43:
 ;FlightControl.c,122 :: 		UARTSendString("Failed to reach altitude.");
 MOVW	R0, #lo_addr(?lstr4_FlightControl+0)
 MOVT	R0, #hi_addr(?lstr4_FlightControl+0)
@@ -546,8 +546,8 @@ MOVS	R0, #1
 IT	AL
 BAL	L_end_TakeOff
 ;FlightControl.c,120 :: 		if (sonarReadValue <= MINIMUM_ALITITUDE && current_DC_3 >= MAX_THROTTLE_VALUE)
-L__TakeOff43:
-L__TakeOff42:
+L__TakeOff45:
+L__TakeOff44:
 ;FlightControl.c,126 :: 		if (current_DC_3 >= MAX_THROTTLE_VALUE)
 MOVW	R0, #lo_addr(_current_DC_3+0)
 MOVT	R0, #hi_addr(_current_DC_3+0)
@@ -556,9 +556,9 @@ MOVW	R0, #26214
 MOVT	R0, #16598
 BL	__Compare_FP+0
 MOVW	R0, #0
-BGT	L__TakeOff55
+BGT	L__TakeOff57
 MOVS	R0, #1
-L__TakeOff55:
+L__TakeOff57:
 UXTB	R0, R0
 CMP	R0, #0
 IT	EQ
@@ -1211,7 +1211,41 @@ BNE	L_Stabilize_Alt39
 NOP
 NOP
 NOP
-;FlightControl.c,301 :: 		}
+;FlightControl.c,259 :: 		current_DC_3 = 6.5;
+MOVW	R1, #0
+MOVT	R1, #16592
+MOVW	R0, #lo_addr(_current_DC_3+0)
+MOVT	R0, #hi_addr(_current_DC_3+0)
+STR	R1, [R0, #0]
+;FlightControl.c,260 :: 		DC_time = (current_DC_3*pwm_period2)/100;
+LDR	R0, [SP, #8]
+LDR	R2, [R0, #0]
+MOVW	R0, #0
+MOVT	R0, #16592
+BL	__Mul_FP+0
+MOVW	R2, #0
+MOVT	R2, #17096
+BL	__Div_FP+0
+BL	__FloatToUnsignedIntegral+0
+UXTH	R0, R0
+LDR	R1, [SP, #4]
+STRH	R0, [R1, #0]
+;FlightControl.c,261 :: 		PWM_TIM2_Set_Duty(DC_time, _PWM_NON_INVERTED, _PWM_CHANNEL1);
+MOVS	R2, #0
+MOVS	R1, #0
+BL	_PWM_TIM2_Set_Duty+0
+;FlightControl.c,262 :: 		delay_ms(1000);
+MOVW	R7, #38527
+MOVT	R7, #152
+NOP
+NOP
+L_Stabilize_Alt41:
+SUBS	R7, R7, #1
+BNE	L_Stabilize_Alt41
+NOP
+NOP
+NOP
+;FlightControl.c,306 :: 		}
 L_end_Stabilize_Alt:
 LDR	LR, [SP, #0]
 ADD	SP, SP, #12

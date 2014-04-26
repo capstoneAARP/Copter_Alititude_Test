@@ -329,5 +329,10 @@ void Stabilize_Alt()
  DC_time = (current_DC_3*pwm_period2)/100;
  PWM_TIM2_Set_Duty(DC_time, _PWM_NON_INVERTED, _PWM_CHANNEL1);
  delay_ms(1000);
-#line 301 "C:/Users/dell/Documents/GitHub/Copter_Alititude_Test/Source/FlightControl.c"
+
+ current_DC_3 = 6.5;
+ DC_time = (current_DC_3*pwm_period2)/100;
+ PWM_TIM2_Set_Duty(DC_time, _PWM_NON_INVERTED, _PWM_CHANNEL1);
+ delay_ms(1000);
+#line 306 "C:/Users/dell/Documents/GitHub/Copter_Alititude_Test/Source/FlightControl.c"
 }

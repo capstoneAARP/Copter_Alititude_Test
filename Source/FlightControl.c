@@ -256,6 +256,11 @@ void Stabilize_Alt()
    PWM_TIM2_Set_Duty(DC_time, _PWM_NON_INVERTED, _PWM_CHANNEL1);
    delay_ms(1000);
    
+   current_DC_3 = 6.5;
+   DC_time = (current_DC_3*pwm_period2)/100;
+   PWM_TIM2_Set_Duty(DC_time, _PWM_NON_INVERTED, _PWM_CHANNEL1);
+   delay_ms(1000);
+   
      /*
    UARTSendString("Stablilizing Alititude.");
    sonarAlititude = alitudeSonarRead();
