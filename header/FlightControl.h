@@ -11,7 +11,7 @@
 #define MAX_THROTTLE_VALUE              6.7
 #define HOVER_THROTTLE_VALUE            6.5
 #define THROTLE_STEP_SIZE               0.05               //Takeoff
-#define ALT_THROTLE_STEP_SIZE           0.03
+#define ALT_THROTLE_STEP_SIZE           0.04
 #else
 #define STARTING_THROTTLE_VALUE         6.2
 #define LIMIT_THROTTLE_VALUE            6.8
@@ -25,11 +25,11 @@
 #define MINIMUM_ALITITUDE               12
 #define TAKEOFF_LOOP_DELAY_MS           500
 
-#define ALTITUDE_HOLD                   96
+#define ALTITUDE_HOLD                   72
 #define ALITUDE_SONAR_READ_DELAY        110
-#define SONAR_ITERATIONS                7
+#define SONAR_ITERATIONS                4
 #define SONAR_OUTLIER_OFFSET            40
-#define SONAR_ALITUDE_RANGE             5
+#define SONAR_ALITUDE_RANGE             8
 #define SONAR_MAX_VALUE                 240
 #define MAX_ANOMOLY_TOSS                10
 #define ALITITUDE_SONAR_READ_ITER       3

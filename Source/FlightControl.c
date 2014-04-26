@@ -100,7 +100,7 @@ boolean TakeOff()
 {
     uint16 sonarReadValue;
     current_DC_3 = STARTING_THROTTLE_VALUE;  //Start motors at this value to predict timing-iterations in launch sequence
-    UARTSendString("Taking off7.");
+    UARTSendString("Taking off_Wes1.");
     while(current_DC_3 < MAX_THROTTLE_VALUE){
        current_DC_3 += THROTLE_STEP_SIZE;
        //Start increasing Throttle
@@ -246,22 +246,10 @@ void Stabilize_Alt()
    uint8 failSafeCounter = 0;
    uint8 sonarReadIteration = 0;
    
-   current_DC_3 = 9.0;
+   current_DC_3 = HOVER_THROTTLE_VALUE;
    DC_time = (current_DC_3*pwm_period2)/100;
    PWM_TIM2_Set_Duty(DC_time, _PWM_NON_INVERTED, _PWM_CHANNEL1);
-   delay_ms(2000);
    
-   current_DC_3 = 5.5;
-   DC_time = (current_DC_3*pwm_period2)/100;
-   PWM_TIM2_Set_Duty(DC_time, _PWM_NON_INVERTED, _PWM_CHANNEL1);
-   delay_ms(1000);
-   
-   current_DC_3 = 6.5;
-   DC_time = (current_DC_3*pwm_period2)/100;
-   PWM_TIM2_Set_Duty(DC_time, _PWM_NON_INVERTED, _PWM_CHANNEL1);
-   delay_ms(1000);
-   
-     /*
    UARTSendString("Stablilizing Alititude.");
    sonarAlititude = alitudeSonarRead();
    UARTSendString("1st Sonar average.");
@@ -302,5 +290,4 @@ void Stabilize_Alt()
        sonarReadIteration++;
    }
    UARTSendString("Reached Altitude.");
-   */
 }
