@@ -92,18 +92,10 @@ main
 				_Mul_FP
 				_Div_FP
 				_FloatToUnsignedIntegral
-			Stabilize_Alt
-				UARTSendString
-				alitudeSonarRead
-				UARTSendUint16
-				UARTSendNewLine
-				UARTSendDouble
-				PWM_TIM2_Set_Duty
-				_Sub_FP
-				_Add_FP
-				_Mul_FP
-				_Div_FP
-				_FloatToUnsignedIntegral
+			sonarGeneric
+				ADC1_Get_Sample
+			UARTSendUint16
+			UARTSendNewLine
 			LandingMode
 				PWM_TIM3_Set_Duty
 				_Mul_FP

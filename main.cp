@@ -82,6 +82,7 @@ void Land();
 void Forward_Flight();
 void Stop_Forward();
 uint16 alitudeSonarRead();
+uint16 sonarGeneric();
 void Stabilize_Alt();
 #line 1 "c:/users/dell/documents/github/copter_alititude_test/header/nottriangulation.h"
 #line 1 "c:/users/dell/documents/github/copter_alititude_test/header/stdtypes.h"
@@ -101,7 +102,11 @@ boolean calcDirection(void);
 
 
 boolean updateGoal(uint16 newHeading);
-#line 36 "C:/Users/dell/Documents/GitHub/Copter_Alititude_Test/main.c"
+#line 34 "C:/Users/dell/Documents/GitHub/Copter_Alititude_Test/main.c"
+int i, sonarWes;
+
+
+
 typedef void (*SliceFunctions) ();
 
 
@@ -135,14 +140,21 @@ void mainTestingThread()
  if(success ==  0 )
  {
  LoiterMode();
- Delay_ms(5000);
- StabilizeMode();
- delay_ms(500);
- Stabilize_Alt();
- delay_ms(500);
- LoiterMode();
- Delay_ms(8000);
-#line 114 "C:/Users/dell/Documents/GitHub/Copter_Alititude_Test/main.c"
+
+
+
+
+
+
+ for (i=0; i<=9; i++){
+
+ sonarWes = sonarGeneric();
+ UARTSendString("Sonar Read Raw.");
+ UARTSendUint16(sonarWes);
+ UARTSendNewLine();
+ Delay_ms(1000);
+ }
+#line 123 "C:/Users/dell/Documents/GitHub/Copter_Alititude_Test/main.c"
  }
  UARTSendString("Returning to base.");
  LandingMode();
@@ -210,7 +222,7 @@ void InitSysTick()
  NVIC_SYSTICKCSR.B1 = 1;
  NVIC_SYSTICKCSR.B2 = 1;
 }
-#line 186 "C:/Users/dell/Documents/GitHub/Copter_Alititude_Test/main.c"
+#line 195 "C:/Users/dell/Documents/GitHub/Copter_Alititude_Test/main.c"
 void SysTick_ISR() iv IVT_INT_SysTick ics ICS_AUTO
 {
 GPIOC_ODR ^= _GPIO_PINMASK_9;
@@ -260,7 +272,7 @@ void main()
 
 
  init_prog();
-#line 248 "C:/Users/dell/Documents/GitHub/Copter_Alititude_Test/main.c"
+#line 257 "C:/Users/dell/Documents/GitHub/Copter_Alititude_Test/main.c"
 }
 
 

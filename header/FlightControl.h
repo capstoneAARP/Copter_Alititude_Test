@@ -54,6 +54,7 @@ void Land();
 void Forward_Flight();
 void Stop_Forward();
 uint16 alitudeSonarRead();
+uint16 sonarGeneric();
 void Stabilize_Alt();
 
 #endif // _FLIGHT_CONTROL_H_

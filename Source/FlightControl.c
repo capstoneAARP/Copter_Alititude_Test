@@ -211,6 +211,12 @@ void Stop_Forward(){
    PWM_TIM2_Set_Duty(DC_time, _PWM_NON_INVERTED, _PWM_CHANNEL3);       //for PITCH
 }
 
+uint16 sonarGeneric()
+{
+   uint16 sonar = ADC1_Get_Sample(13);
+   return sonar;
+}
+
 uint16 alitudeSonarRead()
 {
    uint16 sonarArray[SONAR_ITERATIONS] = {0};

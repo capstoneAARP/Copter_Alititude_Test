@@ -31,6 +31,8 @@
 
 #define NUM_FUNC                                1
 
+int i, sonarWes;
+
 
 //************************************************** ****
 typedef void (*SliceFunctions) ();                    // pointer array for the functions
@@ -66,13 +68,20 @@ void mainTestingThread()
      if(success == true)
      {
        LoiterMode();
-       Delay_ms(5000);
-       StabilizeMode();
-       delay_ms(500);
-       Stabilize_Alt();
-       delay_ms(500);
-       LoiterMode();
-       Delay_ms(8000);
+       //Delay_ms(5000);
+       //StabilizeMode();
+       //delay_ms(500);
+       //Stabilize_Alt();
+       //delay_ms(500);
+       //LoiterMode();
+       for (i=0; i<=9; i++){
+
+           sonarWes = sonarGeneric();
+           UARTSendString("Sonar Read Raw.");
+           UARTSendUint16(sonarWes);
+           UARTSendNewLine();
+           Delay_ms(1000);
+       }
 
        /*
        for(j = 0; j < 10; j++)

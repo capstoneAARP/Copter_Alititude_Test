@@ -60,6 +60,7 @@ void Land();
 void Forward_Flight();
 void Stop_Forward();
 uint16 alitudeSonarRead();
+uint16 sonarGeneric();
 void Stabilize_Alt();
 #line 1 "c:/users/dell/documents/github/copter_alititude_test/header/stdtypes.h"
 #line 1 "c:/users/dell/documents/github/copter_alititude_test/header/uart.h"
@@ -239,6 +240,12 @@ void Stop_Forward(){
  PWM_TIM2_Set_Duty(DC_time, _PWM_NON_INVERTED, _PWM_CHANNEL3);
 }
 
+uint16 sonarGeneric()
+{
+ uint16 sonar = ADC1_Get_Sample(13);
+ return sonar;
+}
+
 uint16 alitudeSonarRead()
 {
  uint16 sonarArray[ 4 ] = {0};
@@ -287,7 +294,7 @@ void Stabilize_Alt()
  uint16 sonarAlititude = 0;
  uint8 failSafeCounter = 0;
  uint8 sonarReadIteration = 0;
-#line 268 "C:/Users/dell/Documents/GitHub/Copter_Alititude_Test/Source/FlightControl.c"
+#line 274 "C:/Users/dell/Documents/GitHub/Copter_Alititude_Test/Source/FlightControl.c"
  UARTSendString("Stablilizing Alititude.");
  sonarAlititude = alitudeSonarRead();
  UARTSendString("1st Sonar average.");

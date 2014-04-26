@@ -17081,6 +17081,7 @@ hu_bit
 hwfc_en
 hwfc_en
 hwfc_en_bit
+i
 i2c1_ccr
 i2c1_ccrbits
 i2c1_cr1
@@ -28225,6 +28226,8 @@ sofm_bit
 sofouten
 sofouten
 sofouten_bit
+sonargeneric
+sonarwes
 sp
 spe
 spe
