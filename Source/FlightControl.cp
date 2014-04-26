@@ -273,14 +273,14 @@ void Stop_Forward(){
 
 uint16 alitudeSonarRead()
 {
- uint16 sonarArray[ 10 ] = {0};
+ uint16 sonarArray[ 7 ] = {0};
  int16 i = 0;
  uint32 sonarAvg = 0;
  uint32 secondAvg = 0;
  uint8 anomolyCount = 0;
 
 
- for(i=0; i <  10 ; i++)
+ for(i=0; i <  7 ; i++)
  {
  sonarArray[i] = ADC1_Get_Sample(13);
  sonarArray[i] >>= 4;
@@ -299,11 +299,11 @@ uint16 alitudeSonarRead()
  {
  sonarAvg += sonarArray[i];
  }
- Delay_ms( 50 );
+ Delay_ms( 110 );
  }
- sonarAvg = sonarAvg/ 10 ;
+ sonarAvg = sonarAvg/ 7 ;
  secondAvg = 0;
- for(i=0; i <  10 ; i++)
+ for(i=0; i <  7 ; i++)
  {
  if(sonarArray[i] >= sonarAvg +  40 )
  {
@@ -311,7 +311,7 @@ uint16 alitudeSonarRead()
  }
  secondAvg += sonarArray[i];
  }
- return((uint16)secondAvg/ 10 );
+ return((uint16)secondAvg/ 7 );
 }
 
 void Stabilize_Alt()
@@ -337,7 +337,7 @@ void Stabilize_Alt()
  UARTSendString("Breaking out, too many iterations.");
  return;
  }
- else if(sonarReadIteration >=  1 )
+ else if(sonarReadIteration >=  3 )
  {
  sonarReadIteration = 0;
  if(sonarAlititude >  96 )

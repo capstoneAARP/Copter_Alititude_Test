@@ -26,13 +26,13 @@
 #define TAKEOFF_LOOP_DELAY_MS           500
 
 #define ALTITUDE_HOLD                   96
-#define ALITUDE_SONAR_READ_DELAY        50
-#define SONAR_ITERATIONS                10
+#define ALITUDE_SONAR_READ_DELAY        110
+#define SONAR_ITERATIONS                7
 #define SONAR_OUTLIER_OFFSET            40
 #define SONAR_ALITUDE_RANGE             5
 #define SONAR_MAX_VALUE                 240
 #define MAX_ANOMOLY_TOSS                10
-#define ALITITUDE_SONAR_READ_ITER       1
+#define ALITITUDE_SONAR_READ_ITER       3
 #define ALTITUDE_FAIL_SAFE_MAX          10
 
 #define ALITITUDE_VALUE_ARRAY_SIZE      10

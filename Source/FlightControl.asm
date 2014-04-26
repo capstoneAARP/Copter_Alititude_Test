@@ -944,11 +944,11 @@ BX	LR
 ; end of _Stop_Forward
 _alitudeSonarRead:
 ;FlightControl.c,200 :: 		uint16 alitudeSonarRead()
-SUB	SP, SP, #32
+SUB	SP, SP, #28
 STR	LR, [SP, #0]
 ;FlightControl.c,202 :: 		uint16 sonarArray[SONAR_ITERATIONS] = {0};
 ADD	R11, SP, #4
-ADD	R10, R11, #20
+ADD	R10, R11, #14
 MOVW	R12, #lo_addr(?ICSalitudeSonarRead_sonarArray_L0+0)
 MOVT	R12, #hi_addr(?ICSalitudeSonarRead_sonarArray_L0+0)
 BL	___CC2DW+0
@@ -971,22 +971,22 @@ L_alitudeSonarRead25:
 ; i start address is: 20 (R5)
 ; anomolyCount start address is: 24 (R6)
 ; sonarAvg start address is: 32 (R8)
-CMP	R5, #10
+CMP	R5, #7
 IT	GE
 BGE	L_alitudeSonarRead26
 ;FlightControl.c,211 :: 		sonarArray[i] = ADC1_Get_Sample(13);                          // Get ADC value from corresponding channel
 ADD	R1, SP, #4
-STR	R1, [SP, #28]
+STR	R1, [SP, #24]
 LSLS	R0, R5, #1
 ADDS	R0, R1, R0
-STR	R0, [SP, #24]
+STR	R0, [SP, #20]
 MOVS	R0, #13
 BL	_ADC1_Get_Sample+0
-LDR	R1, [SP, #24]
+LDR	R1, [SP, #20]
 STRH	R0, [R1, #0]
 ;FlightControl.c,212 :: 		sonarArray[i] >>= 4;
 LSLS	R0, R5, #1
-LDR	R2, [SP, #28]
+LDR	R2, [SP, #24]
 ADDS	R1, R2, R0
 LDRH	R0, [R1, #0]
 LSRS	R0, R0, #4
@@ -1045,8 +1045,8 @@ L_alitudeSonarRead30:
 ; sonarAvg start address is: 32 (R8)
 ; anomolyCount start address is: 24 (R6)
 ; i start address is: 4 (R1)
-MOVW	R7, #41247
-MOVT	R7, #7
+MOVW	R7, #51423
+MOVT	R7, #16
 NOP
 NOP
 L_alitudeSonarRead31:
@@ -1067,7 +1067,7 @@ IT	AL
 BAL	L_alitudeSonarRead25
 L_alitudeSonarRead26:
 ;FlightControl.c,230 :: 		sonarAvg = sonarAvg/SONAR_ITERATIONS;
-MOVS	R0, #10
+MOVS	R0, #7
 UDIV	R2, R8, R0
 ; sonarAvg end address is: 32 (R8)
 ; sonarAvg start address is: 8 (R2)
@@ -1085,7 +1085,7 @@ L_alitudeSonarRead33:
 ; secondAvg start address is: 16 (R4)
 ; sonarAvg start address is: 8 (R2)
 ; sonarAvg end address is: 8 (R2)
-CMP	R3, #10
+CMP	R3, #7
 IT	GE
 BGE	L_alitudeSonarRead34
 ; sonarAvg end address is: 8 (R2)
@@ -1124,12 +1124,12 @@ L_alitudeSonarRead34:
 ;FlightControl.c,240 :: 		return((uint16)secondAvg/SONAR_ITERATIONS);
 UXTH	R1, R4
 ; secondAvg end address is: 16 (R4)
-MOVS	R0, #10
+MOVS	R0, #7
 UDIV	R0, R1, R0
 ;FlightControl.c,241 :: 		}
 L_end_alitudeSonarRead:
 LDR	LR, [SP, #0]
-ADD	SP, SP, #32
+ADD	SP, SP, #28
 BX	LR
 ; end of _alitudeSonarRead
 _Stabilize_Alt:
@@ -1214,7 +1214,7 @@ BAL	L_end_Stabilize_Alt
 L_Stabilize_Alt41:
 ;FlightControl.c,266 :: 		else if(sonarReadIteration >= ALITITUDE_SONAR_READ_ITER)
 LDRB	R0, [SP, #7]
-CMP	R0, #1
+CMP	R0, #3
 IT	CC
 BCC	L_Stabilize_Alt43
 ;FlightControl.c,268 :: 		sonarReadIteration = 0;
