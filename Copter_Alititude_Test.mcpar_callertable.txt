@@ -101,8 +101,6 @@ main
 				UARTSendNewLine
 				UARTSendDouble
 				PWM_TIM2_Set_Duty
-				_Sub_FP
-				_Add_FP
 				_Mul_FP
 				_Div_FP
 				_FloatToUnsignedIntegral

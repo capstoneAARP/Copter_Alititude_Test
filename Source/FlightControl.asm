@@ -1174,7 +1174,7 @@ BX	LR
 ; end of _alitudeSonarRead
 _Stabilize_Alt:
 ;FlightControl.c,255 :: 		void Stabilize_Alt()
-SUB	SP, SP, #16
+SUB	SP, SP, #8
 STR	LR, [SP, #0]
 ;FlightControl.c,257 :: 		uint16 sonarAlititude = 0;
 ;FlightControl.c,258 :: 		uint8 failSafeCounter = 0;
@@ -1240,16 +1240,12 @@ LDRH	R0, [SP, #4]
 CMP	R0, #40
 IT	LS
 BLS	L_Stabilize_Alt46
-;FlightControl.c,279 :: 		current_DC_3 -= ALT_THROTLE_STEP_SIZE;
+;FlightControl.c,279 :: 		current_DC_3 = THROTTLE_ALT_DOWN ;
+MOVW	R1, #0
+MOVT	R1, #16576
 MOVW	R0, #lo_addr(_current_DC_3+0)
 MOVT	R0, #hi_addr(_current_DC_3+0)
-STR	R0, [SP, #12]
-LDR	R0, [R0, #0]
-MOVW	R2, #55050
-MOVT	R2, #15651
-BL	__Sub_FP+0
-LDR	R1, [SP, #12]
-STR	R0, [R1, #0]
+STR	R1, [R0, #0]
 ;FlightControl.c,280 :: 		UARTSendString("Decrease Throttle.");
 MOVW	R0, #lo_addr(?lstr11_FlightControl+0)
 MOVT	R0, #hi_addr(?lstr11_FlightControl+0)
@@ -1263,16 +1259,12 @@ LDRH	R0, [SP, #4]
 CMP	R0, #40
 IT	CS
 BCS	L_Stabilize_Alt48
-;FlightControl.c,284 :: 		current_DC_3 += ALT_THROTLE_STEP_SIZE;
+;FlightControl.c,284 :: 		current_DC_3 = THROTTLE_ALT_UP;
+MOVW	R1, #52429
+MOVT	R1, #16652
 MOVW	R0, #lo_addr(_current_DC_3+0)
 MOVT	R0, #hi_addr(_current_DC_3+0)
-STR	R0, [SP, #12]
-LDR	R2, [R0, #0]
-MOVW	R0, #55050
-MOVT	R0, #15651
-BL	__Add_FP+0
-LDR	R1, [SP, #12]
-STR	R0, [R1, #0]
+STR	R1, [R0, #0]
 ;FlightControl.c,285 :: 		UARTSendString("Increase Throttle.");
 MOVW	R0, #lo_addr(?lstr12_FlightControl+0)
 MOVT	R0, #hi_addr(?lstr12_FlightControl+0)
@@ -1343,6 +1335,6 @@ BL	_UARTSendString+0
 ;FlightControl.c,301 :: 		}
 L_end_Stabilize_Alt:
 LDR	LR, [SP, #0]
-ADD	SP, SP, #16
+ADD	SP, SP, #8
 BX	LR
 ; end of _Stabilize_Alt

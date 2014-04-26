@@ -281,7 +281,7 @@ void Stabilize_Alt()
          }
          else if(sonarAlititude < ALTITUDE_HOLD)
          {
-               current_DC_3 THROTTLE_ALT_UP;
+               current_DC_3 = THROTTLE_ALT_UP;
                UARTSendString("Increase Throttle.");
          }
          GPIOC_ODR.B8 = ~GPIOC_ODR.B8;
