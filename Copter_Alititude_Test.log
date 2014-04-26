@@ -21,11 +21,11 @@ hint: 247	1164	Variable 'sonarReadIteration' has been eliminated by optimizer	Fl
 diagnostics: 0	122	Compilation Started	stdtypes.h
 diagnostics: 127	123	Compiled Successfully	UART.c
 hint: 44	1164	Variable 'test' has been eliminated by optimizer	UART.c
-diagnostics: 0	127	All files Compiled in 515 ms	 
+diagnostics: 0	127	All files Compiled in 530 ms	 
 hint: 0	1144	Used RX: 16 (100%)   Free RX: 0 (0%)	Used RX: 16 (100%)   Free RX: 0 (0%)
 hint: 0	1144	Static RAM (bytes): 276   Dynamic RAM (bytes): 98025	Static RAM (bytes): 276   Dynamic RAM (bytes): 98025
-hint: 0	1144	Used ROM (bytes): 10474 (1%)  Free ROM (bytes): 1038102 (99%)	Used ROM (bytes): 10474 (1%)  Free ROM (bytes): 1038102 (99%)
+hint: 0	1144	Used ROM (bytes): 10478 (1%)  Free ROM (bytes): 1038098 (99%)	Used ROM (bytes): 10478 (1%)  Free ROM (bytes): 1038098 (99%)
 diagnostics: 0	125	Project Linked Successfully	Copter_Alititude_Test.mcpar
-diagnostics: 0	128	Linked in 546 ms	 
+diagnostics: 0	128	Linked in 531 ms	 
 diagnostics: 0	129	Project 'Copter_Alititude_Test.mcpar' completed: 1311 ms	 
-diagnostics: 0	103	Finished successfully: 26 Apr 2014, 01:33:21	Copter_Alititude_Test.mcpar
+diagnostics: 0	103	Finished successfully: 26 Apr 2014, 01:51:26	Copter_Alititude_Test.mcpar

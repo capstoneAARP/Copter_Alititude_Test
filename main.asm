@@ -55,6 +55,8 @@ BNE	L_mainTestingThread5
 NOP
 NOP
 NOP
+;main.c,70 :: 		StabilizeMode();
+BL	_StabilizeMode+0
 ;main.c,71 :: 		Stabilize_Alt();
 BL	_Stabilize_Alt+0
 ;main.c,72 :: 		LoiterMode();
