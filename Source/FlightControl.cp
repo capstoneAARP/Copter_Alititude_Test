@@ -320,48 +320,14 @@ void Stabilize_Alt()
  uint8 failSafeCounter = 0;
  uint8 sonarReadIteration = 0;
 
- current_DC_3 =  6.5 ;
+ current_DC_3 = 9.0;
  DC_time = (current_DC_3*pwm_period2)/100;
  PWM_TIM2_Set_Duty(DC_time, _PWM_NON_INVERTED, _PWM_CHANNEL1);
+ delay_ms(2000);
 
- UARTSendString("Stablilizing Alititude.");
- sonarAlititude = alitudeSonarRead();
- UARTSendString("1st Sonar average.");
- UARTSendUint16(sonarAlititude);
- UARTSendNewLine();
-
- while((sonarAlititude < ( 96  -  5 )) || (sonarAlititude > ( 96  +  5 )))
- {
- if(failSafeCounter >=  10 )
- {
- UARTSendString("Breaking out, too many iterations.");
- return;
- }
- else if(sonarReadIteration >=  3 )
- {
- sonarReadIteration = 0;
- if(sonarAlititude >  96 )
- {
- current_DC_3 -=  0.03 ;
- UARTSendString("Decrease Throttle.");
- }
- else if(sonarAlititude <  96 )
- {
- current_DC_3 +=  0.03 ;
- UARTSendString("Increase Throttle.");
- }
- GPIOC_ODR.B8 = ~GPIOC_ODR.B8;
- UARTSendString("Throttle:");
- UARTSendDouble(current_DC_3);
-
+ current_DC_3 = 5.5;
  DC_time = (current_DC_3*pwm_period2)/100;
  PWM_TIM2_Set_Duty(DC_time, _PWM_NON_INVERTED, _PWM_CHANNEL1);
- failSafeCounter++;
- }
-
- sonarAlititude = alitudeSonarRead();
- UARTSendUint16(sonarAlititude);
- sonarReadIteration++;
- }
- UARTSendString("Reached Altitude.");
+ delay_ms(1000);
+#line 301 "C:/Users/dell/Documents/GitHub/Copter_Alititude_Test/Source/FlightControl.c"
 }

@@ -55,15 +55,13 @@ BNE	L_mainTestingThread5
 NOP
 NOP
 NOP
-;main.c,70 :: 		StabilizeMode();
-BL	_StabilizeMode+0
 ;main.c,71 :: 		Stabilize_Alt();
 BL	_Stabilize_Alt+0
 ;main.c,72 :: 		LoiterMode();
 BL	_LoiterMode+0
-;main.c,73 :: 		Delay_ms(5000);
-MOVW	R7, #61567
-MOVT	R7, #762
+;main.c,73 :: 		Delay_ms(4000);
+MOVW	R7, #23039
+MOVT	R7, #610
 NOP
 NOP
 L_mainTestingThread7:

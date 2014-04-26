@@ -67,10 +67,10 @@ void mainTestingThread()
      {
        LoiterMode();
        Delay_ms(5000);
-       StabilizeMode();
+       //StabilizeMode();
        Stabilize_Alt();
        LoiterMode();
-       Delay_ms(5000);
+       Delay_ms(4000);
 
        /*
        for(j = 0; j < 10; j++)

@@ -246,10 +246,17 @@ void Stabilize_Alt()
    uint8 failSafeCounter = 0;
    uint8 sonarReadIteration = 0;
    
-   current_DC_3 = HOVER_THROTTLE_VALUE;
+   current_DC_3 = 9.0;
    DC_time = (current_DC_3*pwm_period2)/100;
    PWM_TIM2_Set_Duty(DC_time, _PWM_NON_INVERTED, _PWM_CHANNEL1);
+   delay_ms(2000);
    
+   current_DC_3 = 5.5;
+   DC_time = (current_DC_3*pwm_period2)/100;
+   PWM_TIM2_Set_Duty(DC_time, _PWM_NON_INVERTED, _PWM_CHANNEL1);
+   delay_ms(1000);
+   
+     /*
    UARTSendString("Stablilizing Alititude.");
    sonarAlititude = alitudeSonarRead();
    UARTSendString("1st Sonar average.");
@@ -290,4 +297,5 @@ void Stabilize_Alt()
        sonarReadIteration++;
    }
    UARTSendString("Reached Altitude.");
+   */
 }
