@@ -99,7 +99,7 @@ void DisArm(){
 boolean TakeOff()
 {
     uint16 sonarReadValue;
-    current_DC_3 = STARTING_THROTTLE_VALUE;  //Start motors at this value to predict timing-iterations in launch sequence
+    current_DC_3 = STARTING_THROTTLE_VALUE;  //Start motors at this value to predict timing-iterations in launch sequence 6.4
     UARTSendString("Taking off_Timed12.");
        //Start increasing Throttle
        DC_time = (current_DC_3*pwm_period2)/100;
