@@ -58,7 +58,7 @@ void mainTestingThread()
      //updateMapGoal(0,7);
      UARTSendString("Delay for GPS Signal.");
      Delay_ms(10000);
-     UARTSendString("Starting test123.");
+     UARTSendString("Starting test1234.");
 
      StabilizeMode();  //Set to Stabilize mode for takeoff (Only needed for loop mode - the StabilizeMode() above will place the quad in correct mode for arming
      Delay_ms(500);
@@ -68,14 +68,13 @@ void mainTestingThread()
      if(success == true)
      {
        LoiterMode();
-       //Delay_ms(5000);
-       //StabilizeMode();
-       //delay_ms(500);
-       //Stabilize_Alt();
-       //delay_ms(500);
-       //LoiterMode();
+       Delay_ms(3000);
+       StabilizeMode();
+       delay_ms(500);
+       Stabilize_Alt();
+       delay_ms(500);
+       LoiterMode();
        for (i=0; i<=9; i++){
-
            sonarWes = sonarGeneric();
            UARTSendString("Sonar Read Raw.");
            UARTSendUint16(sonarWes);

@@ -1,6 +1,6 @@
-#line 1 "C:/Users/dell/Documents/GitHub/Copter_Alititude_Test/Source/FlightControl.c"
-#line 1 "c:/users/dell/documents/github/copter_alititude_test/header/flightcontrol.h"
-#line 1 "c:/users/dell/documents/github/copter_alititude_test/header/stdtypes.h"
+#line 1 "C:/Users/Prometheus/Documents/GitHub/Copter_Alititude_Test/Source/FlightControl.c"
+#line 1 "c:/users/prometheus/documents/github/copter_alititude_test/header/flightcontrol.h"
+#line 1 "c:/users/prometheus/documents/github/copter_alititude_test/header/stdtypes.h"
 
 
 
@@ -42,7 +42,7 @@ typedef enum
  FOUND_THAT_SHIT_MODE,
  MAX_MODE
 } mode;
-#line 40 "c:/users/dell/documents/github/copter_alititude_test/header/flightcontrol.h"
+#line 40 "c:/users/prometheus/documents/github/copter_alititude_test/header/flightcontrol.h"
 void Flight_Control_Init();
 void Init_LED();
 void Init_ADC();
@@ -62,10 +62,10 @@ void Stop_Forward();
 uint16 alitudeSonarRead();
 uint16 sonarGeneric();
 void Stabilize_Alt();
-#line 1 "c:/users/dell/documents/github/copter_alititude_test/header/stdtypes.h"
-#line 1 "c:/users/dell/documents/github/copter_alititude_test/header/uart.h"
-#line 1 "c:/users/dell/documents/github/copter_alititude_test/header/stdtypes.h"
-#line 6 "c:/users/dell/documents/github/copter_alititude_test/header/uart.h"
+#line 1 "c:/users/prometheus/documents/github/copter_alititude_test/header/stdtypes.h"
+#line 1 "c:/users/prometheus/documents/github/copter_alititude_test/header/uart.h"
+#line 1 "c:/users/prometheus/documents/github/copter_alititude_test/header/stdtypes.h"
+#line 6 "c:/users/prometheus/documents/github/copter_alititude_test/header/uart.h"
 void UARTDebugInit();
 
 void UARTSendString(uint8 * stringToSend);
@@ -77,7 +77,7 @@ void UARTSendNewLine(void);
 void UARTSendUint16(uint16 dataToSend);
 
 void UARTSendDouble(double dataToSend);
-#line 6 "C:/Users/dell/Documents/GitHub/Copter_Alititude_Test/Source/FlightControl.c"
+#line 6 "C:/Users/Prometheus/Documents/GitHub/Copter_Alititude_Test/Source/FlightControl.c"
 float pwm_period1, pwm_period2;
 float current_DC = 7.4;
 float current_DC_2 = 5.0;
@@ -174,20 +174,57 @@ void DisArm(){
 boolean TakeOff()
 {
  uint16 sonarReadValue;
- current_DC_3 = 6.55;
- UARTSendString("Taking off_Timed1.");
+ current_DC_3 =  5.9 ;
+ UARTSendString("Taking off_Timed12.");
 
  DC_time = (current_DC_3*pwm_period2)/100;
  PWM_TIM2_Set_Duty(DC_time, _PWM_NON_INVERTED, _PWM_CHANNEL1);
-#line 154 "C:/Users/dell/Documents/GitHub/Copter_Alititude_Test/Source/FlightControl.c"
- delay_ms(2500);
+
+ while(current_DC_3 <  6.7 ){
+ current_DC_3 +=  0.05 ;
+
+ DC_time = (current_DC_3*pwm_period2)/100;
+ PWM_TIM2_Set_Duty(DC_time, _PWM_NON_INVERTED, _PWM_CHANNEL1);
+
+ if(current_DC_3 >=  6.5 )
+ {
  sonarReadValue = alitudeSonarRead();
- UARTSendString("Sonar average.");
+ UARTSendString("Snr avg.");
  UARTSendUint16(sonarReadValue);
  UARTSendNewLine();
- UARTSendString("Throttle");
+ UARTSendString("Thrtl");
  UARTSendDouble(current_DC_3);
+
+ if (sonarReadValue >=  30  && sonarReadValue <= 200)
+ {
+ UARTSendString("Reached Alitutude.");
+ GPIOC_ODR.B9 = 1;
  return  0 ;
+ }
+
+
+ if (sonarReadValue <=  12  && current_DC_3 >=  6.7 )
+ {
+ UARTSendString("Failed to reach altitude.");
+ GPIOC_ODR.B9 = 0;
+ return  1 ;
+ }
+ if (current_DC_3 >=  6.7 )
+ {
+ UARTSendString("Max Throttle.");
+ GPIOC_ODR.B9 = 1;
+ return  0 ;
+ }
+ if(sonarReadValue == 255)
+ {
+ UARTSendString("Sonar reads 255 return false.");
+ GPIOC_ODR.B9 = 0;
+ return  1 ;
+ }
+ }
+ GPIOC_ODR.B9 = ~GPIOC_ODR.B9;
+ Delay_ms( 500 );
+ }
 }
 
 void LoiterMode(){
@@ -295,14 +332,14 @@ void Stabilize_Alt()
  uint16 sonarAlititude = 0;
  uint8 failSafeCounter = 0;
  uint8 sonarReadIteration = 0;
-#line 275 "C:/Users/dell/Documents/GitHub/Copter_Alititude_Test/Source/FlightControl.c"
+
  UARTSendString("Stablilizing Alititude.");
  sonarAlititude = alitudeSonarRead();
  UARTSendString("1st Sonar average.");
  UARTSendUint16(sonarAlititude);
  UARTSendNewLine();
 
- while((sonarAlititude < ( 72  -  8 )) || (sonarAlititude > ( 72  +  8 )))
+ while((sonarAlititude < ( 40  -  10 )) || (sonarAlititude > ( 40  +  10 )))
  {
  if(failSafeCounter >=  10 )
  {
@@ -312,12 +349,12 @@ void Stabilize_Alt()
  else if(sonarReadIteration >=  3 )
  {
  sonarReadIteration = 0;
- if(sonarAlititude >  72 )
+ if(sonarAlititude >  40 )
  {
  current_DC_3 -=  0.04 ;
  UARTSendString("Decrease Throttle.");
  }
- else if(sonarAlititude <  72 )
+ else if(sonarAlititude <  40 )
  {
  current_DC_3 +=  0.04 ;
  UARTSendString("Increase Throttle.");

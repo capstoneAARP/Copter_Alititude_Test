@@ -17,7 +17,7 @@ BNE	L_mainTestingThread0
 NOP
 NOP
 NOP
-;main.c,61 :: 		UARTSendString("Starting test123.");
+;main.c,61 :: 		UARTSendString("Starting test1234.");
 MOVW	R0, #lo_addr(?lstr2_main+0)
 MOVT	R0, #hi_addr(?lstr2_main+0)
 BL	_UARTSendString+0
@@ -44,19 +44,30 @@ IT	NE
 BNE	L_mainTestingThread4
 ;main.c,70 :: 		LoiterMode();
 BL	_LoiterMode+0
+;main.c,71 :: 		Delay_ms(5000);
+MOVW	R7, #61567
+MOVT	R7, #762
+NOP
+NOP
+L_mainTestingThread5:
+SUBS	R7, R7, #1
+BNE	L_mainTestingThread5
+NOP
+NOP
+NOP
 ;main.c,77 :: 		for (i=0; i<=9; i++){
 MOVS	R1, #0
 SXTH	R1, R1
 MOVW	R0, #lo_addr(_i+0)
 MOVT	R0, #hi_addr(_i+0)
 STRH	R1, [R0, #0]
-L_mainTestingThread5:
+L_mainTestingThread7:
 MOVW	R0, #lo_addr(_i+0)
 MOVT	R0, #hi_addr(_i+0)
 LDRSH	R0, [R0, #0]
 CMP	R0, #9
 IT	GT
-BGT	L_mainTestingThread6
+BGT	L_mainTestingThread8
 ;main.c,79 :: 		sonarWes = sonarGeneric();
 BL	_sonarGeneric+0
 MOVW	R1, #lo_addr(_sonarWes+0)
@@ -78,9 +89,9 @@ MOVW	R7, #38527
 MOVT	R7, #152
 NOP
 NOP
-L_mainTestingThread8:
+L_mainTestingThread10:
 SUBS	R7, R7, #1
-BNE	L_mainTestingThread8
+BNE	L_mainTestingThread10
 NOP
 NOP
 NOP
@@ -92,8 +103,8 @@ ADDS	R0, R0, #1
 STRH	R0, [R1, #0]
 ;main.c,84 :: 		}
 IT	AL
-BAL	L_mainTestingThread5
-L_mainTestingThread6:
+BAL	L_mainTestingThread7
+L_mainTestingThread8:
 ;main.c,123 :: 		}
 L_mainTestingThread4:
 ;main.c,124 :: 		UARTSendString("Returning to base.");
@@ -107,9 +118,9 @@ MOVW	R7, #41727
 MOVT	R7, #4577
 NOP
 NOP
-L_mainTestingThread10:
+L_mainTestingThread12:
 SUBS	R7, R7, #1
-BNE	L_mainTestingThread10
+BNE	L_mainTestingThread12
 NOP
 NOP
 NOP
@@ -122,30 +133,30 @@ MOVW	R7, #57599
 MOVT	R7, #1525
 NOP
 NOP
-L_mainTestingThread12:
+L_mainTestingThread14:
 SUBS	R7, R7, #1
-BNE	L_mainTestingThread12
+BNE	L_mainTestingThread14
 NOP
 NOP
 NOP
 ;main.c,129 :: 		DisArm();
 BL	_DisArm+0
 ;main.c,131 :: 		while(1)
-L_mainTestingThread14:
+L_mainTestingThread16:
 ;main.c,133 :: 		Delay_ms(500);
 MOVW	R7, #19263
 MOVT	R7, #76
 NOP
 NOP
-L_mainTestingThread16:
+L_mainTestingThread18:
 SUBS	R7, R7, #1
-BNE	L_mainTestingThread16
+BNE	L_mainTestingThread18
 NOP
 NOP
 NOP
 ;main.c,134 :: 		}
 IT	AL
-BAL	L_mainTestingThread14
+BAL	L_mainTestingThread16
 ;main.c,135 :: 		}
 L_end_mainTestingThread:
 LDR	LR, [SP, #0]
@@ -232,14 +243,14 @@ STRH	R0, [R1, #0]
 ;main.c,201 :: 		if (current_func == NUM_FUNC)                              //test for end of function
 CMP	R0, #1
 IT	NE
-BNE	L_SysTick_ISR18
+BNE	L_SysTick_ISR20
 ;main.c,202 :: 		current_func = 0;                                        //if so, restart at first function
 MOVS	R1, #0
 SXTH	R1, R1
 MOVW	R0, #lo_addr(_current_func+0)
 MOVT	R0, #hi_addr(_current_func+0)
 STRH	R1, [R0, #0]
-L_SysTick_ISR18:
+L_SysTick_ISR20:
 ;main.c,203 :: 		func_flag = 1;                                    //tell main() that there is a function ready
 MOVS	R1, #1
 SXTH	R1, R1
@@ -261,9 +272,9 @@ MOVW	R7, #9631
 MOVT	R7, #38
 NOP
 NOP
-L_init_prog19:
+L_init_prog21:
 SUBS	R7, R7, #1
-BNE	L_init_prog19
+BNE	L_init_prog21
 NOP
 NOP
 NOP

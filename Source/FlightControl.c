@@ -99,27 +99,33 @@ void DisArm(){
 boolean TakeOff()
 {
     uint16 sonarReadValue;
-    current_DC_3 = 6.55;  //Start motors at this value to predict timing-iterations in launch sequence
-    UARTSendString("Taking off_Timed1.");
+    current_DC_3 = STARTING_THROTTLE_VALUE;  //Start motors at this value to predict timing-iterations in launch sequence
+    UARTSendString("Taking off_Timed12.");
        //Start increasing Throttle
        DC_time = (current_DC_3*pwm_period2)/100;
        PWM_TIM2_Set_Duty(DC_time, _PWM_NON_INVERTED, _PWM_CHANNEL1);
     
-    /*
     while(current_DC_3 < MAX_THROTTLE_VALUE){
-       current_DC_3 += THROTLE_STEP_SIZE;
+       current_DC_3 += TAKEOFF_THROTTLE_STEP_SIZE;
        //Start increasing Throttle
        DC_time = (current_DC_3*pwm_period2)/100;
        PWM_TIM2_Set_Duty(DC_time, _PWM_NON_INVERTED, _PWM_CHANNEL1);
        //Do not start taking US readings until flight barely begins - and/or maybe a little off the ground.
-       if(current_DC_3 >= LIMIT_THROTTLE_VALUE)
+       if(current_DC_3 >= SONAR_LIMIT_THROTTLE_VALUE)
        {
            sonarReadValue = alitudeSonarRead();
-           UARTSendString("Sonar average.");
+           UARTSendString("Snr avg.");
            UARTSendUint16(sonarReadValue);
            UARTSendNewLine();
-           UARTSendString("Throttle");
+           UARTSendString("Thrtl");
            UARTSendDouble(current_DC_3);
+
+           if (sonarReadValue >= TAKEOFF_ALITITUDE && sonarReadValue <= 200)
+           {  //If altitude is greater than 30 inches off the ground return to main function to enable loiter mode
+                UARTSendString("Reached Alitutude.");
+                GPIOC_ODR.B9 = 1;   //Green LED Solid On - Indicates that target height off ground acheived
+                return true;
+           }
 
            // Failsafe if no altitude reached and throttle is maxing out exit this routine
            if (sonarReadValue <= MINIMUM_ALITITUDE && current_DC_3 >= MAX_THROTTLE_VALUE)
@@ -140,25 +146,10 @@ boolean TakeOff()
                 GPIOC_ODR.B9 = 0; //Green LED Off - Indicates that the max throttle was reached but height off ground not acheived
                 return false;
            }
-           if (sonarReadValue >= TAKEOFF_ALITITUDE)
-           {  //If altitude is greater than 24 inches off the ground return to main function to enable loiter mode   (1E = 30INCHES)E
-                UARTSendString("Reached Alitutude.");
-                GPIOC_ODR.B9 = 1;   //Green LED Solid On - Indicates that target height off ground acheived
-                return true;
-           }
        }
        GPIOC_ODR.B9 = ~GPIOC_ODR.B9; // Toggle PORTC
        Delay_ms(TAKEOFF_LOOP_DELAY_MS);
     }
-    */
-    delay_ms(2500);
-    sonarReadValue = alitudeSonarRead();
-           UARTSendString("Sonar average.");
-           UARTSendUint16(sonarReadValue);
-           UARTSendNewLine();
-           UARTSendString("Throttle");
-           UARTSendDouble(current_DC_3);
-           return true;
 }
 
 void LoiterMode(){
@@ -266,11 +257,6 @@ void Stabilize_Alt()
    uint16 sonarAlititude = 0;
    uint8 failSafeCounter = 0;
    uint8 sonarReadIteration = 0;
-   /*
-   current_DC_3 = HOVER_THROTTLE_VALUE;
-   DC_time = (current_DC_3*pwm_period2)/100;
-   PWM_TIM2_Set_Duty(DC_time, _PWM_NON_INVERTED, _PWM_CHANNEL1);
-     */
      
    UARTSendString("Stablilizing Alititude.");
    sonarAlititude = alitudeSonarRead();
