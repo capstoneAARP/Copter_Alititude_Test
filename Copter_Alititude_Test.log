@@ -9,8 +9,8 @@ warning: 0	1502	Specified include path does not exist: 'C:\Users\Prometheus\Docu
 warning: 0	1502	Specified include path does not exist: 'C:\Users\Brian Campuzano\Documents\GitHub\Copter_Alititude_Test\header'	 
 diagnostics: 0	122	Compilation Started	stdtypes.h
 hint: 0	1004	interrupt handler (SysTick_ISR at 0x000F)	main.c
-diagnostics: 251	123	Compiled Successfully	main.c
-hint: 53	1164	Variable 'success' has been eliminated by optimizer	main.c
+diagnostics: 252	123	Compiled Successfully	main.c
+hint: 54	1164	Variable 'success' has been eliminated by optimizer	main.c
 diagnostics: 0	122	Compilation Started	blink.h
 diagnostics: 13	123	Compiled Successfully	blink.c
 diagnostics: 0	122	Compilation Started	stdtypes.h
@@ -18,17 +18,11 @@ diagnostics: 293	123	Compiled Successfully	FlightControl.c
 diagnostics: 0	122	Compilation Started	stdtypes.h
 diagnostics: 127	123	Compiled Successfully	UART.c
 hint: 44	1164	Variable 'test' has been eliminated by optimizer	UART.c
-<<<<<<< HEAD
-diagnostics: 0	127	All files Compiled in 234 ms	 
-error: 0	434	Demo Limit	Demo Limit
-error: 0	102	Finished (with errors): 25 Apr 2014, 23:23:13	Copter_Alititude_Test.mcpar
-=======
-diagnostics: 0	127	All files Compiled in 546 ms	 
+diagnostics: 0	127	All files Compiled in 515 ms	 
 hint: 0	1144	Used RX: 16 (100%)   Free RX: 0 (0%)	Used RX: 16 (100%)   Free RX: 0 (0%)
 hint: 0	1144	Static RAM (bytes): 276   Dynamic RAM (bytes): 98025	Static RAM (bytes): 276   Dynamic RAM (bytes): 98025
 hint: 0	1144	Used ROM (bytes): 10220 (1%)  Free ROM (bytes): 1038356 (99%)	Used ROM (bytes): 10220 (1%)  Free ROM (bytes): 1038356 (99%)
 diagnostics: 0	125	Project Linked Successfully	Copter_Alititude_Test.mcpar
-diagnostics: 0	128	Linked in 531 ms	 
-diagnostics: 0	129	Project 'Copter_Alititude_Test.mcpar' completed: 1326 ms	 
-diagnostics: 0	103	Finished successfully: 25 Apr 2014, 23:25:21	Copter_Alititude_Test.mcpar
->>>>>>> 62cc2fed7f41f9e6adf112023004ef825c4e8238
+diagnostics: 0	128	Linked in 530 ms	 
+diagnostics: 0	129	Project 'Copter_Alititude_Test.mcpar' completed: 1310 ms	 
+diagnostics: 0	103	Finished successfully: 25 Apr 2014, 23:29:55	Copter_Alititude_Test.mcpar

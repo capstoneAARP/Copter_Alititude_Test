@@ -48,6 +48,7 @@ unsigned long millis();                               // function to return mS c
 // test 1 thread
 void mainTestingThread()
 {
+
      //volatile int i;
      //volatile int j;
      boolean success;
