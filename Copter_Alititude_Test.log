@@ -14,16 +14,16 @@ hint: 56	1164	Variable 'success' has been eliminated by optimizer	main.c
 diagnostics: 0	122	Compilation Started	blink.h
 diagnostics: 13	123	Compiled Successfully	blink.c
 diagnostics: 0	122	Compilation Started	stdtypes.h
-diagnostics: 301	123	Compiled Successfully	FlightControl.c
-hint: 207	1164	Variable 'sonar' has been eliminated by optimizer	FlightControl.c
+diagnostics: 305	123	Compiled Successfully	FlightControl.c
+hint: 211	1164	Variable 'sonar' has been eliminated by optimizer	FlightControl.c
 diagnostics: 0	122	Compilation Started	stdtypes.h
 diagnostics: 127	123	Compiled Successfully	UART.c
 hint: 44	1164	Variable 'test' has been eliminated by optimizer	UART.c
-diagnostics: 0	127	All files Compiled in 499 ms	 
+diagnostics: 0	127	All files Compiled in 514 ms	 
 hint: 0	1144	Used RX: 16 (100%)   Free RX: 0 (0%)	Used RX: 16 (100%)   Free RX: 0 (0%)
-hint: 0	1144	Static RAM (bytes): 440   Dynamic RAM (bytes): 97861	Static RAM (bytes): 440   Dynamic RAM (bytes): 97861
-hint: 0	1144	Used ROM (bytes): 10890 (1%)  Free ROM (bytes): 1037686 (99%)	Used ROM (bytes): 10890 (1%)  Free ROM (bytes): 1037686 (99%)
+hint: 0	1144	Static RAM (bytes): 296   Dynamic RAM (bytes): 98005	Static RAM (bytes): 296   Dynamic RAM (bytes): 98005
+hint: 0	1144	Used ROM (bytes): 10454 (1%)  Free ROM (bytes): 1038122 (99%)	Used ROM (bytes): 10454 (1%)  Free ROM (bytes): 1038122 (99%)
 diagnostics: 0	125	Project Linked Successfully	Copter_Alititude_Test.mcpar
 diagnostics: 0	128	Linked in 515 ms	 
-diagnostics: 0	129	Project 'Copter_Alititude_Test.mcpar' completed: 1233 ms	 
-diagnostics: 0	103	Finished successfully: 26 Apr 2014, 14:01:53	Copter_Alititude_Test.mcpar
+diagnostics: 0	129	Project 'Copter_Alititude_Test.mcpar' completed: 1279 ms	 
+diagnostics: 0	103	Finished successfully: 26 Apr 2014, 14:57:07	Copter_Alititude_Test.mcpar

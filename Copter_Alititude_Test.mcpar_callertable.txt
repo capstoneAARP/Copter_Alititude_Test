@@ -89,18 +89,9 @@ main
 				_FloatToUnsignedIntegral
 				_Compare_FP
 				_Add_FP
+				_Sub_FP
 			LoiterMode
 				PWM_TIM3_Set_Duty
-				_Mul_FP
-				_Div_FP
-				_FloatToUnsignedIntegral
-			Stabilize_Alt
-				UARTSendString
-				alitudeSonarRead
-				UARTSendUint16
-				UARTSendNewLine
-				UARTSendDouble
-				PWM_TIM2_Set_Duty
 				_Mul_FP
 				_Div_FP
 				_FloatToUnsignedIntegral

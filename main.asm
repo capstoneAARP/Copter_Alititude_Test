@@ -55,34 +55,19 @@ BNE	L_mainTestingThread5
 NOP
 NOP
 NOP
-;main.c,72 :: 		Stabilize_Alt();
-BL	_Stabilize_Alt+0
-;main.c,73 :: 		delay_ms(500);
-MOVW	R7, #19263
-MOVT	R7, #76
-NOP
-NOP
-L_mainTestingThread7:
-SUBS	R7, R7, #1
-BNE	L_mainTestingThread7
-NOP
-NOP
-NOP
-;main.c,74 :: 		LoiterMode();
-BL	_LoiterMode+0
 ;main.c,75 :: 		for (i=0; i<=9; i++){
 MOVS	R1, #0
 SXTH	R1, R1
 MOVW	R0, #lo_addr(_i+0)
 MOVT	R0, #hi_addr(_i+0)
 STRH	R1, [R0, #0]
-L_mainTestingThread9:
+L_mainTestingThread7:
 MOVW	R0, #lo_addr(_i+0)
 MOVT	R0, #hi_addr(_i+0)
 LDRSH	R0, [R0, #0]
 CMP	R0, #9
 IT	GT
-BGT	L_mainTestingThread10
+BGT	L_mainTestingThread8
 ;main.c,76 :: 		sonarWes = sonarGeneric();
 BL	_sonarGeneric+0
 MOVW	R1, #lo_addr(_sonarWes+0)
@@ -104,9 +89,9 @@ MOVW	R7, #38527
 MOVT	R7, #152
 NOP
 NOP
-L_mainTestingThread12:
+L_mainTestingThread10:
 SUBS	R7, R7, #1
-BNE	L_mainTestingThread12
+BNE	L_mainTestingThread10
 NOP
 NOP
 NOP
@@ -118,8 +103,8 @@ ADDS	R0, R0, #1
 STRH	R0, [R1, #0]
 ;main.c,81 :: 		}
 IT	AL
-BAL	L_mainTestingThread9
-L_mainTestingThread10:
+BAL	L_mainTestingThread7
+L_mainTestingThread8:
 ;main.c,120 :: 		}
 L_mainTestingThread4:
 ;main.c,121 :: 		UARTSendString("Returning to base.");
@@ -133,9 +118,9 @@ MOVW	R7, #41727
 MOVT	R7, #4577
 NOP
 NOP
-L_mainTestingThread14:
+L_mainTestingThread12:
 SUBS	R7, R7, #1
-BNE	L_mainTestingThread14
+BNE	L_mainTestingThread12
 NOP
 NOP
 NOP
@@ -148,30 +133,30 @@ MOVW	R7, #57599
 MOVT	R7, #1525
 NOP
 NOP
-L_mainTestingThread16:
+L_mainTestingThread14:
 SUBS	R7, R7, #1
-BNE	L_mainTestingThread16
+BNE	L_mainTestingThread14
 NOP
 NOP
 NOP
 ;main.c,126 :: 		DisArm();
 BL	_DisArm+0
 ;main.c,128 :: 		while(1)
-L_mainTestingThread18:
+L_mainTestingThread16:
 ;main.c,130 :: 		Delay_ms(500);
 MOVW	R7, #19263
 MOVT	R7, #76
 NOP
 NOP
-L_mainTestingThread20:
+L_mainTestingThread18:
 SUBS	R7, R7, #1
-BNE	L_mainTestingThread20
+BNE	L_mainTestingThread18
 NOP
 NOP
 NOP
 ;main.c,131 :: 		}
 IT	AL
-BAL	L_mainTestingThread18
+BAL	L_mainTestingThread16
 ;main.c,132 :: 		}
 L_end_mainTestingThread:
 LDR	LR, [SP, #0]
@@ -258,14 +243,14 @@ STRH	R0, [R1, #0]
 ;main.c,198 :: 		if (current_func == NUM_FUNC)                              //test for end of function
 CMP	R0, #1
 IT	NE
-BNE	L_SysTick_ISR22
+BNE	L_SysTick_ISR20
 ;main.c,199 :: 		current_func = 0;                                        //if so, restart at first function
 MOVS	R1, #0
 SXTH	R1, R1
 MOVW	R0, #lo_addr(_current_func+0)
 MOVT	R0, #hi_addr(_current_func+0)
 STRH	R1, [R0, #0]
-L_SysTick_ISR22:
+L_SysTick_ISR20:
 ;main.c,200 :: 		func_flag = 1;                                    //tell main() that there is a function ready
 MOVS	R1, #1
 SXTH	R1, R1
@@ -287,9 +272,9 @@ MOVW	R7, #9631
 MOVT	R7, #38
 NOP
 NOP
-L_init_prog23:
+L_init_prog21:
 SUBS	R7, R7, #1
-BNE	L_init_prog23
+BNE	L_init_prog21
 NOP
 NOP
 NOP

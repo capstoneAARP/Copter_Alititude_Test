@@ -71,7 +71,7 @@ void mainTestingThread()
        Delay_ms(2000);
        //Stabilize_Alt();
        //delay_ms(500);
-       /LoiterMode();
+       //LoiterMode();
        for (i=0; i<=9; i++){
            sonarWes = sonarGeneric();
            UARTSendString("Sonar Read Raw.");

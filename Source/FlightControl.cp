@@ -174,14 +174,15 @@ void DisArm(){
 boolean TakeOff()
 {
  uint16 sonarReadValue;
- current_DC_3 =  5.9 ;
+ current_DC_3 =  6.0 ;
  UARTSendString("Taking off_Timed12.");
 
  DC_time = (current_DC_3*pwm_period2)/100;
  PWM_TIM2_Set_Duty(DC_time, _PWM_NON_INVERTED, _PWM_CHANNEL1);
+ delay_ms(500);
 
  while(current_DC_3 <  6.7 ){
- current_DC_3 +=  0.05 ;
+ current_DC_3 +=  0.02 ;
 
  DC_time = (current_DC_3*pwm_period2)/100;
  PWM_TIM2_Set_Duty(DC_time, _PWM_NON_INVERTED, _PWM_CHANNEL1);
@@ -199,6 +200,9 @@ boolean TakeOff()
  {
  UARTSendString("Reached Alitutude.");
  GPIOC_ODR.B9 = 1;
+ current_DC_3 -= 0.15;
+ DC_time = (current_DC_3*pwm_period2)/100;
+ PWM_TIM2_Set_Duty(DC_time, _PWM_NON_INVERTED, _PWM_CHANNEL1);
  return  0 ;
  }
 
