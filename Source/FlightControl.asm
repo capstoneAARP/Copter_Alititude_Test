@@ -1144,8 +1144,8 @@ MOVS	R0, #0
 STRB	R0, [SP, #7]
 ;FlightControl.c,247 :: 		uint8 sonarReadIteration = 0;
 ;FlightControl.c,249 :: 		current_DC_3 = HOVER_THROTTLE_VALUE;
-MOVW	R1, #39322
-MOVT	R1, #16585
+MOVW	R1, #0
+MOVT	R1, #16592
 MOVW	R0, #lo_addr(_current_DC_3+0)
 MOVT	R0, #hi_addr(_current_DC_3+0)
 STR	R1, [R0, #0]
@@ -1153,8 +1153,8 @@ STR	R1, [R0, #0]
 MOVW	R0, #lo_addr(_pwm_period2+0)
 MOVT	R0, #hi_addr(_pwm_period2+0)
 LDR	R2, [R0, #0]
-MOVW	R0, #39322
-MOVT	R0, #16585
+MOVW	R0, #0
+MOVT	R0, #16592
 BL	__Mul_FP+0
 MOVW	R2, #0
 MOVT	R2, #17096
@@ -1200,7 +1200,7 @@ L__Stabilize_Alt52:
 L__Stabilize_Alt51:
 ;FlightControl.c,261 :: 		if(failSafeCounter >= ALTITUDE_FAIL_SAFE_MAX)
 LDRB	R0, [SP, #6]
-CMP	R0, #5
+CMP	R0, #10
 IT	CC
 BCC	L_Stabilize_Alt41
 ;FlightControl.c,263 :: 		UARTSendString("Breaking out, too many iterations.");
@@ -1277,13 +1277,11 @@ STR	R1, [R0, #0]
 MOVW	R0, #lo_addr(?lstr13_FlightControl+0)
 MOVT	R0, #hi_addr(?lstr13_FlightControl+0)
 BL	_UARTSendString+0
-;FlightControl.c,281 :: 		UARTSendUint16(current_DC_3);
+;FlightControl.c,281 :: 		UARTSendDouble(current_DC_3);
 MOVW	R0, #lo_addr(_current_DC_3+0)
 MOVT	R0, #hi_addr(_current_DC_3+0)
 LDR	R0, [R0, #0]
-BL	__FloatToUnsignedIntegral+0
-UXTH	R0, R0
-BL	_UARTSendUint16+0
+BL	_UARTSendDouble+0
 ;FlightControl.c,283 :: 		DC_time = (current_DC_3*pwm_period2)/100;
 MOVW	R0, #lo_addr(_pwm_period2+0)
 MOVT	R0, #hi_addr(_pwm_period2+0)
