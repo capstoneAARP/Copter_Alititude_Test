@@ -136,6 +136,10 @@ void mainTestingThread()
  {
  LoiterMode();
  Delay_ms(5000);
+ StabilizeMode();
+ Stabilize_Alt();
+ LoiterMode();
+ Delay_ms(5000);
 #line 112 "C:/Users/dell/Documents/GitHub/Copter_Alititude_Test/main.c"
  }
  UARTSendString("Returning to base.");

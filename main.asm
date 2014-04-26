@@ -55,6 +55,23 @@ BNE	L_mainTestingThread5
 NOP
 NOP
 NOP
+;main.c,70 :: 		StabilizeMode();
+BL	_StabilizeMode+0
+;main.c,71 :: 		Stabilize_Alt();
+BL	_Stabilize_Alt+0
+;main.c,72 :: 		LoiterMode();
+BL	_LoiterMode+0
+;main.c,73 :: 		Delay_ms(5000);
+MOVW	R7, #61567
+MOVT	R7, #762
+NOP
+NOP
+L_mainTestingThread7:
+SUBS	R7, R7, #1
+BNE	L_mainTestingThread7
+NOP
+NOP
+NOP
 ;main.c,112 :: 		}
 L_mainTestingThread4:
 ;main.c,113 :: 		UARTSendString("Returning to base.");
@@ -68,9 +85,9 @@ MOVW	R7, #41727
 MOVT	R7, #4577
 NOP
 NOP
-L_mainTestingThread7:
+L_mainTestingThread9:
 SUBS	R7, R7, #1
-BNE	L_mainTestingThread7
+BNE	L_mainTestingThread9
 NOP
 NOP
 NOP
@@ -83,30 +100,30 @@ MOVW	R7, #57599
 MOVT	R7, #1525
 NOP
 NOP
-L_mainTestingThread9:
+L_mainTestingThread11:
 SUBS	R7, R7, #1
-BNE	L_mainTestingThread9
+BNE	L_mainTestingThread11
 NOP
 NOP
 NOP
 ;main.c,118 :: 		DisArm();
 BL	_DisArm+0
 ;main.c,120 :: 		while(1)
-L_mainTestingThread11:
+L_mainTestingThread13:
 ;main.c,122 :: 		Delay_ms(500);
 MOVW	R7, #19263
 MOVT	R7, #76
 NOP
 NOP
-L_mainTestingThread13:
+L_mainTestingThread15:
 SUBS	R7, R7, #1
-BNE	L_mainTestingThread13
+BNE	L_mainTestingThread15
 NOP
 NOP
 NOP
 ;main.c,123 :: 		}
 IT	AL
-BAL	L_mainTestingThread11
+BAL	L_mainTestingThread13
 ;main.c,124 :: 		}
 L_end_mainTestingThread:
 LDR	LR, [SP, #0]
@@ -193,14 +210,14 @@ STRH	R0, [R1, #0]
 ;main.c,190 :: 		if (current_func == NUM_FUNC)                              //test for end of function
 CMP	R0, #1
 IT	NE
-BNE	L_SysTick_ISR15
+BNE	L_SysTick_ISR17
 ;main.c,191 :: 		current_func = 0;                                        //if so, restart at first function
 MOVS	R1, #0
 SXTH	R1, R1
 MOVW	R0, #lo_addr(_current_func+0)
 MOVT	R0, #hi_addr(_current_func+0)
 STRH	R1, [R0, #0]
-L_SysTick_ISR15:
+L_SysTick_ISR17:
 ;main.c,192 :: 		func_flag = 1;                                    //tell main() that there is a function ready
 MOVS	R1, #1
 SXTH	R1, R1
@@ -222,9 +239,9 @@ MOVW	R7, #9631
 MOVT	R7, #38
 NOP
 NOP
-L_init_prog16:
+L_init_prog18:
 SUBS	R7, R7, #1
-BNE	L_init_prog16
+BNE	L_init_prog18
 NOP
 NOP
 NOP
