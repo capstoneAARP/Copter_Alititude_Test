@@ -96,9 +96,16 @@ main
 				_FloatToUnsignedIntegral
 			Stabilize_Alt
 				PWM_TIM2_Set_Duty
+				UARTSendString
+				alitudeSonarRead
+				UARTSendUint16
+				UARTSendNewLine
+				UARTSendDouble
 				_Mul_FP
 				_Div_FP
 				_FloatToUnsignedIntegral
+				_Sub_FP
+				_Add_FP
 			LandingMode
 				PWM_TIM3_Set_Duty
 				_Mul_FP

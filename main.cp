@@ -137,10 +137,12 @@ void mainTestingThread()
  LoiterMode();
  Delay_ms(5000);
  StabilizeMode();
+ delay_ms(500);
  Stabilize_Alt();
+ delay_ms(500);
  LoiterMode();
- Delay_ms(4000);
-#line 112 "C:/Users/dell/Documents/GitHub/Copter_Alititude_Test/main.c"
+ Delay_ms(8000);
+#line 114 "C:/Users/dell/Documents/GitHub/Copter_Alititude_Test/main.c"
  }
  UARTSendString("Returning to base.");
  LandingMode();
@@ -208,7 +210,7 @@ void InitSysTick()
  NVIC_SYSTICKCSR.B1 = 1;
  NVIC_SYSTICKCSR.B2 = 1;
 }
-#line 184 "C:/Users/dell/Documents/GitHub/Copter_Alititude_Test/main.c"
+#line 186 "C:/Users/dell/Documents/GitHub/Copter_Alititude_Test/main.c"
 void SysTick_ISR() iv IVT_INT_SysTick ics ICS_AUTO
 {
 GPIOC_ODR ^= _GPIO_PINMASK_9;
@@ -258,7 +260,7 @@ void main()
 
 
  init_prog();
-#line 246 "C:/Users/dell/Documents/GitHub/Copter_Alititude_Test/main.c"
+#line 248 "C:/Users/dell/Documents/GitHub/Copter_Alititude_Test/main.c"
 }
 
 

@@ -18,7 +18,7 @@
 #define MAX_THROTTLE_VALUE              6.9
 #define HOVER_THROTTLE_VALUE            6.8
 #define THROTLE_STEP_SIZE               0.05
-#define ALT_THROTLE_STEP_SIZE           0.05
+#define ALT_THROTLE_STEP_SIZE           0.03
 #endif
 
 #define TAKEOFF_ALITITUDE               30
