@@ -182,10 +182,7 @@ boolean TakeOff()
  delay_ms(500);
 
  while(current_DC_3 <  6.7 ){
- current_DC_3 +=  0.02 ;
 
- DC_time = (current_DC_3*pwm_period2)/100;
- PWM_TIM2_Set_Duty(DC_time, _PWM_NON_INVERTED, _PWM_CHANNEL1);
 
  if(current_DC_3 >=  6.5 )
  {
@@ -227,7 +224,13 @@ boolean TakeOff()
  }
  }
  GPIOC_ODR.B9 = ~GPIOC_ODR.B9;
+
+ current_DC_3 +=  0.023 ;
+
+ DC_time = (current_DC_3*pwm_period2)/100;
+ PWM_TIM2_Set_Duty(DC_time, _PWM_NON_INVERTED, _PWM_CHANNEL1);
  Delay_ms( 400 );
+
  }
 }
 

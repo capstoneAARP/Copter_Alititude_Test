@@ -107,10 +107,7 @@ boolean TakeOff()
        delay_ms(500);
     
     while(current_DC_3 < MAX_THROTTLE_VALUE){
-       current_DC_3 += TAKEOFF_THROTTLE_STEP_SIZE;
-       //Start increasing Throttle
-       DC_time = (current_DC_3*pwm_period2)/100;
-       PWM_TIM2_Set_Duty(DC_time, _PWM_NON_INVERTED, _PWM_CHANNEL1);
+
        //Do not start taking US readings until flight barely begins - and/or maybe a little off the ground.
        if(current_DC_3 >= SONAR_LIMIT_THROTTLE_VALUE)
        {
@@ -152,7 +149,13 @@ boolean TakeOff()
            }
        }
        GPIOC_ODR.B9 = ~GPIOC_ODR.B9; // Toggle PORTC
+       
+       current_DC_3 += TAKEOFF_THROTTLE_STEP_SIZE;
+       //Start increasing Throttle
+       DC_time = (current_DC_3*pwm_period2)/100;
+       PWM_TIM2_Set_Duty(DC_time, _PWM_NON_INVERTED, _PWM_CHANNEL1);
        Delay_ms(TAKEOFF_LOOP_DELAY_MS);
+       
     }
 }
 
