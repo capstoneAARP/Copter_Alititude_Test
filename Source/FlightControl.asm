@@ -468,8 +468,8 @@ L_TakeOff16:
 MOVW	R0, #lo_addr(_current_DC_3+0)
 MOVT	R0, #hi_addr(_current_DC_3+0)
 LDR	R2, [R0, #0]
-MOVW	R0, #39322
-MOVT	R0, #16601
+MOVW	R0, #52429
+MOVT	R0, #16604
 BL	__Compare_FP+0
 MOVW	R0, #0
 BLE	L__TakeOff70
@@ -483,8 +483,8 @@ BEQ	L_TakeOff17
 MOVW	R0, #lo_addr(_current_DC_3+0)
 MOVT	R0, #hi_addr(_current_DC_3+0)
 LDR	R2, [R0, #0]
-MOVW	R0, #13107
-MOVT	R0, #16595
+MOVW	R0, #26214
+MOVT	R0, #16598
 BL	__Compare_FP+0
 MOVW	R0, #0
 BGT	L__TakeOff71
@@ -517,7 +517,7 @@ LDR	R0, [R0, #0]
 BL	_UARTSendDouble+0
 ;FlightControl.c,121 :: 		if (sonarReadValue >= TAKEOFF_ALITITUDE && sonarReadValue <= 200)
 LDRH	R0, [SP, #4]
-CMP	R0, #39
+CMP	R0, #40
 IT	CC
 BCC	L__TakeOff56
 LDRH	R0, [SP, #4]
@@ -588,8 +588,8 @@ BHI	L__TakeOff58
 MOVW	R0, #lo_addr(_current_DC_3+0)
 MOVT	R0, #hi_addr(_current_DC_3+0)
 LDR	R2, [R0, #0]
-MOVW	R0, #39322
-MOVT	R0, #16601
+MOVW	R0, #52429
+MOVT	R0, #16604
 BL	__Compare_FP+0
 MOVW	R0, #0
 BGT	L__TakeOff72
@@ -621,8 +621,8 @@ L__TakeOff57:
 MOVW	R0, #lo_addr(_current_DC_3+0)
 MOVT	R0, #hi_addr(_current_DC_3+0)
 LDR	R2, [R0, #0]
-MOVW	R0, #39322
-MOVT	R0, #16601
+MOVW	R0, #52429
+MOVT	R0, #16604
 BL	__Compare_FP+0
 MOVW	R0, #0
 BGT	L__TakeOff73
@@ -707,8 +707,8 @@ MOVS	R2, #0
 MOVS	R1, #0
 BL	_PWM_TIM2_Set_Duty+0
 ;FlightControl.c,158 :: 		Delay_ms(TAKEOFF_LOOP_DELAY_MS);
-MOVW	R7, #19263
-MOVT	R7, #76
+MOVW	R7, #2303
+MOVT	R7, #61
 NOP
 NOP
 L_TakeOff29:
@@ -1136,8 +1136,8 @@ L_alitudeSonarRead36:
 ; sonarAvg start address is: 32 (R8)
 ; anomolyCount start address is: 24 (R6)
 ; i start address is: 4 (R1)
-MOVW	R7, #51423
-MOVT	R7, #16
+MOVW	R7, #16959
+MOVT	R7, #15
 NOP
 NOP
 L_alitudeSonarRead37:

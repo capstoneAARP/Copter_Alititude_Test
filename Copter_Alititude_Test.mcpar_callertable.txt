@@ -95,10 +95,10 @@ main
 				_Mul_FP
 				_Div_FP
 				_FloatToUnsignedIntegral
+			UARTSendNewLine
 			sonarGeneric
 				ADC1_Get_Sample
 			UARTSendUint16
-			UARTSendNewLine
 			LandingMode
 				PWM_TIM3_Set_Duty
 				_Mul_FP

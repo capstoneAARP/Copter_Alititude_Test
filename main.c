@@ -67,7 +67,13 @@ void mainTestingThread()
 
      if(success == true)
      {
+           UARTSendString("LoiterMode");
        LoiterMode();
+           UARTSendNewLine();
+           sonarWes = sonarGeneric();
+           UARTSendString("Sonar Read Raw.");
+           UARTSendUint16(sonarWes);
+
        Delay_ms(2000);
        //Stabilize_Alt();
        //delay_ms(500);

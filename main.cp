@@ -139,7 +139,13 @@ void mainTestingThread()
 
  if(success ==  0 )
  {
+ UARTSendString("LoiterMode");
  LoiterMode();
+ UARTSendNewLine();
+ sonarWes = sonarGeneric();
+ UARTSendString("Sonar Read Raw.");
+ UARTSendUint16(sonarWes);
+
  Delay_ms(2000);
 
 
@@ -151,7 +157,7 @@ void mainTestingThread()
  UARTSendNewLine();
  Delay_ms(1000);
  }
-#line 120 "C:/Users/dell/Documents/GitHub/Copter_Alititude_Test/main.c"
+#line 126 "C:/Users/dell/Documents/GitHub/Copter_Alititude_Test/main.c"
  }
  UARTSendString("Returning to base.");
  LandingMode();
@@ -219,7 +225,7 @@ void InitSysTick()
  NVIC_SYSTICKCSR.B1 = 1;
  NVIC_SYSTICKCSR.B2 = 1;
 }
-#line 192 "C:/Users/dell/Documents/GitHub/Copter_Alititude_Test/main.c"
+#line 198 "C:/Users/dell/Documents/GitHub/Copter_Alititude_Test/main.c"
 void SysTick_ISR() iv IVT_INT_SysTick ics ICS_AUTO
 {
 GPIOC_ODR ^= _GPIO_PINMASK_9;
@@ -269,7 +275,7 @@ void main()
 
 
  init_prog();
-#line 254 "C:/Users/dell/Documents/GitHub/Copter_Alititude_Test/main.c"
+#line 260 "C:/Users/dell/Documents/GitHub/Copter_Alititude_Test/main.c"
 }
 
 

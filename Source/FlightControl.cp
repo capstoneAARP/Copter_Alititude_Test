@@ -181,10 +181,10 @@ boolean TakeOff()
  PWM_TIM2_Set_Duty(DC_time, _PWM_NON_INVERTED, _PWM_CHANNEL1);
  delay_ms(500);
 
- while(current_DC_3 <  6.8 ){
+ while(current_DC_3 <  6.9 ){
 
 
- if(current_DC_3 >=  6.6 )
+ if(current_DC_3 >=  6.7 )
  {
  sonarReadValue = alitudeSonarRead();
  UARTSendString("Snr avg.");
@@ -193,7 +193,7 @@ boolean TakeOff()
  UARTSendString("Thrtl");
  UARTSendDouble(current_DC_3);
 
- if (sonarReadValue >=  39  && sonarReadValue <= 200)
+ if (sonarReadValue >=  40  && sonarReadValue <= 200)
  {
  UARTSendString("Reached Alitutude.");
  GPIOC_ODR.B9 = 1;
@@ -205,13 +205,13 @@ boolean TakeOff()
  }
 
 
- if (sonarReadValue <=  12  && current_DC_3 >=  6.8 )
+ if (sonarReadValue <=  12  && current_DC_3 >=  6.9 )
  {
  UARTSendString("Failed to reach altitude.");
  GPIOC_ODR.B9 = 0;
  return  1 ;
  }
- if (current_DC_3 >=  6.8 )
+ if (current_DC_3 >=  6.9 )
  {
  UARTSendString("Max Throttle.");
  GPIOC_ODR.B9 = 0;
@@ -230,7 +230,7 @@ boolean TakeOff()
 
  DC_time = (current_DC_3*pwm_period2)/100;
  PWM_TIM2_Set_Duty(DC_time, _PWM_NON_INVERTED, _PWM_CHANNEL1);
- Delay_ms( 500 );
+ Delay_ms( 400 );
 
  }
 }
@@ -320,7 +320,7 @@ uint16 alitudeSonarRead()
  {
  sonarAvg += sonarArray[i];
  }
- Delay_ms( 110 );
+ Delay_ms( 100 );
  }
  sonarAvg = sonarAvg/ 4 ;
  secondAvg = 0;
