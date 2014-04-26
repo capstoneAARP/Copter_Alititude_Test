@@ -214,6 +214,7 @@ void Stop_Forward(){
 uint16 sonarGeneric()
 {
    uint16 sonar = ADC1_Get_Sample(13);
+   sonar >>= 4;
    return sonar;
 }
 

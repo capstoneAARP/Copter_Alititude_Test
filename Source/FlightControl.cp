@@ -243,6 +243,7 @@ void Stop_Forward(){
 uint16 sonarGeneric()
 {
  uint16 sonar = ADC1_Get_Sample(13);
+ sonar >>= 4;
  return sonar;
 }
 
@@ -294,7 +295,7 @@ void Stabilize_Alt()
  uint16 sonarAlititude = 0;
  uint8 failSafeCounter = 0;
  uint8 sonarReadIteration = 0;
-#line 274 "C:/Users/dell/Documents/GitHub/Copter_Alititude_Test/Source/FlightControl.c"
+#line 275 "C:/Users/dell/Documents/GitHub/Copter_Alititude_Test/Source/FlightControl.c"
  UARTSendString("Stablilizing Alititude.");
  sonarAlititude = alitudeSonarRead();
  UARTSendString("1st Sonar average.");
