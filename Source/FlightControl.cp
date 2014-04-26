@@ -174,7 +174,7 @@ void DisArm(){
 boolean TakeOff()
 {
  uint16 sonarReadValue;
- current_DC_3 =  6.0 ;
+ current_DC_3 =  6.4 ;
  UARTSendString("Taking off_Timed12.");
 
  DC_time = (current_DC_3*pwm_period2)/100;
@@ -182,7 +182,7 @@ boolean TakeOff()
  delay_ms(500);
 
  while(current_DC_3 <  6.7 ){
- current_DC_3 +=  0.02 ;
+ current_DC_3 +=  0.03 ;
 
  DC_time = (current_DC_3*pwm_period2)/100;
  PWM_TIM2_Set_Duty(DC_time, _PWM_NON_INVERTED, _PWM_CHANNEL1);
@@ -196,7 +196,7 @@ boolean TakeOff()
  UARTSendString("Thrtl");
  UARTSendDouble(current_DC_3);
 
- if (sonarReadValue >=  30  && sonarReadValue <= 200)
+ if (sonarReadValue >=  40  && sonarReadValue <= 200)
  {
  UARTSendString("Reached Alitutude.");
  GPIOC_ODR.B9 = 1;
@@ -227,7 +227,7 @@ boolean TakeOff()
  }
  }
  GPIOC_ODR.B9 = ~GPIOC_ODR.B9;
- Delay_ms( 500 );
+ Delay_ms( 300 );
  }
 }
 
@@ -343,7 +343,7 @@ void Stabilize_Alt()
  UARTSendUint16(sonarAlititude);
  UARTSendNewLine();
 
- while((sonarAlititude < ( 40  -  10 )) || (sonarAlititude > ( 40  +  10 )))
+ while((sonarAlititude < ( 48  -  10 )) || (sonarAlititude > ( 48  +  10 )))
  {
  if(failSafeCounter >=  10 )
  {
@@ -353,12 +353,12 @@ void Stabilize_Alt()
  else if(sonarReadIteration >=  3 )
  {
  sonarReadIteration = 0;
- if(sonarAlititude >  40 )
+ if(sonarAlititude >  48 )
  {
  current_DC_3 =  6.0  ;
  UARTSendString("Decrease Throttle.");
  }
- else if(sonarAlititude <  40 )
+ else if(sonarAlititude <  48 )
  {
  current_DC_3 =  8.8 ;
  UARTSendString("Increase Throttle.");
