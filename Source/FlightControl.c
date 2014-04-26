@@ -99,9 +99,8 @@ void DisArm(){
 boolean TakeOff()
 {
     uint16 sonarReadValue;
-    current_DC_3 = STARTING_THROTTLE_VALUE;  //Start motors at this value to predict timing-iterations in launch sequence
+    current_DC_3 = 6.55;  //Start motors at this value to predict timing-iterations in launch sequence
     UARTSendString("Taking off_Timed1.");
-    current_DC_3 = 6.55;
        //Start increasing Throttle
        DC_time = (current_DC_3*pwm_period2)/100;
        PWM_TIM2_Set_Duty(DC_time, _PWM_NON_INVERTED, _PWM_CHANNEL1);
@@ -153,6 +152,13 @@ boolean TakeOff()
     }
     */
     delay_ms(2500);
+    sonarReadValue = alitudeSonarRead();
+           UARTSendString("Sonar average.");
+           UARTSendUint16(sonarReadValue);
+           UARTSendNewLine();
+           UARTSendString("Throttle");
+           UARTSendDouble(current_DC_3);
+           return true;
 }
 
 void LoiterMode(){
@@ -253,11 +259,12 @@ void Stabilize_Alt()
    uint16 sonarAlititude = 0;
    uint8 failSafeCounter = 0;
    uint8 sonarReadIteration = 0;
-   
+   /*
    current_DC_3 = HOVER_THROTTLE_VALUE;
    DC_time = (current_DC_3*pwm_period2)/100;
    PWM_TIM2_Set_Duty(DC_time, _PWM_NON_INVERTED, _PWM_CHANNEL1);
-   
+     */
+     
    UARTSendString("Stablilizing Alititude.");
    sonarAlititude = alitudeSonarRead();
    UARTSendString("1st Sonar average.");

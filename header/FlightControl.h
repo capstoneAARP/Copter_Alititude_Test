@@ -9,7 +9,7 @@
 #define STARTING_THROTTLE_VALUE         5.8
 #define LIMIT_THROTTLE_VALUE            6.5
 #define MAX_THROTTLE_VALUE              6.7
-#define HOVER_THROTTLE_VALUE            6.5
+#define HOVER_THROTTLE_VALUE            6.55
 #define THROTLE_STEP_SIZE               0.05               //Takeoff
 #define ALT_THROTLE_STEP_SIZE           0.04
 #else

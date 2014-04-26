@@ -173,14 +173,20 @@ void DisArm(){
 boolean TakeOff()
 {
  uint16 sonarReadValue;
- current_DC_3 =  5.8 ;
- UARTSendString("Taking off_Timed1.");
  current_DC_3 = 6.55;
+ UARTSendString("Taking off_Timed1.");
 
  DC_time = (current_DC_3*pwm_period2)/100;
  PWM_TIM2_Set_Duty(DC_time, _PWM_NON_INVERTED, _PWM_CHANNEL1);
-#line 155 "C:/Users/dell/Documents/GitHub/Copter_Alititude_Test/Source/FlightControl.c"
+#line 154 "C:/Users/dell/Documents/GitHub/Copter_Alititude_Test/Source/FlightControl.c"
  delay_ms(2500);
+ sonarReadValue = alitudeSonarRead();
+ UARTSendString("Sonar average.");
+ UARTSendUint16(sonarReadValue);
+ UARTSendNewLine();
+ UARTSendString("Throttle");
+ UARTSendDouble(current_DC_3);
+ return  0 ;
 }
 
 void LoiterMode(){
@@ -281,11 +287,7 @@ void Stabilize_Alt()
  uint16 sonarAlititude = 0;
  uint8 failSafeCounter = 0;
  uint8 sonarReadIteration = 0;
-
- current_DC_3 =  6.5 ;
- DC_time = (current_DC_3*pwm_period2)/100;
- PWM_TIM2_Set_Duty(DC_time, _PWM_NON_INVERTED, _PWM_CHANNEL1);
-
+#line 268 "C:/Users/dell/Documents/GitHub/Copter_Alititude_Test/Source/FlightControl.c"
  UARTSendString("Stablilizing Alititude.");
  sonarAlititude = alitudeSonarRead();
  UARTSendString("1st Sonar average.");
