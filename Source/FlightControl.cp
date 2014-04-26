@@ -342,12 +342,12 @@ void Stabilize_Alt()
  sonarReadIteration = 0;
  if(sonarAlititude >  96 )
  {
- current_DC_3 -=  0.05 ;
+ current_DC_3 -=  0.03 ;
  UARTSendString("Decrease Throttle.");
  }
  else if(sonarAlititude <  96 )
  {
- current_DC_3 +=  0.05 ;
+ current_DC_3 +=  0.03 ;
  UARTSendString("Increase Throttle.");
  }
  GPIOC_ODR.B8 = ~GPIOC_ODR.B8;

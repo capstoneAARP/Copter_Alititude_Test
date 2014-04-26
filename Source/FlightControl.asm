@@ -1230,8 +1230,8 @@ MOVW	R0, #lo_addr(_current_DC_3+0)
 MOVT	R0, #hi_addr(_current_DC_3+0)
 STR	R0, [SP, #12]
 LDR	R0, [R0, #0]
-MOVW	R2, #52429
-MOVT	R2, #15692
+MOVW	R2, #49807
+MOVT	R2, #15605
 BL	__Sub_FP+0
 LDR	R1, [SP, #12]
 STR	R0, [R1, #0]
@@ -1253,8 +1253,8 @@ MOVW	R0, #lo_addr(_current_DC_3+0)
 MOVT	R0, #hi_addr(_current_DC_3+0)
 STR	R0, [SP, #12]
 LDR	R2, [R0, #0]
-MOVW	R0, #52429
-MOVT	R0, #15692
+MOVW	R0, #49807
+MOVT	R0, #15605
 BL	__Add_FP+0
 LDR	R1, [SP, #12]
 STR	R0, [R1, #0]
